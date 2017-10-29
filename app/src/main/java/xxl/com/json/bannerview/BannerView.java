@@ -1,12 +1,14 @@
 package xxl.com.json.viewpager;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -26,8 +28,12 @@ public class BannerView extends RelativeLayout {
     private LinearLayout mLLDotIndicator;
     private BannerAdapter mBannerAdapter;
     private Drawable mIndecatorNormal;//点未选中drawble
-    private Drawable mIndecatorSelect;//点选中drawable
+    private Drawable mIndecatorFocus;//点选中drawable
     private int mCurrentPosition = 0;//当前选中的页面位置,默认位置是第0个位置
+    private int mDotSize = 8;
+    private int mDotGravity = 1;
+    private RelativeLayout mRLBottom;
+    private int mDotDistance = 8;
 
     public BannerView(Context context) {
         this(context, null);
@@ -43,16 +49,55 @@ public class BannerView extends RelativeLayout {
         inflate(context, R.layout.ui_banner_layout, this);
         initView();
 
-        mIndecatorNormal = new ColorDrawable(Color.WHITE);
-        mIndecatorSelect = new ColorDrawable(Color.RED);
+        initAttribute(attrs);
     }
-
 
     private void initView() {
         mBannerViewPager = (BannerViewPager) findViewById(R.id.banner_vp);
         mDes = (TextView) findViewById(R.id.tv_des);
         mLLDotIndicator = (LinearLayout) findViewById(R.id.ll_dot_container);
+        mRLBottom = (RelativeLayout) findViewById(R.id.rl_bottom);
     }
+
+    /**
+     * 初始化自定义属性
+     */
+    private void initAttribute(AttributeSet attrs) {
+        //获取自定义属性
+        TypedArray typedArray = mContext.obtainStyledAttributes(attrs, R.styleable.BannerView);
+
+        //获取选中点的drawable
+        mIndecatorFocus = typedArray.getDrawable(R.styleable.BannerView_dotIndicatorFocus);
+        if (mIndecatorFocus == null) {
+            //设置默认值
+            mIndecatorFocus = new ColorDrawable(Color.RED);
+        }
+        //获取未选中点的drawable
+        mIndecatorNormal = typedArray.getDrawable(R.styleable.BannerView_dotIndicatorNormal);
+        if (mIndecatorNormal == null) {
+            //设置默认值
+            mIndecatorNormal = new ColorDrawable(Color.WHITE);
+        }
+
+        //获取点的间距
+        mDotDistance = (int) typedArray.getDimension(R.styleable.BannerView_dotDistance, mDotDistance);
+
+        //获取点的大小
+        mDotSize = (int) typedArray.getDimension(R.styleable.BannerView_dotSize, mDotSize);
+        //获取点的位置
+        mDotGravity = typedArray.getInt(R.styleable.BannerView_dotGravity, mDotGravity);
+
+        Drawable bottomColor = typedArray.getDrawable(R.styleable.BannerView_bottomColor);
+
+        if (bottomColor != null) {
+            mRLBottom.setBackground(bottomColor);
+        }else {
+            mRLBottom.setBackgroundColor(Color.parseColor("55757575"));
+        }
+
+        typedArray.recycle();
+    }
+
 
     /**
      * 设置Adapter
@@ -88,7 +133,7 @@ public class BannerView extends RelativeLayout {
         //设置当前点的状态为选中状态
         mCurrentPosition = position % mBannerAdapter.getCount();
         IndicatorView currentDotView = (IndicatorView) mLLDotIndicator.getChildAt(mCurrentPosition);
-        currentDotView.setDrawble(mIndecatorSelect);
+        currentDotView.setDrawble(mIndecatorFocus);
 
         //设置广告位文字描述
         String bannerDes = mBannerAdapter.getBannerDes(mCurrentPosition);
@@ -100,16 +145,18 @@ public class BannerView extends RelativeLayout {
      */
     private void initDotIndicator() {
         int count = mBannerAdapter.getCount();//获取广告位数量
+        //设置点的位置
+        mLLDotIndicator.setGravity(getDotGravity());
         for (int i = 0; i < count; i++) {
             //根据 条目图片张数动态添加小点
             IndicatorView indicatorView = new IndicatorView(mContext);
             //设置大小
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dip2px(8), dip2px(8));
-            params.leftMargin = dip2px(2);
-            params.rightMargin = dip2px(2);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(mDotSize, mDotSize);
+            //设置点的间距
+            params.leftMargin = mDotDistance;
             //设置Drawable 背景
             if (i == 0) {
-                indicatorView.setDrawble(mIndecatorSelect);
+                indicatorView.setDrawble(mIndecatorFocus);
             } else {
                 indicatorView.setDrawble(mIndecatorNormal);
             }
@@ -130,5 +177,20 @@ public class BannerView extends RelativeLayout {
      */
     public void startScroll() {
         mBannerViewPager.startScroll();
+    }
+
+    /**
+     * 获取点的位置
+     */
+    public int getDotGravity() {
+        switch (mDotGravity) {
+            case 0:
+                return Gravity.CENTER;
+            case -1:
+                return Gravity.LEFT;
+            case 1:
+                return Gravity.RIGHT;
+        }
+        return Gravity.LEFT;
     }
 }

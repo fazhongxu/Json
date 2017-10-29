@@ -1,4 +1,4 @@
-package xxl.com.json.recyclerview;
+package xxl.com.json.commonadapter;
 
 /**
  * Created by xxl on 2017/10/27.

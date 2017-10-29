@@ -1,4 +1,4 @@
-package xxl.com.json.viewpager;
+package xxl.com.json.bannerview;
 
 import android.content.Context;
 import android.os.Handler;

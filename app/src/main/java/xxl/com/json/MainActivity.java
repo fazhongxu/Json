@@ -11,14 +11,13 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
-import java.util.List;
 import java.util.Map;
 
 import xxl.com.baselibray.http.HttpCallBackEngine;
 import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.json.bean.JokeBean;
-import xxl.com.json.viewpager.BannerAdapter;
-import xxl.com.json.viewpager.BannerView;
+import xxl.com.json.bannerview.BannerAdapter;
+import xxl.com.json.bannerview.BannerView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

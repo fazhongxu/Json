@@ -6,8 +6,8 @@ import java.util.List;
 
 import xxl.com.json.R;
 import xxl.com.json.bean.ChatBean;
-import xxl.com.json.recyclerview.CommonRecyclerViewAdapter;
-import xxl.com.json.recyclerview.MultiTypeSupport;
+import xxl.com.json.commonadapter.CommonRecyclerViewAdapter;
+import xxl.com.json.commonadapter.MultiTypeSupport;
 
 /**
  * Created by xxl on 2017/10/26.

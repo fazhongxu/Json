@@ -1,4 +1,4 @@
-package xxl.com.json.viewpager;
+package xxl.com.json.bannerview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,12 +9,13 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import xxl.com.json.R;
+
+import static xxl.com.json.R.attr.bottomColor;
 
 /**
  * Created by xxl on 2017/10/28.
@@ -30,10 +31,12 @@ public class BannerView extends RelativeLayout {
     private Drawable mIndecatorNormal;//点未选中drawble
     private Drawable mIndecatorFocus;//点选中drawable
     private int mCurrentPosition = 0;//当前选中的页面位置,默认位置是第0个位置
-    private int mDotSize = 8;
-    private int mDotGravity = 1;
+    private int mDotSize = 8;//小点默认大小
+    private int mDotGravity = 1;//小点默认位置 1 为右边
     private RelativeLayout mRLBottom;
+    private int mBVBottomColor = Color.TRANSPARENT;//底部容器颜色默认值 透明
     private int mDotDistance = 8;
+    private Drawable mBVBottomColorDrawable;//底部容器颜色值，shape文件资源颜色方式设置底部容器颜色
 
     public BannerView(Context context) {
         this(context, null);
@@ -47,9 +50,8 @@ public class BannerView extends RelativeLayout {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
         inflate(context, R.layout.ui_banner_layout, this);
-        initView();
-
         initAttribute(attrs);
+        initView();
     }
 
     private void initView() {
@@ -57,6 +59,13 @@ public class BannerView extends RelativeLayout {
         mDes = (TextView) findViewById(R.id.tv_des);
         mLLDotIndicator = (LinearLayout) findViewById(R.id.ll_dot_container);
         mRLBottom = (RelativeLayout) findViewById(R.id.rl_bottom);
+
+        //手先判断是否是shape等drawable文件作为底部容器的背景，有的话就优先使用，没有的话判断是否传入了颜色值
+        if (mBVBottomColorDrawable != null) {
+            mRLBottom.setBackground(mBVBottomColorDrawable);
+        } else {
+            mRLBottom.setBackgroundColor(mBVBottomColor);
+        }
     }
 
     /**
@@ -86,15 +95,11 @@ public class BannerView extends RelativeLayout {
         mDotSize = (int) typedArray.getDimension(R.styleable.BannerView_dotSize, mDotSize);
         //获取点的位置
         mDotGravity = typedArray.getInt(R.styleable.BannerView_dotGravity, mDotGravity);
-
-        Drawable bottomColor = typedArray.getDrawable(R.styleable.BannerView_bottomColor);
-
-        if (bottomColor != null) {
-            mRLBottom.setBackground(bottomColor);
-        }else {
-            mRLBottom.setBackgroundColor(Color.parseColor("55757575"));
+        //获取底部容器颜色 可以设置shape等drawable资源作为底部容器的背景
+        mBVBottomColorDrawable = typedArray.getDrawable(R.styleable.BannerView_bottomColor);
+        if (mBVBottomColorDrawable == null) {
+            mBVBottomColor = typedArray.getColor(R.styleable.BannerView_bottomColor, mBVBottomColor);
         }
-
         typedArray.recycle();
     }
 

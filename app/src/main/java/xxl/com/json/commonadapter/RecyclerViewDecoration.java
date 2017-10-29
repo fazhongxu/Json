@@ -1,4 +1,4 @@
-package xxl.com.json.recyclerview;
+package xxl.com.json.commonadapter;
 
 import android.content.Context;
 import android.graphics.Canvas;

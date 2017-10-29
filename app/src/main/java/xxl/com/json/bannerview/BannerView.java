@@ -37,6 +37,7 @@ public class BannerView extends RelativeLayout {
     private int mBVBottomColor = Color.TRANSPARENT;//底部容器颜色默认值 透明
     private int mDotDistance = 8;
     private Drawable mBVBottomColorDrawable;//底部容器颜色值，shape文件资源颜色方式设置底部容器颜色
+    private int mWidthProportion,mHeightProportion;//BannerView（ViewPager）宽高比
 
     public BannerView(Context context) {
         this(context, null);
@@ -100,6 +101,9 @@ public class BannerView extends RelativeLayout {
         if (mBVBottomColorDrawable == null) {
             mBVBottomColor = typedArray.getColor(R.styleable.BannerView_bottomColor, mBVBottomColor);
         }
+        //获取自定义属性，宽高比
+        mWidthProportion = (int) typedArray.getFloat(R.styleable.BannerView_widthProportion,mWidthProportion);
+        mHeightProportion = (int) typedArray.getFloat(R.styleable.BannerView_heightProportion,mHeightProportion);
         typedArray.recycle();
     }
 
@@ -125,6 +129,17 @@ public class BannerView extends RelativeLayout {
         //初始化第一个位置的广告位文字描述
         String bannerDes = mBannerAdapter.getBannerDes(0);
         mDes.setText(bannerDes);
+
+        //设置BannerView宽高比
+        int width = getMeasuredWidth();
+        //如果没有设置宽高比就不动态计算宽高比
+        if (mWidthProportion == 0 || mHeightProportion == 0) {
+            return;
+        }
+        int height = width * mHeightProportion / mWidthProportion;
+
+        //动态计算设置宽高
+        getLayoutParams().height = height;
     }
 
     /**

@@ -25,4 +25,13 @@
         <!--高度比-->
         <attr name="heightProportion" format="float"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomTextView">
+        <!--文本-->
+        <attr name="customText" format="string"/>
+        <!--字体大小-->
+        <attr name="customTextSize" format="dimension"/>
+        <!--字体颜色-->
+        <attr name="customTextColor" format="color|reference"/>
+    </declare-styleable>
 </resources>

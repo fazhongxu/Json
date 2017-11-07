@@ -10,7 +10,8 @@
         android:padding="10dp"
         app:customTextColor="@color/colorAccent"
         android:background="@color/colorGray"
-        app:customText="Hello November"/>
+        app:customText="Hello November"
+        android:visibility="gone"/>
     
     <Button
         android:id="@+id/btn_test"
@@ -32,6 +33,6 @@
         android:layout_height="0dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/btn_test"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
 </RelativeLayout>

@@ -71,4 +71,13 @@
         <!--文字大小-->
         <attr name="circleProgressTextSize" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="RatingBar">
+        <!--默认星星-->
+        <attr name="ratingNormal" format="reference"/>
+        <!--选中星星-->
+        <attr name="ratingFocus" format="reference"/>
+        <!--星星数量-->
+        <attr name="ratingNum" format="integer"/>
+    </declare-styleable>
 </resources>

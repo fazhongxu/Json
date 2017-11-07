@@ -34,4 +34,41 @@
         <!--字体颜色-->
         <attr name="customTextColor" format="color|reference"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomStepView">
+        <!--外圆圆弧弧边框-->
+        <attr name="outerBorderSize" format="dimension" />
+        <!--内圆圆弧边框-->
+        <attr name="innerBorderSize" format="dimension" />
+        <!--外圆圆弧边框颜色-->
+        <attr name="outerColor" format="color|reference" />
+        <!--内圆圆弧边框颜色-->
+        <attr name="innerColor" format="color|reference" />
+        <!--文字颜色-->
+        <attr name="stepTextColor" format="color|reference" />
+        <!--文字大小-->
+        <attr name="stepTextSize" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ColorFlowTextView">
+        <!--不变的颜色-->
+        <attr name="orginColor" format="color|reference" />
+        <!--改变的颜色-->
+        <attr name="changeColor" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomCircleProgress">
+        <!--外圆颜色-->
+        <attr name="outerBorderColor" format="color|reference" />
+        <!--内圆颜色-->
+        <attr name="innerBorderColor" format="color|reference" />
+        <!--外圆边框宽度-->
+        <attr name="outerBorderStroke" format="dimension" />
+        <!--内圆边框宽度-->
+        <attr name="innerBorderStroke" format="dimension" />
+        <!--文字颜色-->
+        <attr name="circleProgressTextColor" format="color|reference" />
+        <!--文字大小-->
+        <attr name="circleProgressTextSize" format="dimension" />
+    </declare-styleable>
 </resources>

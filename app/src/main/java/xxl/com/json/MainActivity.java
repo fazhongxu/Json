@@ -15,9 +15,9 @@ import java.util.Map;
 
 import xxl.com.baselibray.http.HttpCallBackEngine;
 import xxl.com.baselibray.http.HttpUtil;
-import xxl.com.json.bean.JokeBean;
 import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
+import xxl.com.json.bean.JokeBean;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             @Override
             public String getBannerDes(int position) {
-               return bannerBean.getBanners().get(position).getBanner_url().getTitle();
+                return bannerBean.getBanners().get(position).getBanner_url().getTitle();
             }
         });
         mBannerView.startScroll();
@@ -94,8 +94,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnTest.setOnClickListener(this);
 
         mBannerView = (BannerView) findViewById(R.id.banner_view);
-
-//        mViewPager.setAdapter();
     }
 
     @Override

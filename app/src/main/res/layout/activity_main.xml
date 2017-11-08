@@ -11,13 +11,20 @@
         android:text="测试"
         android:visibility="gone" />
 
+   <xxl.com.json.wrap.WrapRecyclerView
+       android:id="@+id/recyclerView"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:visibility="gone"/>
+
     <xxl.com.json.view.RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:ratingFocus="@drawable/star_selected"
         android:paddingLeft="5dp"
         app:ratingNormal="@drawable/star_normal"
-        app:ratingNum="5" />
+        app:ratingNum="5"
+        android:visibility="gone"/>
 
     <xxl.com.json.bannerview.BannerView
         android:id="@+id/banner_view"

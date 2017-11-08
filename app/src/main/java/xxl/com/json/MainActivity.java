@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -18,6 +19,7 @@ import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
 import xxl.com.json.bean.JokeBean;
+import xxl.com.json.view.SlideBar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -94,6 +96,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mBtnTest.setOnClickListener(this);
 
         mBannerView = (BannerView) findViewById(R.id.banner_view);
+
+        SlideBar slideBar = (SlideBar) findViewById(R.id.slide_bar);
+        slideBar.setOnTouchLisenter(new SlideBar.OnTouchLisenter() {
+            @Override
+            public void onTouch(String letter) {
+                Toast.makeText(MainActivity.this, ""+letter, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

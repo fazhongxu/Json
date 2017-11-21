@@ -80,4 +80,9 @@
         <!--星星数量-->
         <attr name="ratingNum" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="SlidingMenu">
+        <!--内容布局占的宽度-->
+        <attr name="contentViewWidth" format="dimension"/>
+    </declare-styleable>
 </resources>

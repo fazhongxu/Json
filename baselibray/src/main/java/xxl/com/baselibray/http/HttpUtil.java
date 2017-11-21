@@ -10,6 +10,14 @@ import java.util.Map;
  */
 
 public class HttpUtil {
+    //面向对象6大基本原则
+    //单一职责原则(高相关性的函数封装在一起，其他的不要放入)
+    //里氏替换原则（父类可以出现的地方子类一定可以出现）
+    //开闭原则（对扩展开放，对修改关闭）
+    //依赖倒置原则（高层不依赖细节 依赖接口）
+    //接口隔离（臃肿的接口拆分成更小更具体的接口，用户只实现其感兴趣的接口）
+    //最少知识原则（一个对象应该对其他对象最少的了解，内部如何实现与调用者没关系，调用者只需要调用他关心的方法即可）
+
     //默认引擎
     private static IHttpEngine mHttpEngine;
     //请求url地址
@@ -37,8 +45,8 @@ public class HttpUtil {
     /**
      * 初始化引擎
      */
-    public static void init() {
-        mHttpEngine = new OkHttpEngine();
+    public static void init(IHttpEngine httpEngine) {
+        mHttpEngine = httpEngine;
     }
 
     /**

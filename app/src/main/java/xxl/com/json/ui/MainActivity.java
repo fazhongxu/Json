@@ -1,9 +1,8 @@
-package xxl.com.json;
+package xxl.com.json.ui;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,13 +20,13 @@ import java.util.Map;
 
 import xxl.com.baselibray.http.HttpCallBackEngine;
 import xxl.com.baselibray.http.HttpUtil;
+import xxl.com.json.R;
 import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
 import xxl.com.json.bean.JokeBean;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
-import xxl.com.json.utils.SharedPreferenceUtils;
 import xxl.com.json.view.SlideBar;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -121,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
+//                call();
+                startActivity(new Intent(this,TablayoutActivity.class));
                 break;
             default:
                 break;
@@ -128,10 +129,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void call() {
-            /*  PermissionHelper.with(this)
+              PermissionHelper.with(this)
                         .requestCode(CALL_PHONE_PERMISSION_REQUEST_CODE)
                         .addPermissions(new String[]{Manifest.permission.CALL_PHONE})
-                        .request();*/
+                        .request();
     }
 
     @PermissionSuccess(requstCode = CALL_PHONE_PERMISSION_REQUEST_CODE)
@@ -143,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @PermissionFailure(requstCode = CALL_PHONE_PERMISSION_REQUEST_CODE)
     private void callPhoneFailure() {
+
     }
 
     @Override

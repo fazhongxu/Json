@@ -2,12 +2,8 @@ package xxl.com.json.permission;
 
 import android.app.Activity;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
-
-import xxl.com.json.MainActivity;
 
 /**
  * Created by xxl on 2017/11/21.

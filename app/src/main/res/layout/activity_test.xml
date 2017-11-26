@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xxl.com.json.view.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:contentViewWidth="200dp"
-    android:background="@drawable/ic_background"
-    tools:context="xxl.com.json.TestActivity">
-    <LinearLayout
+    android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
-        <include layout="@layout/layout_menu"/>
+        <android.support.design.widget.TabLayout
+            android:paddingRight="15dp"
+            android:paddingLeft="20dp"
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-        <include layout="@layout/layout_main"/>
-    </LinearLayout>
-</xxl.com.json.view.SlidingMenu>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

@@ -120,7 +120,7 @@ public class ViewUtil {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
                 try {
-                    mMethod.invoke(mObj, null);//OnClick方法可以不用携带参数
+                    mMethod.invoke(mObj, new Object[]{});//OnClick方法可以不用携带参数
                 } catch (IllegalAccessException e1) {
                     e1.printStackTrace();
                 } catch (InvocationTargetException e1) {

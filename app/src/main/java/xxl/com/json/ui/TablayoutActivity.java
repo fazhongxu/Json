@@ -3,7 +3,6 @@ package xxl.com.json.ui;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -13,7 +12,7 @@ import java.lang.reflect.Field;
 import xxl.com.json.R;
 import xxl.com.json.adapter.TabPagerAdapter;
 
-public class TablayoutActivity extends AppCompatActivity {
+public class TablayoutActivity extends BaseActivity {
 
     private TabLayout mTablayout;
     private ViewPager mViewPager;
@@ -22,7 +21,7 @@ public class TablayoutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_test);
+        setContentView(R.layout.activity_tablayout);
         mTablayout = (TabLayout) findViewById(R.id.tablayout);
 
         mTablayout.post(new Runnable() {

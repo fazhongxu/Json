@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +15,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
+import java.lang.reflect.Field;
 import java.util.Map;
 
 import xxl.com.baselibray.http.HttpCallBackEngine;
@@ -29,7 +29,7 @@ import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
 import xxl.com.json.view.SlideBar;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private Button mBtnTest;
     private BannerView mBannerView;
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initData();
         initView();
     }
@@ -120,8 +121,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-//                call();
-                startActivity(new Intent(this,TablayoutActivity.class));
+                try {
+                    Person person = new Person();
+//                    Person person = Person.class.newInstance();
+                    Class<?> clazz = Class.forName("xxl.com.json.bean.Person");
+                    Field name = clazz.getDeclaredField("name");
+                    name.setAccessible(true);
+                    Log.e(TAG, "onClick: "+name.get(person));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                startActivty(TestActivity.class);
+
                 break;
             default:
                 break;
@@ -129,10 +141,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void call() {
-              PermissionHelper.with(this)
-                        .requestCode(CALL_PHONE_PERMISSION_REQUEST_CODE)
-                        .addPermissions(new String[]{Manifest.permission.CALL_PHONE})
-                        .request();
+        PermissionHelper.with(this)
+                .requestCode(CALL_PHONE_PERMISSION_REQUEST_CODE)
+                .addPermissions(new String[]{Manifest.permission.CALL_PHONE})
+                .request();
     }
 
     @PermissionSuccess(requstCode = CALL_PHONE_PERMISSION_REQUEST_CODE)

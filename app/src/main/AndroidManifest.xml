@@ -3,7 +3,7 @@
     package="xxl.com.json">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name=".App"
@@ -20,7 +20,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.TablayoutActivity"></activity>
+        <activity android:name=".ui.TablayoutActivity" />
+        <activity android:name=".ui.TestActivity"/>
     </application>
 
 </manifest>

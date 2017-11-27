@@ -82,7 +82,7 @@
     </declare-styleable>
 
     <declare-styleable name="SlidingMenu">
-        <!--内容布局占的宽度-->
-        <attr name="contentViewWidth" format="dimension"/>
+        <!--内容布局距离右边的-->
+        <attr name="rightMargin" format="dimension"/>
     </declare-styleable>
 </resources>

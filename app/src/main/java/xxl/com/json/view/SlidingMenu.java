@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -28,6 +29,7 @@ public class SlidingMenu extends HorizontalScrollView {
 
     private GestureDetector mGestureDetector;//手势处理类
     private boolean mMenuIsOpen = false;
+    private boolean mIsIntercept = false;
 
     public SlidingMenu(Context context) {
         this(context, null);
@@ -75,9 +77,24 @@ public class SlidingMenu extends HorizontalScrollView {
         setScrollX(mMenuWidth);
     }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        mIsIntercept = false;
+        //事件拦截，菜单打开的时，点击内容页的时候，内容页的按钮不能点击（需要事件拦截）
+        if (ev.getX() > mMenuWidth && mMenuIsOpen) {
+            closeMenu();
+            mIsIntercept = true;
+            return true;//拦截子View的事件，如果return true 代表会拦截子View的事件，会响应自己的onTouchEvent事件
+        }
+        return super.onInterceptTouchEvent(ev);
+    }
+
     //手指抬起自动滑动到距离近的一边
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        if (mIsIntercept){//有拦截，不要再往下执行了
+            return true;
+        }
         if (mGestureDetector.onTouchEvent(ev)) {//必须在onTouchEvent里面调用
             //如果是快速滑动，下面就不要执行了
             return true;

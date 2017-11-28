@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
 import xxl.com.json.view.SlideBar;
+import xxl.com.json.view.TouchView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -42,6 +44,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+       TouchView touchView = (TouchView) findViewById(R.id.touchView);
+       touchView.setOnTouchListener(new View.OnTouchListener() {
+           @Override
+           public boolean onTouch(View v, MotionEvent event) {
+               Log.e("View", "TouchListener: -->"+event.getAction());
+               return false;
+           }
+       });
+       touchView.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Log.e("View", "onClick:");
+           }
+       });
 
         initData();
         initView();

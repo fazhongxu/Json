@@ -6,6 +6,7 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,9 @@ public class SlidingMenu extends HorizontalScrollView {
     private View mMenuView;
     private View mContentView;
 
+    private GestureDetector mGestureDetector;//手势处理类
+    private boolean mMenuIsOpen = false;
+
     public SlidingMenu(Context context) {
         this(context, null);
     }
@@ -42,6 +46,8 @@ public class SlidingMenu extends HorizontalScrollView {
         mMenuWidth = getScreenWidth(getContext()) - mRightMargin;
 
         typedArray.recycle();
+
+        mGestureDetector = new GestureDetector(context, mGestureListener);
     }
 
     @Override
@@ -72,6 +78,10 @@ public class SlidingMenu extends HorizontalScrollView {
     //手指抬起自动滑动到距离近的一边
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
+        if (mGestureDetector.onTouchEvent(ev)) {//必须在onTouchEvent里面调用
+            //如果是快速滑动，下面就不要执行了
+            return true;
+        }
         switch (ev.getAction()) {
             case MotionEvent.ACTION_UP:
                 int scrollX = getScrollX();
@@ -92,6 +102,7 @@ public class SlidingMenu extends HorizontalScrollView {
      */
     private void openMenu() {
         smoothScrollTo(0, 0);
+        mMenuIsOpen = true;
     }
 
     /**
@@ -99,6 +110,7 @@ public class SlidingMenu extends HorizontalScrollView {
      */
     private void closeMenu() {
         smoothScrollTo(mMenuWidth, 0);
+        mMenuIsOpen = false;
     }
 
     @Override
@@ -121,6 +133,31 @@ public class SlidingMenu extends HorizontalScrollView {
         //菜单页平移
         ViewCompat.setTranslationX(mMenuView, l * 0.1f);
     }
+
+    /**
+     * 手势处理监听
+     */
+    private GestureDetector.SimpleOnGestureListener mGestureListener = new GestureDetector.SimpleOnGestureListener() {
+        //处理快速滑动
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            //Log.e("aaa", "onFling: "+velocityX);
+            //快速滑动就会条用onFling
+            //快速向左滑动 velocityX 为负值  快速向右滑动 velocityX为正值
+            if (mMenuIsOpen) {//如果是打开，快速滑动就关闭菜单
+                if (velocityX < 0) {
+                    closeMenu();
+                    return true;
+                }
+            } else {
+                if (velocityX > 0) {
+                    openMenu();
+                    return true;
+                }
+            }
+            return super.onFling(e1, e2, velocityX, velocityY);
+        }
+    };
 
     private int getScreenWidth(Context context) {
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);

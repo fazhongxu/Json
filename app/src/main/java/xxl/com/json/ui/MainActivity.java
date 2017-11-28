@@ -24,6 +24,7 @@ import xxl.com.json.R;
 import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
 import xxl.com.json.bean.JokeBean;
+import xxl.com.json.bean.Person;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;

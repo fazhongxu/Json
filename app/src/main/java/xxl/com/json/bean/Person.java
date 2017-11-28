@@ -8,7 +8,7 @@ public class Person {
     public Person() {
 
     }
-    private String name = "浪浪许";
+    private String name = "Json";
 
     private void setName(String name){
         this.name = name;

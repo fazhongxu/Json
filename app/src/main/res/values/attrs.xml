@@ -85,4 +85,9 @@
         <!--内容布局距离右边的-->
         <attr name="rightMargin" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="SlidingView">
+        <!--内容布局距离右边的-->
+        <attr name="rightWidth" format="dimension"/>
+    </declare-styleable>
 </resources>

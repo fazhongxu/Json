@@ -16,16 +16,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
-import java.io.IOException;
 import java.util.Map;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.MultipartBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 import xxl.com.baselibray.http.HttpCallBackEngine;
 import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.json.R;
@@ -146,32 +138,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btn_test:
                 startActivty(TestActivity.class);
-                OkHttpClient okHttpClient = new OkHttpClient();
-                //构建请求
-                FormBody formBody = new FormBody.Builder().build();
-                MultipartBody multipartBody = new MultipartBody
-                        .Builder().build();
-                Request request = new Request.Builder()
-//                        .post(formBody)
-//                        .post(multipartBody)
-                        .get().put(multipartBody)
-                        .get()
-                        .url("")
-                        .build();
-                //封装成call
-                Call call = okHttpClient.newCall(request);
-                //执行请求
-                call.enqueue(new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-
-                    }
-                });
                 break;
             default:
                 break;

@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
-import java.lang.reflect.Field;
 import java.util.Map;
 
 import xxl.com.baselibray.http.HttpCallBackEngine;
@@ -25,7 +24,6 @@ import xxl.com.json.R;
 import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
 import xxl.com.json.bean.JokeBean;
-import xxl.com.json.bean.Person;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
@@ -45,20 +43,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       TouchView touchView = (TouchView) findViewById(R.id.touchView);
-       touchView.setOnTouchListener(new View.OnTouchListener() {
-           @Override
-           public boolean onTouch(View v, MotionEvent event) {
-               Log.e("View", "TouchListener: -->"+event.getAction());
-               return false;
-           }
-       });
-       touchView.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Log.e("View", "onClick:");
-           }
-       });
+        TouchView touchView = (TouchView) findViewById(R.id.touchView);
+        touchView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.e("View", "TouchListener: -->" + event.getAction());
+                return false;
+            }
+        });
+        touchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("View", "onClick:");
+            }
+        });
 
         initData();
         initView();
@@ -139,19 +137,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                try {
-                    Person person = new Person();
-//                    Person person = Person.class.newInstance();
-                    Class<?> clazz = Class.forName("xxl.com.json.bean.Person");
-                    Field name = clazz.getDeclaredField("name");
-                    name.setAccessible(true);
-                    Log.e(TAG, "onClick: "+name.get(person));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
                 startActivty(TestActivity.class);
-
                 break;
             default:
                 break;

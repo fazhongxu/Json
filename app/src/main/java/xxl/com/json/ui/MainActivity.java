@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,6 +25,7 @@ import xxl.com.json.R;
 import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
 import xxl.com.json.bean.JokeBean;
+import xxl.com.json.manager.FragmentManagerHelper;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
@@ -140,6 +142,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivty(TestActivity.class);
                 break;
             default:
+            FragmentManager supportFragmentManager = getSupportFragmentManager();
                 break;
         }
     }

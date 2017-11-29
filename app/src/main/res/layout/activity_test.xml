@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/ic_background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:rightWidth="50dp"
+    app:rightWidth="60dp"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"

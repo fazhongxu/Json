@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,15 +16,22 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
+import java.io.IOException;
 import java.util.Map;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import xxl.com.baselibray.http.HttpCallBackEngine;
 import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.json.R;
 import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
 import xxl.com.json.bean.JokeBean;
-import xxl.com.json.manager.FragmentManagerHelper;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
@@ -140,9 +146,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btn_test:
                 startActivty(TestActivity.class);
+                OkHttpClient okHttpClient = new OkHttpClient();
+                //构建请求
+                FormBody formBody = new FormBody.Builder().build();
+                MultipartBody multipartBody = new MultipartBody
+                        .Builder().build();
+                Request request = new Request.Builder()
+//                        .post(formBody)
+//                        .post(multipartBody)
+                        .get().put(multipartBody)
+                        .get()
+                        .url("")
+                        .build();
+                //封装成call
+                Call call = okHttpClient.newCall(request);
+                //执行请求
+                call.enqueue(new Callback() {
+                    @Override
+                    public void onFailure(Call call, IOException e) {
+
+                    }
+
+                    @Override
+                    public void onResponse(Call call, Response response) throws IOException {
+
+                    }
+                });
                 break;
             default:
-            FragmentManager supportFragmentManager = getSupportFragmentManager();
                 break;
         }
     }
@@ -156,7 +187,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @PermissionSuccess(requstCode = CALL_PHONE_PERMISSION_REQUEST_CODE)
     public void callPhone() {
-        Intent intent = new Intent(Intent.ACTION_CALL);
+        Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:+0000000"));
         startActivity(intent);
     }

@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import xxl.com.json.R;
+
 /**
  * Created by xxl on 2017/12/2.
  */
@@ -28,19 +30,28 @@ public class TranslationBehavior extends FloatingActionButton.Behavior {
     @Override
     public void onNestedScroll(CoordinatorLayout coordinatorLayout, FloatingActionButton child, View target, int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed) {
         //Log.e("aaa", "onNestedScroll: "+dyConsumed+""+dxConsumed);
+        View view = coordinatorLayout.findViewById(R.id.ll_bottom_bar);//获取底部导航栏View
+        //Log.e("aaa", "onNestedScroll: "+view);
         if (dyConsumed > 0){//正值 往上滑动  ---> 向下隐藏 FloatingActionButton
             //如果不是隐藏，就让其隐藏
             if (!mIsHide) {
                 CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
                 int bottomMargin = lp.bottomMargin;
                 child.animate().translationY(bottomMargin + child.getMeasuredHeight()).setDuration(500).start();
+
+                CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) view.getLayoutParams();
+                int bottomViewMargin = layoutParams.bottomMargin;
+                view.animate().translationY(bottomViewMargin+view.getMeasuredHeight()).setDuration(500).start();
                 mIsHide = true;
             }
         }else {
             if (mIsHide) {
                 //出现
                 child.animate().translationY(0).setDuration(500).start();
+                view.animate().translationY(0).start();
+
                 mIsHide = false;
+
             }
         }
     }

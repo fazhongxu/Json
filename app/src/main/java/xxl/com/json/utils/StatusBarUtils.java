@@ -40,14 +40,14 @@ public class StatusBarUtils {
     public static void setStatusBarTransparent(Activity activity) {
         // 5.0 以上，直接设置
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-          /*  View decorView = activity.getWindow().getDecorView();
+            View decorView = activity.getWindow().getDecorView();
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);*/
-            ViewGroup content = (ViewGroup) activity.findViewById(android.R.id.content);
+            activity.getWindow().setStatusBarColor(Color.TRANSPARENT);
+         /*   ViewGroup content = (ViewGroup) activity.findViewById(android.R.id.content);
             ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatuBarHeight(activity));
             View view = new View(activity);
             view.setLayoutParams(params);
-            content.addView(view);
+            content.addView(view);*/
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //4.4-5.0，默认是黑色的，需要获取DecorView添加，并且需要设置全屏
         }

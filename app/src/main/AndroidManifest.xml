@@ -21,7 +21,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.TablayoutActivity" />
-        <activity android:name=".ui.TestActivity"/>
+        <activity android:name=".ui.TestActivity" />
+        <activity android:name=".ui.BehaviorActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
     </application>
 
 </manifest>

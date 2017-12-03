@@ -22,8 +22,10 @@
         </activity>
         <activity android:name=".ui.TablayoutActivity" />
         <activity android:name=".ui.TestActivity" />
-        <activity android:name=".ui.BehaviorActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
+        <activity
+            android:name=".ui.BehaviorActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".ui.AnimatorActivity"></activity>
     </application>
 
 </manifest>

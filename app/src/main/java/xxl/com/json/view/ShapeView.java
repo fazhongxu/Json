@@ -9,6 +9,8 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import xxl.com.json.R;
+
 /**
  * Created by xxl on 2017/11/6.
  */
@@ -55,18 +57,18 @@ public class ShapeView extends View {
         switch (mShape) {
             case CIRCLE:
                 //画圆
-                mPaint.setColor(Color.GREEN);
+                mPaint.setColor(getResources().getColor(R.color.circle));
                 int center = getWidth() / 2;
                 canvas.drawCircle(center, center, center, mPaint);
                 break;
             case SQUARE:
                 //画正方形
-                mPaint.setColor(Color.RED);
+                mPaint.setColor(getResources().getColor(R.color.square));
                 canvas.drawRect(0, 0, getWidth(), getHeight(), mPaint);
                 break;
             case TRIANGLE:
                 //画三角形
-                mPaint.setColor(Color.YELLOW);
+                mPaint.setColor(getResources().getColor(R.color.triangle));
                 if (mPath == null) {
                     mPath = new Path();
                 }
@@ -96,5 +98,12 @@ public class ShapeView extends View {
             //不断重绘
         }
         invalidate();
+    }
+
+    /**
+     * 获取当前图形
+     */
+    public Shape getCurrentShape() {
+        return mShape;
     }
 }

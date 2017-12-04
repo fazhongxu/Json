@@ -132,7 +132,7 @@ public class LoadingView extends LinearLayout {
      * 开始旋转
      */
     private void startRotateAnimation() {
-        //获取当前形状 旋转  圆形不用旋转，正方形旋转180 三角形旋转120度
+        //获取当前形状 旋转  圆形不用旋转，正方形旋转180 三角形旋转-120度（与正方形反向）
         ObjectAnimator scaleAnimator = null;
         switch (mShapeView.getCurrentShape()) {
             case CIRCLE:
@@ -140,7 +140,7 @@ public class LoadingView extends LinearLayout {
                 scaleAnimator = ObjectAnimator.ofFloat(mShapeView, "rotation", 0, 180);
                 break;
             case TRIANGLE:
-                scaleAnimator = ObjectAnimator.ofFloat(mShapeView, "rotation", 0, 120);
+                scaleAnimator = ObjectAnimator.ofFloat(mShapeView, "rotation", 0, -120);
                 break;
         }
         scaleAnimator.setDuration(ANIMATOR_DURATION);

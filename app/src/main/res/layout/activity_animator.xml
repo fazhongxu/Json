@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <xxl.com.json.view.LoadingCircleView
+        android:id="@+id/loading_circle_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

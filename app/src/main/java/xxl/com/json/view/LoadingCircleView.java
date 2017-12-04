@@ -52,7 +52,7 @@ public class LoadingCircleView extends RelativeLayout {
 
     @Override
     public void setVisibility(int visibility) {
-        setVisibility(INVISIBLE);
+        super.setVisibility(INVISIBLE);
         mLeftCircle.clearAnimation();
         mMiddleCircle.clearAnimation();
         mRightCircle.clearAnimation();

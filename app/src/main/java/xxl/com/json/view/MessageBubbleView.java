@@ -118,10 +118,7 @@ public class MessageBubbleView extends View {
      * 获取控控制点
      */
     public PointF getBezierControlPoint(PointF fixactionCirclePoint, PointF dragCirclePoint) {
-        PointF pointF = new PointF();
-        pointF.x = (fixactionCirclePoint.x + dragCirclePoint.x) / 2;
-        pointF.y = (fixactionCirclePoint.y + dragCirclePoint.y) / 2;
-        return pointF;
+        return new PointF((fixactionCirclePoint.x + dragCirclePoint.x) / 2,(fixactionCirclePoint.y + dragCirclePoint.y) / 2);
     }
 
     /**

@@ -55,15 +55,15 @@ public class MessageBubbleView extends View {
         canvas.drawCircle(mDragCirclePoint.x, mDragCirclePoint.y, mDragCircleRadius, mPaint);
         double distance = getDistance(mFixationCirclePoint, mDragCirclePoint);
         mFixationCircleRadius = (int) (mFixationCircleMaxRadius - distance / 14);//求固定圆的半径 两圆距离越远，固定圆的半径就越小
-        if (mFixationCircleRadius < mFixationCircleMinRadius) {//如果半径值小于最小值 就不要绘制固定圆了
-            return;
-        }
-        //固定圆
-        canvas.drawCircle(mFixationCirclePoint.x, mFixationCirclePoint.y, mFixationCircleRadius, mPaint);
 
         //绘制贝塞尔曲线
         // 获取贝塞尔路径
         Path bezierPath = getBezierPath();
+        if (bezierPath == null){
+            return;
+        }
+        //固定圆
+        canvas.drawCircle(mFixationCirclePoint.x, mFixationCirclePoint.y, mFixationCircleRadius, mPaint);
 
         canvas.drawPath(bezierPath, mPaint);
 
@@ -76,6 +76,10 @@ public class MessageBubbleView extends View {
         //求出四个点的位置坐标，求出点的x,y值
         //首先求出关于点所在三角形内部的角度
         //固定圆和拖拽圆的 中心连线的斜率
+        if (mFixationCircleRadius < mFixationCircleMinRadius) {//如果半径值小于最小值 就不要绘制固定圆了
+            return null;
+        }
+
         double dy = mDragCirclePoint.y - mFixationCirclePoint.y;
         double dx = mDragCirclePoint.x - mFixationCirclePoint.x;
         if (dx == 0) {

@@ -24,43 +24,31 @@ import xxl.com.json.R;
 import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
 import xxl.com.json.bean.JokeBean;
+import xxl.com.json.mvp.demo1.Presenter;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
 import xxl.com.json.view.SlideBar;
 import xxl.com.json.view.TouchView;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     private Button mBtnTest;
     private BannerView mBannerView;
     private String TAG = "MainActivity";
 
     private static final int CALL_PHONE_PERMISSION_REQUEST_CODE = 100;
+    private Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        TouchView touchView = (TouchView) findViewById(R.id.touchView);
-        touchView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                Log.e("View", "TouchListener: -->" + event.getAction());
-                return false;
-            }
-        });
-        touchView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("View", "onClick:");
-            }
-        });
-
         initData();
         initView();
+        viewTouch();
     }
+
 
     private void initData() {
         String url = "http://is.snssdk.com/2/essay/discovery/v3/?&device_platform=android&device_type=Redmi+Note+3&iid=6152551759&manifest_version_code=570&longitude=113.000366&latitude=28.171377&update_version_code=5701&aid=7&channel=360";
@@ -137,7 +125,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                startActivty(AnimatorActivity.class);
+                startActivty(MvpTestActivity.class);
                 break;
             default:
                 break;
@@ -168,4 +156,23 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         PermissionHelper.requestPermissionResult(this, requestCode, permissions);
     }
+
+    private void viewTouch() {
+        TouchView touchView = (TouchView) findViewById(R.id.touchView);
+        touchView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Log.e("View", "TouchListener: -->" + event.getAction());
+                return false;
+            }
+        });
+        touchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("View", "onClick:");
+            }
+        });
+    }
+
+
 }

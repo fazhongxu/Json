@@ -25,7 +25,8 @@
         <activity
             android:name=".ui.BehaviorActivity"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity android:name=".ui.AnimatorActivity"></activity>
+        <activity android:name=".ui.AnimatorActivity" />
+        <activity android:name=".ui.MvpTestActivity"></activity>
     </application>
 
 </manifest>

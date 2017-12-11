@@ -1,30 +1,33 @@
 package xxl.com.json.ui;
 
 import android.os.Bundle;
-import android.view.View;
+import android.support.annotation.Nullable;
 import android.widget.Button;
 import android.widget.Toast;
 
 import xxl.com.json.R;
-import xxl.com.json.mvp.demo2.Presenter;
+import xxl.com.json.mvp.demo3.Presenter;
+import xxl.com.json.mvp.demo3.View;
+import xxl.com.json.mvp.demo3.base.AbsMvpBaseActivity;
 
-public class MvpTestActivity extends BaseActivity implements View.OnClickListener, xxl.com.json.mvp.demo2.View {
-
-    private Presenter mPresenter;
+public class MvpTestActivity extends AbsMvpBaseActivity<View, Presenter> implements android.view.View.OnClickListener, View {
     private Button mBtnTest;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mvp_test);
         initView();
-        mPresenter = new Presenter();
-        mPresenter.attachView(this);
     }
 
-    private void initView() {
+   private void initView(){
         mBtnTest = (Button) findViewById(R.id.btn_test);
         mBtnTest.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(android.view.View v) {
+        getPresenter().request(this);
     }
 
     @Override
@@ -43,17 +46,7 @@ public class MvpTestActivity extends BaseActivity implements View.OnClickListene
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mPresenter.detach();
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_test:
-                mPresenter.request(this);
-                break;
-        }
+    protected Presenter createPresenter() {
+        return new Presenter();
     }
 }

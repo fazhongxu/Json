@@ -1,12 +1,25 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    //compileSdkVersion 25
+    //buildToolsVersion "26.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    signingConfigs {
+        config {
+            //配置这里是为了让三方的sdk可以使用，keystore会去三方比较注册的appid等
+            keyAlias 'json'
+            keyPassword '123456'
+            storeFile file('../keystore.jks')
+            storePassword '123456'
+        }
+    }
     defaultConfig {
         applicationId "xxl.com.json"
-        minSdkVersion 23
-        targetSdkVersion 25
+        //minSdkVersion 23
+        //targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -24,7 +37,9 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
+
+    //compile 'com.android.support:appcompat-v7:25.3.1'
+    compile rootProject.ext.support
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile project(':baselibray')

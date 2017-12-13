@@ -15,9 +15,27 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        maven { url "https://maven.google.com"}
-        maven { url "https://dl.google.com/dl/android/maven2/"}
+        maven { url "https://maven.google.com" }
+        maven { url "https://dl.google.com/dl/android/maven2/" }
     }
+}
+
+ext {
+    def versions = [
+            compileVersion: 25,
+            buildVersion: "26.0.1",
+            minVersion    : 23,
+            targetVersion : 25,
+
+            support:"25.3.1"
+    ]
+
+    compileSdkVersion = versions.compileVersion
+    buildToolsVersion = versions.buildVersion
+    minSdkVersion = versions.minVersion
+    targetSdkVersion = versions.targetVersion
+
+    support = "com.android.support:appcompat-v7:${versions.support}"
 }
 
 task clean(type: Delete) {

@@ -26,7 +26,17 @@
             android:name=".ui.BehaviorActivity"
             android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".ui.AnimatorActivity" />
-        <activity android:name=".ui.MvpTestActivity"></activity>
+        <activity android:name=".ui.MvpTestActivity" />
+
+        <service android:name=".service.UserInfoService">
+            <intent-filter>
+                <action android:name="com.json.UserInfoService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".ui.AIDLActivity"/>
     </application>
 
 </manifest>

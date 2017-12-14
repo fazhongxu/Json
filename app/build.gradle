@@ -7,7 +7,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     signingConfigs {
         config {
-            //配置这里是为了让三方的sdk可以使用，keystore会去三方比较注册的appid等
+            //配置这里是为了让三方的sdk不打包的情况下直接运行的时候可以使用，keystore会去三方比较注册的appid等
             keyAlias 'json'
             keyPassword '123456'
             storeFile file('../keystore.jks')

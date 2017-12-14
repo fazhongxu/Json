@@ -29,6 +29,7 @@ import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
 import xxl.com.json.service.GuardService;
+import xxl.com.json.service.MyJobService;
 import xxl.com.json.service.NormalService;
 import xxl.com.json.view.SlideBar;
 import xxl.com.json.view.TouchView;
@@ -130,7 +131,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 //startActivty(AnimatorActivity.class);
                 startService(new Intent(this, NormalService.class));
 
-                startService(new Intent(this, GuardService.class));
+                //startService(new Intent(this, GuardService.class));
+
+                startService(new Intent(this, MyJobService.class));
                 break;
             default:
                 break;

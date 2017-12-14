@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    //compileSdkVersion 25
-    //buildToolsVersion "26.0.1"
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion 25
+    buildToolsVersion "26.0.1"
+    //compileSdkVersion rootProject.ext.compileSdkVersion
+    //buildToolsVersion rootProject.ext.buildToolsVersion
     signingConfigs {
         config {
             //配置这里是为了让三方的sdk不打包的情况下直接运行的时候可以使用，keystore会去三方比较注册的appid等
@@ -16,10 +16,10 @@ android {
     }
     defaultConfig {
         applicationId "xxl.com.json"
-        //minSdkVersion 23
-        //targetSdkVersion 25
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 23
+        targetSdkVersion 25
+        //minSdkVersion rootProject.ext.minSdkVersion
+        //targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -38,8 +38,8 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    //compile 'com.android.support:appcompat-v7:25.3.1'
-    compile rootProject.ext.support
+    compile 'com.android.support:appcompat-v7:25.3.1'
+   // compile rootProject.ext.support
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile project(':baselibray')

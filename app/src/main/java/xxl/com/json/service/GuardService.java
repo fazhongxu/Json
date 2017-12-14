@@ -40,8 +40,8 @@ public class GuardService extends Service {
         @Override
         public void onServiceDisconnected(ComponentName name) {
             //连接断开
-            //开启自身 唤醒（开启）连接上 另一个服务
-            startService(new Intent(GuardService.this,GuardService.class));
+            //开启服务 重启另一个服务
+            startService(new Intent(GuardService.this,NormalService.class));
 
             bindService(new Intent(GuardService.this,NormalService.class),mConn,Context.BIND_AUTO_CREATE);
         }

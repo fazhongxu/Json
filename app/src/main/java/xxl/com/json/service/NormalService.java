@@ -57,8 +57,8 @@ public class NormalService extends Service {
         @Override
         public void onServiceDisconnected(ComponentName name) {
             //断开连接
-            //断开连接的时候 重启服务 连接上另一个服务
-            startService(new Intent(NormalService.this,NormalService.class));
+            //断开连接的时候 重启服务 连接服务
+            startService(new Intent(NormalService.this,GuardService.class));
 
             bindService(new Intent(NormalService.this,GuardService.class),mConn,Context.BIND_AUTO_CREATE);
         }

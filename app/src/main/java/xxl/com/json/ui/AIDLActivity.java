@@ -10,14 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import xxl.com.json.IUserInfoAIDL;
+import xxl.com.json.IAidlUserInfo;
 import xxl.com.json.R;
 import xxl.com.json.service.UserInfoService;
 
 public class AIDLActivity extends BaseActivity implements View.OnClickListener{
 
     private Button mBtnTest;
-    private IUserInfoAIDL mUserInfoAIDL;
+    private IAidlUserInfo mUserInfoAIDL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class AIDLActivity extends BaseActivity implements View.OnClickListener{
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             //服务连接
-             mUserInfoAIDL = IUserInfoAIDL.Stub.asInterface(service);
+             mUserInfoAIDL = IAidlUserInfo.Stub.asInterface(service);
         }
 
         @Override

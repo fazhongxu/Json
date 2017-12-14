@@ -36,6 +36,9 @@
             </intent-filter>
         </service>
 
+        <service android:name=".service.NormalService"/>
+        <service android:name=".service.GuardService"/>
+
         <activity android:name=".ui.AIDLActivity"/>
     </application>
 

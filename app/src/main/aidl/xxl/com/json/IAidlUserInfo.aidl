@@ -3,7 +3,7 @@ package xxl.com.json;
 
 // Declare any non-default types here with import statements
 
-interface IUserInfoAIDL {
+interface IAidlUserInfo {
 
      String getUsername();
 

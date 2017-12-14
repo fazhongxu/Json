@@ -28,6 +28,8 @@ import xxl.com.json.mvp.demo1.Presenter;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
+import xxl.com.json.service.GuardService;
+import xxl.com.json.service.NormalService;
 import xxl.com.json.view.SlideBar;
 import xxl.com.json.view.TouchView;
 
@@ -125,7 +127,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                startActivty(AnimatorActivity.class);
+                //startActivty(AnimatorActivity.class);
+                startService(new Intent(this, NormalService.class));
+
+                startService(new Intent(this, GuardService.class));
                 break;
             default:
                 break;

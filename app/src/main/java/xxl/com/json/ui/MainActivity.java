@@ -128,12 +128,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                //startActivty(AnimatorActivity.class);
-                startService(new Intent(this, NormalService.class));
+                startActivty(OkHttpActivity.class);
+                //startService(new Intent(this, NormalService.class));
 
                 //startService(new Intent(this, GuardService.class));
 
-                startService(new Intent(this, MyJobService.class));
+                //startService(new Intent(this, MyJobService.class));
                 break;
             default:
                 break;

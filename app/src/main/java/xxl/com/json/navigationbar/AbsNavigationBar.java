@@ -1,5 +1,6 @@
 package xxl.com.json.navigationbar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,7 @@ public class AbsNavigationBar implements INavigation {
 
         createLayout();
 
-        attatchParent(mBuilder.mParent, mLayoutView);
+        attatchParent(mLayoutView);
 
         bindParams();
     }
@@ -35,15 +36,20 @@ public class AbsNavigationBar implements INavigation {
         //方式1 需要使用者传入要添加view的父容器的id
         //mLayoutView = LayoutInflater.from(mBuilder.mContext).inflate(mBuilder.mlayoutId, mBuilder.mParent, false);
         //方式2 直接把要添加的view添加到android.R.id.content的第一个位置 不需要使用者传入父布局的id
-        mLayoutView = LayoutInflater.from(mBuilder.mContext).inflate(mBuilder.mlayoutId,mBuilder.mParent,false);
+        mLayoutView = LayoutInflater.from(mBuilder.mContext).inflate(mBuilder.mlayoutId, null);
     }
 
     /**
-     * 将创建的 添加到父容器布局中
+     * 将创建的布局 添加到父容器布局中
+     * 直接添加到decorView的第一个容器的第一个位置
+     * 添加到decorView的第一个孩子（Linerlayout)
+     * 的第一个位置上（setContentView的内容布局就是添加到decorView的linearLayout里面的 子布局的android.R.id.content 布局中的）
      */
     @Override
-    public void attatchParent(ViewGroup parent, View view) {
-        parent.addView(view, 0);
+    public void attatchParent(View view) {
+        ViewGroup decorView = (ViewGroup) ((Activity) mBuilder.mContext).getWindow().getDecorView();
+        ViewGroup decorViewChild = (ViewGroup) decorView.getChildAt(0);
+        decorViewChild.addView(view, 0);
     }
 
     /**
@@ -83,16 +89,14 @@ public class AbsNavigationBar implements INavigation {
     public abstract static class Builder<B extends Builder> {
         public Context mContext;
         public int mlayoutId;
-        public ViewGroup mParent;
         public Map<Integer, CharSequence> mTextMap;
         public Map<Integer, View.OnClickListener> mClickLisenterMap;
         public Map<Integer, Boolean> mVisibleMap;
         public Map<Integer, Integer> mDrawableMap;
 
-        public Builder(Context context, int layoutId, ViewGroup parent) {
+        public Builder(Context context, int layoutId) {
             this.mContext = context;
             this.mlayoutId = layoutId;
-            this.mParent = parent;
             this.mTextMap = new LinkedHashMap<>();
             this.mClickLisenterMap = new LinkedHashMap<>();
             this.mVisibleMap = new LinkedHashMap<>();
@@ -116,8 +120,8 @@ public class AbsNavigationBar implements INavigation {
             return (B) this;
         }
 
-        public B setIcon(int viewId,int drawableId){
-            mDrawableMap.put(viewId,drawableId);
+        public B setIcon(int viewId, int drawableId) {
+            mDrawableMap.put(viewId, drawableId);
             return (B) this;
         }
 

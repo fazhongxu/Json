@@ -2,7 +2,6 @@ package xxl.com.json.ui;
 
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import xxl.com.json.R;
@@ -15,10 +14,8 @@ public class NavigationActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
 
-        ViewGroup parent = (ViewGroup) findViewById(R.id.view_root);
-
         DefaultNavigationBar navigationBar = new DefaultNavigationBar
-                .Builder(this,R.layout.layout_navigation,parent)
+                .Builder(this,R.layout.layout_navigation)
                 .setLeftText("Back")
                 //.setLeftIcon(R.drawable.ic_background)
 //                .setLeftHidden(true)

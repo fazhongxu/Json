@@ -44,7 +44,7 @@ public class RxJavaActivity extends BaseActivity {
                 .map(new Function<Bitmap, Bitmap>() {
                     @Override
                     public Bitmap apply(Bitmap bitmap) throws Exception {
-                        Bitmap waterBitmap = drawTextToBitmap(bitmap, "RxJava", 10, 200);
+                        Bitmap waterBitmap = drawWaterBitmap(bitmap, "RxJava");
                         return waterBitmap;
                     }
                 })
@@ -58,24 +58,24 @@ public class RxJavaActivity extends BaseActivity {
         });
     }
 
-    //图片上绘制文字
-    private static Bitmap drawTextToBitmap(Bitmap bitmap, String text,
-                                          int paddingLeft, int paddingTop) {
-        android.graphics.Bitmap.Config bitmapConfig = bitmap.getConfig();
+    /**
+     * 给图片绘制水印
+     */
+    private Bitmap drawWaterBitmap(Bitmap bitmap, String text) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
         Paint paint = new Paint();
         paint.setTextSize(180);
         paint.setAntiAlias(true);
         paint.setColor(Color.RED);
-        paint.setDither(true); // 获取跟清晰的图像采样
-        paint.setFilterBitmap(true);// 过滤一些
-        if (bitmapConfig == null) {
-            bitmapConfig = android.graphics.Bitmap.Config.ARGB_8888;
-        }
-        bitmap = bitmap.copy(bitmapConfig, true);
-        Canvas canvas = new Canvas(bitmap);
+        paint.setDither(true);
 
-        canvas.drawText(text, paddingLeft, paddingTop, paint);
-        return bitmap;
+        Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bmp);
+
+        canvas.drawBitmap(bitmap,0,0,paint);
+        canvas.drawText(text, 0, height /2, paint);
+        return bmp;
     }
 
 }

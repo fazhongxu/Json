@@ -49,8 +49,10 @@
 
         <activity android:name=".ui.AIDLActivity" />
         <activity android:name=".ui.OkHttpActivity" />
-        <activity android:name=".ui.NavigationActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".ui.NavigationActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ui.RxJavaActivity"></activity>
     </application>
 
 </manifest>

@@ -24,6 +24,7 @@ import xxl.com.json.R;
 import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
 import xxl.com.json.bean.JokeBean;
+import xxl.com.json.common.retrofit.RetrofitClient;
 import xxl.com.json.mvp.demo1.Presenter;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
@@ -125,7 +126,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                startActivty(OkHttpActivity.class);
+                startActivty(RetrofitActivity.class);
                 //startService(new Intent(this, NormalService.class));
 
                 //startService(new Intent(this, GuardService.class));

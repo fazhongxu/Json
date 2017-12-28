@@ -3,7 +3,7 @@
     package="xxl.com.json">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <!-- jobSchedulerService 权限 -->
@@ -53,7 +53,8 @@
         <activity
             android:name=".ui.NavigationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".ui.RxJavaActivity"></activity>
+        <activity android:name=".ui.RxJavaActivity" />
+        <activity android:name=".ui.RetrofitActivity"></activity>
     </application>
 
 </manifest>

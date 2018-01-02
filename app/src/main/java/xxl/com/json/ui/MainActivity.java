@@ -24,8 +24,6 @@ import xxl.com.json.R;
 import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
 import xxl.com.json.bean.JokeBean;
-import xxl.com.json.common.retrofit.RetrofitClient;
-import xxl.com.json.mvp.demo1.Presenter;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
@@ -39,7 +37,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     private String TAG = "MainActivity";
 
     private static final int CALL_PHONE_PERMISSION_REQUEST_CODE = 100;
-    private Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +63,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                setBanner(rotate_banner);
+                                //setBanner(rotate_banner);
                             }
                         });
                     }
@@ -126,12 +123,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                startActivty(RetrofitActivity.class);
-                //startService(new Intent(this, NormalService.class));
-
-                //startService(new Intent(this, GuardService.class));
-
-                //startService(new Intent(this, MyJobService.class));
+                //startActivty(RetrofitActivity.class);
+                Intent intent = new Intent(this, MvpTestActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
@@ -168,14 +162,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
         touchView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                Log.e("View", "TouchListener: -->" + event.getAction());
+                Log.e("UserInfoView", "TouchListener: -->" + event.getAction());
                 return false;
             }
         });
         touchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("View", "onClick:");
+                Log.e("UserInfoView", "onClick:");
             }
         });
     }

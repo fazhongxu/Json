@@ -54,7 +54,8 @@
             android:name=".ui.NavigationActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".ui.RxJavaActivity" />
-        <activity android:name=".ui.RetrofitActivity"></activity>
+        <activity android:name=".ui.RetrofitActivity" />
+        <activity android:name=".ui.GreenDaoTestActivity"></activity>
     </application>
 
 </manifest>

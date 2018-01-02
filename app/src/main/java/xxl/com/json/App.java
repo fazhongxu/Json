@@ -1,10 +1,11 @@
 package xxl.com.json;
 
 import android.app.Application;
-import android.content.SharedPreferences;
+import android.content.Context;
 
 import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.baselibray.http.OkHttpEngine;
+import xxl.com.json.gen.GreenDaoManager;
 import xxl.com.json.utils.SharedPreferenceUtils;
 
 /**
@@ -12,11 +13,21 @@ import xxl.com.json.utils.SharedPreferenceUtils;
  */
 
 public class App extends Application {
+    private static Context mContext;
+
     @Override
     public void onCreate() {
         super.onCreate();
         HttpUtil.init(new OkHttpEngine());
 
         SharedPreferenceUtils.init(this);
+
+        mContext = getApplicationContext();
+
+        GreenDaoManager.getInstance();
+    }
+
+    public static Context getContext(){
+        return mContext;
     }
 }

@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 /**
  * Created by xxl on 2018/1/2.
  */
-@SuppressWarnings("unchecked")
 public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
     private P mPresenter;
 

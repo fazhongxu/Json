@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 /**
  * Created by xxl on 2018/1/2.
  */
-
+@SuppressWarnings("unchecked")
 public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompatActivity implements BaseView {
     private P mPresenter;
 
@@ -19,11 +19,9 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompat
 
         mPresenter = createPresenter();
 
-        if (mPresenter == null) {
-            throw new IllegalArgumentException("mPresenter could not be null");
+        if (mPresenter != null) {//子类可以不使用Presenter
+            mPresenter.attachView(this);//绑定View
         }
-
-        mPresenter.attachView(this);//绑定View
 
         initView();
 
@@ -39,12 +37,17 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends AppCompat
     protected abstract void setContentView();
 
     public P getPresenter() {
+        if (mPresenter == null){
+            throw new IllegalStateException("The return value of createPresenter can not be empty");
+        }
         return mPresenter;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mPresenter.detachView();//解绑View
+        if (mPresenter != null) {
+            mPresenter.detachView();//解绑View
+        }
     }
 }

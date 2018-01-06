@@ -10,8 +10,7 @@ import java.lang.reflect.Proxy;
  */
 
 public class BasePresenter<V extends BaseView> {
-    //private V mView;
-    private WeakReference<V> mWeakReference;//软引用
+    private V mView;
     private V mProxyView;
 
     /**
@@ -20,9 +19,7 @@ public class BasePresenter<V extends BaseView> {
      * @param view
      */
     void attachView(V view) {
-        //this.mView = view;
-
-        mWeakReference = new WeakReference(view);
+        this.mView = view;
 
         //动态代理 判断view是否已经解绑 不用在每个子类都判断view是否为空 在此统一判断
         mProxyView = (V) Proxy.newProxyInstance(
@@ -32,10 +29,10 @@ public class BasePresenter<V extends BaseView> {
                     @Override
                     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
                         //统一判断View是否为空
-                        if (mWeakReference == null || mWeakReference.get() == null) {
+                        if (mView == null) {
                             return null;
                         }
-                        return method.invoke(mWeakReference.get(), args);
+                        return method.invoke(mView, args);
                     }
                 });
     }
@@ -44,10 +41,7 @@ public class BasePresenter<V extends BaseView> {
      * 解绑View
      */
     void detachView() {
-        //this.mView = null;
-        mWeakReference.clear();
-        mWeakReference = null;
-        this.mProxyView = null;
+        this.mView = null;
     }
 
     public V getView() {

@@ -123,9 +123,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                startActivty(DesignActivity.class);
-//                Intent intent = new Intent(this, MvpTestActivity.class);
-//                startActivity(intent);
+                startActivty(MapActivity.class);
                 break;
             default:
                 break;

@@ -7,8 +7,14 @@ android {
     //compileSdkVersion rootProject.ext.compileSdkVersion
     //buildToolsVersion rootProject.ext.buildToolsVersion
     signingConfigs {
-        config {
+        release {
             //配置这里是为了让三方的sdk不打包的情况下直接运行的时候可以使用，keystore会去三方比较注册的appid等
+            keyAlias 'json'
+            keyPassword '123456'
+            storeFile file('../keystore.jks')
+            storePassword '123456'
+        }
+        debug {
             keyAlias 'json'
             keyPassword '123456'
             storeFile file('../keystore.jks')
@@ -24,6 +30,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters "armeabi", "arm64-v8a"
+        }
+
     }
     buildTypes {
         release {
@@ -31,6 +43,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
 
 }
 
@@ -65,4 +83,10 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'org.greenrobot:greendao:3.2.2'
+    //3D地图
+    compile 'com.amap.api:3dmap:latest.integration'
+    //搜索
+    compile 'com.amap.api:search:latest.integration'
+    //定位
+    compile 'com.amap.api:location:latest.integration'
 }

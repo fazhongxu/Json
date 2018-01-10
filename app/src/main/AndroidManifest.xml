@@ -68,7 +68,7 @@
         <activity android:name=".ui.RetrofitActivity" />
         <activity android:name=".ui.GreenDaoTestActivity" />
         <activity android:name=".ui.DesignActivity" />
-        <activity android:name=".ui.MapActivity"></activity>
+        <activity android:name=".ui.MapActivity"/>
     </application>
 
 </manifest>

@@ -83,8 +83,8 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
     compile 'org.greenrobot:greendao:3.2.2'
-    //3D地图
-    compile 'com.amap.api:3dmap:latest.integration'
+    //导航
+    compile 'com.amap.api:navi-3dmap:latest.integration'
     //搜索
     compile 'com.amap.api:search:latest.integration'
     //定位

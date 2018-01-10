@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
 import java.util.Map;
+import java.util.Random;
 
 import xxl.com.baselibray.http.HttpCallBackEngine;
 import xxl.com.baselibray.http.HttpUtil;
@@ -30,7 +31,7 @@ import xxl.com.json.permission.PermissionSuccess;
 import xxl.com.json.view.SlideBar;
 import xxl.com.json.view.TouchView;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private Button mBtnTest;
     private BannerView mBannerView;
@@ -123,7 +124,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                startActivty(MapActivity.class);
+                int randomNum = new Random().nextInt(6);
+                switch (randomNum) {
+                    case 0:
+                        startActivty(MapActivity.class);
+                        break;
+                    case 1:
+                        startActivty(BehaviorActivity.class);
+                        break;
+                    case 2:
+                        startActivty(AnimatorActivity.class);
+                        break;
+                    case 3:
+                        startActivty(NavigationActivity.class);
+                        break;
+                    case 4:
+                        startActivity(new Intent(MainActivity.this,MvpTestActivity.class));
+                        break;
+                    case 5:
+                        startActivty(TestActivity.class);
+                        break;
+                 default:
+                        break;
+                }
                 break;
             default:
                 break;

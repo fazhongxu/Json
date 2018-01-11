@@ -19,6 +19,10 @@ import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
 import com.amap.api.services.core.LatLonPoint;
 import com.amap.api.services.core.PoiItem;
+import com.amap.api.services.geocoder.GeocodeResult;
+import com.amap.api.services.geocoder.GeocodeSearch;
+import com.amap.api.services.geocoder.RegeocodeQuery;
+import com.amap.api.services.geocoder.RegeocodeResult;
 import com.amap.api.services.poisearch.PoiResult;
 import com.amap.api.services.poisearch.PoiSearch;
 import com.amap.api.services.weather.LocalWeatherForecastResult;
@@ -34,7 +38,7 @@ import xxl.com.json.R;
 
 public class MapActivity extends BaseActivity implements View.OnClickListener,
         AMap.OnMyLocationChangeListener, AMap.OnMarkerClickListener,
-        PoiSearch.OnPoiSearchListener,WeatherSearch.OnWeatherSearchListener {
+        PoiSearch.OnPoiSearchListener, WeatherSearch.OnWeatherSearchListener, GeocodeSearch.OnGeocodeSearchListener {
 
     private MapView mMapView;
     //初始化地图控制器对象
@@ -46,6 +50,7 @@ public class MapActivity extends BaseActivity implements View.OnClickListener,
     private Button mBtnSearch;
     private WeatherSearchQuery mWeatherSearchQuery;
     private WeatherSearch mWeatherSearch;
+    private GeocodeSearch mGeocoderSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +59,18 @@ public class MapActivity extends BaseActivity implements View.OnClickListener,
         initView();
         initData();
         initEvent();
-
         initMap(savedInstanceState);
         initLocation();
         initMarker();
+        initCoordinate2address();
+    }
+
+    /**
+     * 初始化坐标（经纬度）转地址（文字描述）
+     */
+    private void initCoordinate2address() {
+        mGeocoderSearch = new GeocodeSearch(this);
+        mGeocoderSearch.setOnGeocodeSearchListener(this);
     }
 
     /**
@@ -201,7 +214,7 @@ public class MapActivity extends BaseActivity implements View.OnClickListener,
     /**
      * 删除所有marker
      */
-    private void deleteMarker(){
+    private void deleteMarker() {
         List<Marker> markers = aMap.getMapScreenMarkers();
         for (int i = 0; i < markers.size(); i++) {
             Marker marker = markers.get(i);
@@ -216,6 +229,8 @@ public class MapActivity extends BaseActivity implements View.OnClickListener,
         LatLng latLng = options.getPosition();
         double longitude = latLng.longitude;//经度
         double latitude = latLng.latitude;//纬度
+        LatLonPoint point = new LatLonPoint(latLng.latitude, latLng.longitude);
+        coordinate2address(point);
         wearthSearch(marker.getTitle());
         marker.setTitle("longitude:" + longitude + " latitude:" + latitude);//marker上显示金纬度
         return false;
@@ -244,6 +259,19 @@ public class MapActivity extends BaseActivity implements View.OnClickListener,
 
     }
 
+    /**
+     * 经纬度坐标转为地址
+     * @param latLonPoint
+     * @return
+     */
+    private void coordinate2address(LatLonPoint latLonPoint){
+
+        // 第一个参数表示一个Latlng，第二参数表示范围多少米，第三个参数表示是火系坐标系还是GPS原生坐标系
+        RegeocodeQuery query = new RegeocodeQuery(latLonPoint, 200,GeocodeSearch.AMAP);
+
+        mGeocoderSearch.getFromLocationAsyn(query);//结果回掉onRegeocodeSearched方法
+    }
+
 
     /**
      * 天气查询
@@ -264,19 +292,32 @@ public class MapActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void onWeatherLiveSearched(LocalWeatherLiveResult weatherLiveResult, int rCode) {//天气查询
         if (rCode == 1000) {
-            if (weatherLiveResult != null&&weatherLiveResult.getLiveResult() != null) {
+            if (weatherLiveResult != null && weatherLiveResult.getLiveResult() != null) {
                 LocalWeatherLive weatherlive = weatherLiveResult.getLiveResult();
-                Toast.makeText(this, weatherlive.getCity()+weatherlive.getReportTime()+"发布"+weatherlive.getWeather()+weatherlive.getTemperature()+weatherlive.getWindDirection()+"风     "+weatherlive.getWindPower()+"级", Toast.LENGTH_SHORT).show();
-            }else {
+                Toast.makeText(this, weatherlive.getCity() + weatherlive.getReportTime() + "发布" + weatherlive.getWeather() + weatherlive.getTemperature() + weatherlive.getWindDirection() + "风     " + weatherlive.getWindPower() + "级", Toast.LENGTH_SHORT).show();
+            } else {
                 Toast.makeText(this, "noResult", Toast.LENGTH_SHORT).show();
             }
-        }else {
-            Toast.makeText(this, "erro"+rCode, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "erro" + rCode, Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onWeatherForecastSearched(LocalWeatherForecastResult localWeatherForecastResult, int i) {
+
+    }
+
+    @Override
+    public void onRegeocodeSearched(RegeocodeResult regeocodeResult, int adcode) {//坐标转为地址
+        if (adcode == 1000) {
+            //解析result获取地址描述信息
+            Toast.makeText(this, "" + regeocodeResult.getRegeocodeAddress().getFormatAddress(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onGeocodeSearched(GeocodeResult geocodeResult, int i) {
 
     }
 }

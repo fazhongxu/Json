@@ -3,7 +3,12 @@ package xxl.com.json.ui;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.amap.api.maps.AMap;
 import com.amap.api.maps.MapView;
@@ -12,13 +17,24 @@ import com.amap.api.maps.model.LatLng;
 import com.amap.api.maps.model.Marker;
 import com.amap.api.maps.model.MarkerOptions;
 import com.amap.api.maps.model.MyLocationStyle;
+import com.amap.api.services.core.LatLonPoint;
+import com.amap.api.services.core.PoiItem;
+import com.amap.api.services.poisearch.PoiResult;
+import com.amap.api.services.poisearch.PoiSearch;
+import com.amap.api.services.weather.LocalWeatherForecastResult;
+import com.amap.api.services.weather.LocalWeatherLive;
+import com.amap.api.services.weather.LocalWeatherLiveResult;
+import com.amap.api.services.weather.WeatherSearch;
+import com.amap.api.services.weather.WeatherSearchQuery;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import xxl.com.json.R;
 
-public class MapActivity extends BaseActivity implements AMap.OnMyLocationChangeListener, AMap.OnMarkerClickListener {
+public class MapActivity extends BaseActivity implements View.OnClickListener,
+        AMap.OnMyLocationChangeListener, AMap.OnMarkerClickListener,
+        PoiSearch.OnPoiSearchListener,WeatherSearch.OnWeatherSearchListener {
 
     private MapView mMapView;
     //初始化地图控制器对象
@@ -26,6 +42,10 @@ public class MapActivity extends BaseActivity implements AMap.OnMyLocationChange
 
     //marker金纬度集合
     private List<LatLng> latLngs = new ArrayList<>();
+    private EditText mEtSearch;
+    private Button mBtnSearch;
+    private WeatherSearchQuery mWeatherSearchQuery;
+    private WeatherSearch mWeatherSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +53,12 @@ public class MapActivity extends BaseActivity implements AMap.OnMyLocationChange
         setContentView(R.layout.activity_map);
         initView();
         initData();
+        initEvent();
 
         initMap(savedInstanceState);
         initLocation();
         initMarker();
     }
-
 
     /**
      * 初始化标记物
@@ -88,6 +108,10 @@ public class MapActivity extends BaseActivity implements AMap.OnMyLocationChange
         }
     }
 
+    private void initEvent() {
+        mBtnSearch.setOnClickListener(this);
+    }
+
 
     private void initData() {
         latLngs.add(new LatLng(26.57, 106.71));//贵阳
@@ -103,6 +127,8 @@ public class MapActivity extends BaseActivity implements AMap.OnMyLocationChange
 
     private void initView() {
         mMapView = (MapView) findViewById(R.id.mapView);
+        mEtSearch = (EditText) findViewById(R.id.et_search);
+        mBtnSearch = (Button) findViewById(R.id.btn_search);
     }
 
     @Override
@@ -133,9 +159,55 @@ public class MapActivity extends BaseActivity implements AMap.OnMyLocationChange
         mMapView.onSaveInstanceState(outState);
     }
 
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_search:
+                String keyWord = mEtSearch.getText().toString().trim();
+                if (TextUtils.isEmpty(keyWord)) {
+                    Toast.makeText(this, "输入内容不能为空", Toast.LENGTH_SHORT).show();
+                } else {
+                    search(keyWord, null);
+                }
+                break;
+        }
+    }
+
+
+    /**
+     * 搜索
+     */
+    private void search(String keyWord, String cityCode) {
+        PoiSearch.Query query = new PoiSearch.Query(keyWord, "", cityCode);
+        //keyWord表示搜索字符串，
+        //第二个参数表示POI搜索类型，二者选填其一，选用POI搜索类型时建议填写类型代码，码表可以参考下方（而非文字）
+        //cityCode表示POI搜索区域，可以是城市编码也可以是城市名称，也可以传空字符串，空字符串代表全国在全国范围内进行搜索
+        query.setPageSize(10);// 设置每页最多返回多少条poiitem
+        query.setPageNum(1);//设置查询页码
+
+        PoiSearch poiSearch = new PoiSearch(this, query);
+        poiSearch.setOnPoiSearchListener(this);
+
+        poiSearch.searchPOIAsyn();
+    }
+
+
     @Override
     public void onMyLocationChange(Location location) {//定位金纬度回调
         Log.e("aaa", "onMyLocationChange: " + "latitude==" + location.getLatitude() + "---longitude" + location.getLongitude());
+    }
+
+    /**
+     * 删除所有marker
+     */
+    private void deleteMarker(){
+        List<Marker> markers = aMap.getMapScreenMarkers();
+        for (int i = 0; i < markers.size(); i++) {
+            Marker marker = markers.get(i);
+            marker.remove();
+        }
+        mMapView.invalidate();//地图重绘
     }
 
     @Override
@@ -144,9 +216,67 @@ public class MapActivity extends BaseActivity implements AMap.OnMyLocationChange
         LatLng latLng = options.getPosition();
         double longitude = latLng.longitude;//经度
         double latitude = latLng.latitude;//纬度
-
+        wearthSearch(marker.getTitle());
         marker.setTitle("longitude:" + longitude + " latitude:" + latitude);//marker上显示金纬度
-
         return false;
+    }
+
+    @Override
+    public void onPoiSearched(PoiResult poiResult, int i) {
+        deleteMarker();
+        //解析result获取POI信息
+        ArrayList<PoiItem> pois = poiResult.getPois();
+        MarkerOptions markerOptions = new MarkerOptions();
+        for (PoiItem poiItem : pois) {
+            LatLonPoint latLonPoint = poiItem.getLatLonPoint();
+            LatLng latLng = new LatLng(latLonPoint.getLatitude(), latLonPoint.getLongitude());
+            markerOptions.position(latLng);
+            markerOptions.title(poiItem.getCityName());
+            markerOptions.icon(BitmapDescriptorFactory.fromBitmap(BitmapFactory
+                    .decodeResource(getResources(), R.mipmap.ic_launcher)));
+            markerOptions.draggable(false);
+            aMap.addMarker(markerOptions);
+        }
+    }
+
+    @Override
+    public void onPoiItemSearched(PoiItem poiItem, int i) {
+
+    }
+
+
+    /**
+     * 天气查询
+     */
+    private void wearthSearch(String city) {
+        //检索参数为城市和天气类型，实况天气为WEATHER_TYPE_LIVE、天气预报为WEATHER_TYPE_FORECAST
+        mWeatherSearchQuery = new WeatherSearchQuery(city, WeatherSearchQuery.WEATHER_TYPE_LIVE);
+        mWeatherSearch = new WeatherSearch(this);
+        mWeatherSearch.setOnWeatherSearchListener(this);
+        mWeatherSearch.setQuery(mWeatherSearchQuery);
+        mWeatherSearch.searchWeatherAsyn(); //异步搜索
+    }
+
+
+    /**
+     * 实时天气查询回调
+     */
+    @Override
+    public void onWeatherLiveSearched(LocalWeatherLiveResult weatherLiveResult, int rCode) {//天气查询
+        if (rCode == 1000) {
+            if (weatherLiveResult != null&&weatherLiveResult.getLiveResult() != null) {
+                LocalWeatherLive weatherlive = weatherLiveResult.getLiveResult();
+                Toast.makeText(this, weatherlive.getCity()+weatherlive.getReportTime()+"发布"+weatherlive.getWeather()+weatherlive.getTemperature()+weatherlive.getWindDirection()+"风     "+weatherlive.getWindPower()+"级", Toast.LENGTH_SHORT).show();
+            }else {
+                Toast.makeText(this, "noResult", Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            Toast.makeText(this, "erro"+rCode, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onWeatherForecastSearched(LocalWeatherForecastResult localWeatherForecastResult, int i) {
+
     }
 }

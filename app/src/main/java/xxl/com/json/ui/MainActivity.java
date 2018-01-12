@@ -124,7 +124,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                int randomNum = new Random().nextInt(6);
+                int randomNum = new Random().nextInt(7);
                 switch (randomNum) {
                     case 0:
                         startActivty(MapActivity.class);
@@ -139,12 +139,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         startActivty(NavigationActivity.class);
                         break;
                     case 4:
-                        startActivity(new Intent(MainActivity.this,MvpTestActivity.class));
+                        startActivity(new Intent(MainActivity.this, MvpTestActivity.class));
                         break;
                     case 5:
                         startActivty(TestActivity.class);
                         break;
-                 default:
+                    case 6:
+                        startActivty(TablayoutActivity.class);
+                        break;
+                    default:
                         break;
                 }
                 break;

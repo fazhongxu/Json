@@ -6,8 +6,9 @@ import android.widget.Toast;
 
 import xxl.com.json.R;
 import xxl.com.json.navigationbar.DefaultNavigationBar;
+import xxl.com.json.view.CustomPasswordEditText;
 
-public class NavigationActivity extends BaseActivity {
+public class NavigationActivity extends BaseActivity implements CustomPasswordEditText.PassswordFullListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +16,7 @@ public class NavigationActivity extends BaseActivity {
         setContentView(R.layout.activity_navigation);
 
         DefaultNavigationBar navigationBar = new DefaultNavigationBar
-                .Builder(this,R.layout.layout_navigation)
+                .Builder(this, R.layout.layout_navigation)
                 .setLeftText("Back")
                 //.setLeftIcon(R.drawable.ic_background)
 //                .setLeftHidden(true)
@@ -34,5 +35,13 @@ public class NavigationActivity extends BaseActivity {
                     }
                 })
                 .create();
+
+        CustomPasswordEditText passwordEditText = (CustomPasswordEditText) findViewById(R.id.password_edit);
+        passwordEditText.setOnPassswordFullListener(this);
+    }
+
+    @Override
+    public void getPassword(String password) {
+        Toast.makeText(this, "密码:" + password, Toast.LENGTH_SHORT).show();
     }
 }

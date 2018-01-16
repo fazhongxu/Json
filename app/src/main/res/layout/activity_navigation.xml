@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -8,6 +9,25 @@
         android:layout_width="wrap_content"
         android:text="hello"
         android:visibility="visible"
+        android:layout_height="wrap_content" />
+
+
+    <xxl.com.json.view.CustomPasswordEditText
+        android:id="@+id/password_edit"
+        android:layout_width="match_parent"
+        android:background="@null"
+        android:layout_marginTop="20dp"
+        app:borderColor="@color/gray"
+        android:padding="10dp"
+        app:borderRadius="2dp"
+        app:borderSize="1dp"
+        app:passwordDotColor="@color/gray"
+        app:passwordDotRadius="5dp"
+        app:passwordNum="6"
+        app:splitLineColor="@color/gray"
+        app:splitLineSize="1dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_height="wrap_content" />
 
 </FrameLayout>

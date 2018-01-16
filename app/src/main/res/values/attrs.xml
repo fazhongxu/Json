@@ -8,31 +8,31 @@
         <!--点的大小-->
         <attr name="dotSize" format="dimension" />
         <!--点的距离-->
-        <attr name="dotDistance" format="dimension"/>
+        <attr name="dotDistance" format="dimension" />
         <!--点的位置-->
         <attr name="dotGravity" format="enum">
             <!--居中-->
-            <enum name="center" value="0"/>
+            <enum name="center" value="0" />
             <!--右边-->
-            <enum name="right" value="1"/>
+            <enum name="right" value="1" />
             <!--左边-->
-            <enum name="left" value="-1"/>
+            <enum name="left" value="-1" />
         </attr>
         <!--底部背景颜色-->
-        <attr name="bottomColor" format="color|reference"/>
+        <attr name="bottomColor" format="color|reference" />
         <!--宽度比-->
-        <attr name="widthProportion" format="float"/>
+        <attr name="widthProportion" format="float" />
         <!--高度比-->
-        <attr name="heightProportion" format="float"/>
+        <attr name="heightProportion" format="float" />
     </declare-styleable>
 
     <declare-styleable name="CustomTextView">
         <!--文本-->
-        <attr name="customText" format="string"/>
+        <attr name="customText" format="string" />
         <!--字体大小-->
-        <attr name="customTextSize" format="dimension"/>
+        <attr name="customTextSize" format="dimension" />
         <!--字体颜色-->
-        <attr name="customTextColor" format="color|reference"/>
+        <attr name="customTextColor" format="color|reference" />
     </declare-styleable>
 
     <declare-styleable name="CustomStepView">
@@ -74,20 +74,39 @@
 
     <declare-styleable name="RatingBar">
         <!--默认星星-->
-        <attr name="ratingNormal" format="reference"/>
+        <attr name="ratingNormal" format="reference" />
         <!--选中星星-->
-        <attr name="ratingFocus" format="reference"/>
+        <attr name="ratingFocus" format="reference" />
         <!--星星数量-->
-        <attr name="ratingNum" format="integer"/>
+        <attr name="ratingNum" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="SlidingMenu">
         <!--内容布局距离右边的-->
-        <attr name="rightMargin" format="dimension"/>
+        <attr name="rightMargin" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="SlidingView">
         <!--内容布局距离右边的-->
-        <attr name="rightWidth" format="dimension"/>
+        <attr name="rightWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="CustomPasswordEditText">
+        <!--密码个数-->
+        <attr name="passwordNum" format="integer" />
+        <!--密码边框圆角大小-->
+        <attr name="borderRadius" format="dimension" />
+        <!--密码边框线大小-->
+        <attr name="borderSize" format="dimension"/>
+        <!--密码边框颜色-->
+        <attr name="borderColor" format="reference|color" />
+        <!--密码点半径大小-->
+        <attr name="passwordDotRadius" format="dimension"/>
+        <!--密码点的颜色-->
+        <attr name="passwordDotColor" format="reference|color"/>
+        <!--分割线颜色-->
+        <attr name="splitLineColor" format="reference|color"/>
+        <!--分割线大小-->
+        <attr name="splitLineSize" format="dimension"/>
     </declare-styleable>
 </resources>

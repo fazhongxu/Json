@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -14,6 +15,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import xxl.com.json.R;
 import xxl.com.json.bean.MessageEvent;
+import xxl.com.json.navigationbar.DefaultNavigationBar;
 
 /**
  * Created by xxl on 2017/11/26.
@@ -26,11 +28,19 @@ public class MovieFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return LayoutInflater.from(getContext()).inflate(R.layout.fragment_movie,null);
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        LinearLayout llRoot = (LinearLayout) view.findViewById(R.id.ll_root);
+
+        DefaultNavigationBar defaultNavigationBar =
+                new DefaultNavigationBar
+                        .Builder(getContext(),R.layout.layout_navigation,llRoot)
+                        .create();
+
         mTextView = (TextView) view.findViewById(R.id.tv_movie);
         mTextView.setOnClickListener(new View.OnClickListener() {
             @Override

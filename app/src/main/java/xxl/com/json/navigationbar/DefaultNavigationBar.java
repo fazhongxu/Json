@@ -2,6 +2,7 @@ package xxl.com.json.navigationbar;
 
 import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
 
 import xxl.com.json.R;
 
@@ -19,6 +20,10 @@ public class DefaultNavigationBar extends AbsNavigationBar {
 
         public Builder(Context context, int layoutId) {
             super(context, layoutId);
+        }
+
+        public Builder(Context context, int layoutId, ViewGroup parent) {
+            super(context, layoutId,parent);
         }
 
         public Builder setLeftText(CharSequence text){

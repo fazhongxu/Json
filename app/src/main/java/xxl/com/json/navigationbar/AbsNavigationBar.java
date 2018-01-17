@@ -47,9 +47,13 @@ public class AbsNavigationBar implements INavigation {
      */
     @Override
     public void attatchParent(View view) {
-        ViewGroup decorView = (ViewGroup) ((Activity) mBuilder.mContext).getWindow().getDecorView();
-        ViewGroup decorViewChild = (ViewGroup) decorView.getChildAt(0);
-        decorViewChild.addView(view, 0);
+        if (mBuilder.mParent != null) {//如果传入父布局 就插入到父布局中 父布局只能是LinearLayout
+            mBuilder.mParent.addView(view,0);
+        } else {//否则直接插入到decorView中
+            ViewGroup decorView = (ViewGroup) ((Activity) mBuilder.mContext).getWindow().getDecorView();
+            ViewGroup decorViewChild = (ViewGroup) decorView.getChildAt(0);
+            decorViewChild.addView(view, 0);
+        }
     }
 
     /**
@@ -89,6 +93,7 @@ public class AbsNavigationBar implements INavigation {
     public abstract static class Builder<B extends Builder> {
         public Context mContext;
         public int mlayoutId;
+        public ViewGroup mParent;
         public Map<Integer, CharSequence> mTextMap;
         public Map<Integer, View.OnClickListener> mClickLisenterMap;
         public Map<Integer, Boolean> mVisibleMap;
@@ -97,6 +102,16 @@ public class AbsNavigationBar implements INavigation {
         public Builder(Context context, int layoutId) {
             this.mContext = context;
             this.mlayoutId = layoutId;
+            this.mTextMap = new LinkedHashMap<>();
+            this.mClickLisenterMap = new LinkedHashMap<>();
+            this.mVisibleMap = new LinkedHashMap<>();
+            this.mDrawableMap = new LinkedHashMap<>();
+        }
+
+        public Builder(Context context, int layoutId, ViewGroup parentView) {
+            this.mContext = context;
+            this.mlayoutId = layoutId;
+            this.mParent = parentView;
             this.mTextMap = new LinkedHashMap<>();
             this.mClickLisenterMap = new LinkedHashMap<>();
             this.mVisibleMap = new LinkedHashMap<>();

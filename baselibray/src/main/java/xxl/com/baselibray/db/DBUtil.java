@@ -5,24 +5,32 @@ package xxl.com.baselibray.db;
  */
 
 public class DBUtil {
-    public static Object getType(String type){
+
+
+    public static String getTableName(Class clazz){
+       return clazz.getSimpleName();
+    }
+
+    public static String getColumnType(String type){
         String value = null;
         if (type.contains("String")){
-            return "Text";
+            return "text";
         } else if (type.contains("int")) {
-            return "Integer";
+            return "integer";
         }else if (type.contains("boolean")){
-            return "Boolean";
+            return "boolean";
         }else if (type.contains("short")){
-            return "Short";
+            return "short";
         }else if (type.contains("byte")){
-            return "Byte";
+            return "byte";
         }else if (type.contains("float")){
-            return "Float";
+            return "float";
         } else if (type.contains("double")){
-            return "Double";
+            return "double";
         }else if (type.contains("long")) {
-            return "Long";
+            return "long";
+        }else if (type.contains("char")){
+            return "varchar";
         }
         return value;
     }

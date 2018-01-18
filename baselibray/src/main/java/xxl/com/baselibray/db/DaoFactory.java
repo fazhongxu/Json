@@ -13,7 +13,7 @@ public class DaoFactory {
     private volatile static DaoFactory sDaoFactory;
     private SQLiteDatabase mSqLiteDatabase;
     private static final String mDbPath = Environment.getExternalStorageDirectory()
-            .getAbsolutePath()+File.separator+"json"+File.separator+"database";
+            .getAbsolutePath() + File.separator + "json" + File.separator + "database";
 
     public DaoFactory() {
         // 6.0权限 判断是否挂载
@@ -23,7 +23,7 @@ public class DaoFactory {
         }
         File file = new File(dir, "json.db");
 
-        mSqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(file,null);
+        mSqLiteDatabase = SQLiteDatabase.openOrCreateDatabase(file, null);
     }
 
     public static DaoFactory getInstance() {
@@ -37,9 +37,9 @@ public class DaoFactory {
         return sDaoFactory;
     }
 
-    public IDaoSupport getFactory(){
+    public <C> IDaoSupport<C> getFactory(Class<C> clazz) {
         DaoSupport daoSupport = new DaoSupport();
-
+        daoSupport.init(mSqLiteDatabase, clazz);
         return daoSupport;
     }
 }

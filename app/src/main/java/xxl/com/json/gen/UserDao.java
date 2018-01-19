@@ -17,6 +17,7 @@ import xxl.com.json.bean.User;
 */
 public class UserDao extends AbstractDao<User, Long> {
 
+
     public static final String TABLENAME = "USER";
 
     /**

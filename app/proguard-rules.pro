@@ -91,7 +91,12 @@ public static java.lang.String TABLENAME;
 
 #TabLyoutActivity
 -keepclasseswithmembernames class xxl.com.json.ui.TablayoutActivity{*;}
+#Tablayout
+-keep class android.support.design.widget.TabLayout{*;}
+
+#泛型
 -keepattributes Signature
+#R文件
 -keep class **.R$* {*;}
 
 ###忽略警告

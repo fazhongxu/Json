@@ -10,7 +10,7 @@ public abstract class BannerAdapter {
     /**
      * 获取View
      */
-    public abstract View getView(int position);
+    public abstract View getView(int position,View convertView);
 
     /**
      * 获取ViewPager 轮播图的数量

@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by xxl on 2017/10/28.
@@ -22,6 +24,8 @@ public class BannerViewPager extends ViewPager {
     private int SCROLL_MSG = 0x0011;
     private long SCROLL_DELAY = 5 * 1000;
     private BannerScroller mBannerScroller;
+    private List<View> mConvertViews;//界面复用
+
 
     private Handler mHandler = new Handler() {
         @Override
@@ -58,6 +62,7 @@ public class BannerViewPager extends ViewPager {
 
     public void setAdapter(BannerAdapter adapter) {
         this.mAdapter = adapter;//对象Adapter设计模式
+        mConvertViews = new ArrayList<>();
         setAdapter(new BannerViewAdapter());
     }
 
@@ -92,6 +97,19 @@ public class BannerViewPager extends ViewPager {
     }
 
     /**
+     * 获取界面复用的View
+     * @return
+     */
+    public View getConvertView(){
+        for (int i = 0; i < mConvertViews.size(); i++) {
+            if (mConvertViews.get(i).getParent() == null){//已经从父布局中被移除
+                return mConvertViews.get(i);
+            }
+        }
+        return null;
+    }
+
+    /**
      * ViewPager适配器
      */
     public class BannerViewAdapter extends PagerAdapter {
@@ -115,7 +133,7 @@ public class BannerViewPager extends ViewPager {
         public Object instantiateItem(ViewGroup container, int position) {
             //用Adapter设计模式将具体的view让用户获取添加
             //position 变化范围 0 - 2的31次方 Inter.MaxValue
-            View view = mAdapter.getView(position % mAdapter.getCount());
+            View view = mAdapter.getView(position % mAdapter.getCount(),getConvertView());
             container.addView(view);
             return view;
         }
@@ -126,7 +144,8 @@ public class BannerViewPager extends ViewPager {
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
             container.removeView((View) object);
-            object = null;
+            //object = null;
+            mConvertViews.add((View) object);//把销毁的View保存，用于复用
         }
     }
 }

@@ -84,8 +84,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void setBanner(final JokeBean.DataBean.RotateBannerBean bannerBean) {
         mBannerView.setAdapter(new BannerAdapter() {
             @Override
-            public View getView(int position) {
-                ImageView imageView = new ImageView(MainActivity.this);
+            public View getView(int position, View convertView) {
+                ImageView imageView;
+                if (convertView == null) {
+                    imageView = new ImageView(MainActivity.this);
+                } else {
+                    imageView = (ImageView) convertView;
+                }
                 Glide.with(MainActivity.this)
                         .load(bannerBean.getBanners().get(position).getBanner_url().getUrl_list().get(0).getUrl())
                         .into(imageView);

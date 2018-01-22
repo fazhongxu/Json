@@ -77,15 +77,21 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':baselibray')
     compile project(':framelibrary')
-    compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.github.bumptech.glide:glide:4.2.0'
     compile 'com.android.support:design:25.3.1'
+    //Gson
+    compile 'com.google.code.gson:gson:2.8.2'
+    //Glide
+    compile 'com.github.bumptech.glide:glide:4.2.0'
+    //EventBus
     compile 'org.greenrobot:eventbus:3.1.1'
+    //RxJava
     compile 'io.reactivex.rxjava2:rxjava:2.1.7'
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    //greenDao
     compile 'org.greenrobot:greendao:3.2.2'
     //导航
     compile 'com.amap.api:navi-3dmap:latest.integration'
@@ -93,4 +99,7 @@ dependencies {
     compile 'com.amap.api:search:latest.integration'
     //定位
     compile 'com.amap.api:location:latest.integration'
+    //josup
+    compile 'org.jsoup:jsoup:1.11.2'
+
 }

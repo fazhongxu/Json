@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import xxl.com.json.R;
 import xxl.com.json.navigationbar.DefaultNavigationBar;
+import xxl.com.json.ui.base.BaseActivity;
 import xxl.com.json.view.CustomPasswordEditText;
 
 public class NavigationActivity extends BaseActivity implements CustomPasswordEditText.PassswordFullListener {

@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xxl.com.json.R;
+import xxl.com.json.ui.base.BaseActivity;
 
 public class MapActivity extends BaseActivity implements View.OnClickListener,
         AMap.OnMyLocationChangeListener, AMap.OnMarkerClickListener,

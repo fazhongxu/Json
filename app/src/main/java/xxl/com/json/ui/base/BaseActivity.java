@@ -1,4 +1,4 @@
-package xxl.com.json.ui;
+package xxl.com.json.ui.base;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -11,6 +11,7 @@ import xxl.com.json.R;
 import xxl.com.json.bean.User;
 import xxl.com.json.gen.GreenDaoManager;
 import xxl.com.json.gen.UserDao;
+import xxl.com.json.ui.base.BaseActivity;
 
 public class GreenDaoTestActivity extends BaseActivity implements View.OnClickListener{
 

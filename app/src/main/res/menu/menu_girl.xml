@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/meizi"
+        android:icon="@mipmap/ic_launcher"
+        android:title="妹子"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/douban"
+        android:icon="@mipmap/ic_launcher"
+        android:title="豆瓣"
+        app:showAsAction="collapseActionView" />
+
+    <item
+        android:id="@+id/huaban"
+        android:actionLayout="@layout/ui_loading_view"
+        android:icon="@mipmap/ic_launcher"
+        android:title="花瓣" />
+</menu>

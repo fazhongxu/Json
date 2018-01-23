@@ -13,12 +13,12 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import xxl.com.json.R;
+import xxl.com.json.ui.base.BaseActivity;
 
 public class RxJavaActivity extends BaseActivity {
 

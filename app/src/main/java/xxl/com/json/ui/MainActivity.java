@@ -37,6 +37,7 @@ import xxl.com.json.bean.JokeBean;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
+import xxl.com.json.ui.base.BaseActivity;
 import xxl.com.json.view.SlideBar;
 import xxl.com.json.view.TouchView;
 
@@ -138,7 +139,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-               /* int randomNum = new Random().nextInt(7);
+              /*  int randomNum = new Random().nextInt(7);
                 switch (randomNum) {
                     case 0:
                         startActivty(MapActivity.class);
@@ -164,7 +165,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     default:
                         break;
                 }*/
-                getGirls();
+                //getGirls();
+                startActivity(new Intent(this,GirlActivity.class));
                 break;
             default:
                 break;

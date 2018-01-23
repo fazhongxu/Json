@@ -12,6 +12,7 @@ import xxl.com.json.R;
 import xxl.com.json.bean.LoginInfo;
 import xxl.com.json.common.retrofit.ApiService;
 import xxl.com.json.common.retrofit.RetrofitClient;
+import xxl.com.json.ui.base.BaseActivity;
 
 public class RetrofitActivity extends BaseActivity implements View.OnClickListener {
     private Button mBtnTest;

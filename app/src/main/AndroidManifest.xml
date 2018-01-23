@@ -28,7 +28,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="1702a6845449e0f7fae3ea69f905aaa4"></meta-data>
+            android:value="1702a6845449e0f7fae3ea69f905aaa4"/>
 
         <activity android:name=".ui.MainActivity">
             <intent-filter>
@@ -70,7 +70,7 @@
         <activity android:name=".ui.DesignActivity" />
         <activity android:name=".ui.MapActivity" />
         <activity android:name=".ui.GirlActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+            android:theme="@style/ToolBarTheme"/>
     </application>
 
 </manifest>

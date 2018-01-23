@@ -13,6 +13,7 @@ import android.widget.Toast;
 import xxl.com.json.IAidlUserInfo;
 import xxl.com.json.R;
 import xxl.com.json.service.UserInfoService;
+import xxl.com.json.ui.base.BaseActivity;
 
 public class AIDLActivity extends BaseActivity implements View.OnClickListener{
 

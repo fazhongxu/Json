@@ -14,4 +14,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ToolBarTheme" parent="AppThemeNoActionBar">
+        <item name="colorControlNormal">@color/white</item>//系统 ToolBar上控制按钮的颜色 如返回键颜色，菜单选项按钮颜色
+    </style>
+
 </resources>

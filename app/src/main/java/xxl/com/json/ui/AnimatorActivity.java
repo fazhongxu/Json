@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import xxl.com.json.R;
+import xxl.com.json.ui.base.BaseActivity;
 import xxl.com.json.view.LoadingCircleView;
 import xxl.com.json.view.LoadingView;
 

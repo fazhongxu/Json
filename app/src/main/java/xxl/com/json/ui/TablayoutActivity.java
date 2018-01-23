@@ -11,6 +11,7 @@ import java.lang.reflect.Field;
 
 import xxl.com.json.R;
 import xxl.com.json.adapter.TabPagerAdapter;
+import xxl.com.json.ui.base.BaseActivity;
 
 public class TablayoutActivity extends BaseActivity {
 

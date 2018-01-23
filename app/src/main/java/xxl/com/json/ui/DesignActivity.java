@@ -9,6 +9,7 @@ import java.lang.reflect.Proxy;
 import xxl.com.json.R;
 import xxl.com.json.common.design.proxy.IBank;
 import xxl.com.json.common.design.proxy.Man;
+import xxl.com.json.ui.base.BaseActivity;
 
 public class DesignActivity extends BaseActivity {
 

@@ -27,6 +27,7 @@ import xxl.com.json.common.okhttp.CacheRequestInterceptor;
 import xxl.com.json.common.okhttp.CacheResponseInterceptor;
 import xxl.com.json.common.okhttp.ExMultipartBody;
 import xxl.com.json.common.okhttp.UpLoadListener;
+import xxl.com.json.ui.base.BaseActivity;
 
 public class OkHttpActivity extends BaseActivity implements View.OnClickListener {
     //    private static final String URL = "https://api.saiwuquan.com/api/upload";

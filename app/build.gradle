@@ -6,6 +6,15 @@ android {
     buildToolsVersion "26.0.1"
     //compileSdkVersion rootProject.ext.compileSdkVersion
     //buildToolsVersion rootProject.ext.buildToolsVersion
+
+    //签名文件隐藏（实际上只是不再build.gradle配置明文密码，别名等信息，把配置信息转移到了keystore.properties文件里面而已）签名信息配置方式
+    //keystore.properties不是签名文件 知识一个普通的文件，里面有keyAlias，keyPassword，storePassword和storeFile=D:\\xxx.jks签名文件路径
+    //上传到git不要上传签名文件和 keystore.properties 文件 避免签名文件泄漏
+    //def keystorePropertiesFile = rootProject.file("keystore.properties")
+    //def keystoreProperties = new Properties()
+    //keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+
     signingConfigs {
         release {
             //配置这里是为了让三方的sdk不打包的情况下直接运行的时候可以使用，keystore会去三方比较注册的appid等
@@ -13,12 +22,22 @@ android {
             keyPassword '123456'
             storeFile file('../keystore.jks')
             storePassword '123456'
+
+            //keyAlias keystoreProperties["keyAlias"]
+            //keyPassword keystoreProperties["keyPassword"]
+            //storeFile file(keystoreProperties['storeFile'])
+            //storePassword keystoreProperties["storePassword"]
         }
         debug {
             keyAlias 'json'
             keyPassword '123456'
             storeFile file('../keystore.jks')
             storePassword '123456'
+
+            //keyAlias keystoreProperties["keyAlias"]
+            //keyPassword keystoreProperties["keyPassword"]
+            //storeFile file(keystoreProperties['storeFile'])
+            //storePassword keystoreProperties["storePassword"]
         }
     }
     defaultConfig {

@@ -19,7 +19,7 @@ import java.util.List;
 public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter<CommonRecyclerViewAdapter.ViewHolder> {
     //考虑 数据怎么处理? 布局怎么处理? 如何绑定?
     //布局直接传入资源layoutId,数据用泛型，绑定用抽象方法回传给实现类
-    private Context mContext;
+    protected Context mContext;
     private List<T> mDatas;
     private int layoutId;
     private LayoutInflater mLayoutInflater;
@@ -134,6 +134,15 @@ public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter<
             ImageView imageView = findView(viewId);
             imageView.setImageResource(resourceId);
             return this;
+        }
+
+        /**
+         * 根据id获取控件
+         * @param viewId
+         * @return
+         */
+        public View getView(int viewId){
+            return findView(viewId);
         }
 
 

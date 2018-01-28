@@ -34,6 +34,7 @@ import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
 import xxl.com.json.bean.Girl;
 import xxl.com.json.bean.JokeBean;
+import xxl.com.json.commontoolbar.CommonToolbar;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
@@ -166,7 +167,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         break;
                 }*/
                 //getGirls();
-                startActivity(new Intent(this,GirlActivity.class));
+                startActivity(new Intent(this,CommonToolbarActivity.class));
                 break;
             default:
                 break;

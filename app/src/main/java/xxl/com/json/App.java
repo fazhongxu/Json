@@ -6,7 +6,7 @@ import android.content.Context;
 import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.baselibray.http.OkHttpEngine;
 import xxl.com.json.gen.GreenDaoManager;
-import xxl.com.json.utils.SharedPreferenceUtils;
+import xxl.com.json.util.SharedPreferenceUtils;
 
 /**
  * Created by xxl on 2017/10/23.

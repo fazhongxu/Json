@@ -16,25 +16,18 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import xxl.com.baselibray.http.HttpCallBackEngine;
 import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.json.R;
 import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
-import xxl.com.json.bean.Girl;
 import xxl.com.json.bean.JokeBean;
-import xxl.com.json.commontoolbar.CommonToolbar;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
@@ -134,13 +127,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 Toast.makeText(MainActivity.this, "" + letter, Toast.LENGTH_SHORT).show();
             }
         });
+
+        List<String> list = new ArrayList<>();
+        list.add("1");
+        list.add("2");
+        Iterator<String> iterator = list.iterator();//迭代器方式删除元素 避免CurrentModifyException
+        while (iterator.hasNext()) {
+            String temp = iterator.next();
+            if ("2".equals(temp)) {
+                iterator.remove();
+            }
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-              /*  int randomNum = new Random().nextInt(7);
+                int randomNum = new Random().nextInt(8);
                 switch (randomNum) {
                     case 0:
                         startActivty(MapActivity.class);
@@ -163,54 +167,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     case 6:
                         startActivty(TablayoutActivity.class);
                         break;
+                    case 7:
+                        startActivity(new Intent(this, CommonToolbarActivity.class));
+                        break;
                     default:
                         break;
-                }*/
-                //getGirls();
-                startActivity(new Intent(this,CommonToolbarActivity.class));
+                }
                 break;
             default:
                 break;
         }
-    }
-
-    private void getGirls() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Connection connect = Jsoup.connect("http://www.mzitu.com/");
-                try {
-                    Document document = connect.get();
-                    Elements elements = document.select("ul#pins > li");
-                    List<Girl> girls = new ArrayList<>();
-                    for (int i = 0; i < elements.size(); i++) {
-                        Element element1 = (elements.get(i)).select("img").first();
-                        Element element2 = elements.get(i).select("a").first();
-                        Girl girl = new Girl();
-                        girl.setTitle(element1.attr("alt"));
-                        girl.setImagUrl(element1.attr("data-original"));
-                        girl.setImgWidth(element1.attr("width"));
-                        girl.setImgHeight(element1.attr("height"));
-                        girl.setGroupId(Uri.parse(element2.attr("href")).getLastPathSegment());
-                        girls.add(girl);
-                    }
-
-                    //url/page/2
-
-                    for (Girl girl : girls) {
-                        System.out.println(girl.getImagUrl());
-                        System.out.println(girl.getGroupId());
-                        System.out.println(girl.getTitle());
-                        System.out.println(girl.getImgWidth());
-                        System.out.println(girl.getImgHeight());
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
     }
 
     private void call() {

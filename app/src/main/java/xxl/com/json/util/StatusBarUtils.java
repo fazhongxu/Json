@@ -1,4 +1,4 @@
-package xxl.com.json.utils;
+package xxl.com.json.util;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -7,10 +7,6 @@ import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-
-import xxl.com.json.R;
 
 /**
  * Created by xxl on 2017/12/2.

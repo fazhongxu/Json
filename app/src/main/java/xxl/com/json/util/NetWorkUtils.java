@@ -1,4 +1,4 @@
-package xxl.com.json.utils;
+package xxl.com.json.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

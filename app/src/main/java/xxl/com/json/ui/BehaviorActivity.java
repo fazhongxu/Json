@@ -10,7 +10,7 @@ import java.util.List;
 import xxl.com.json.R;
 import xxl.com.json.adapter.TestAdapter;
 import xxl.com.json.ui.base.BaseActivity;
-import xxl.com.json.utils.StatusBarUtils;
+import xxl.com.json.util.StatusBarUtils;
 
 public class BehaviorActivity extends BaseActivity {
 

@@ -8,7 +8,7 @@ import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-import xxl.com.json.utils.NetWorkUtils;
+import xxl.com.json.util.NetWorkUtils;
 
 /**
  * Created by xxl on 2017/12/28.

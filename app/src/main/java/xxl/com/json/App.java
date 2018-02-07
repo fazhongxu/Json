@@ -6,6 +6,7 @@ import android.content.Context;
 import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.baselibray.http.OkHttpEngine;
 import xxl.com.json.gen.GreenDaoManager;
+import xxl.com.json.util.CrashHandler;
 import xxl.com.json.util.SharedPreferenceUtils;
 
 /**
@@ -25,6 +26,8 @@ public class App extends Application {
         mContext = getApplicationContext();
 
         GreenDaoManager.getInstance();
+
+        CrashHandler.getInstance().init(this);
     }
 
     public static Context getContext(){

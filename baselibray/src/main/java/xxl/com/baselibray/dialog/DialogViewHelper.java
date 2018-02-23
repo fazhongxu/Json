@@ -60,6 +60,23 @@ class DialogViewHelper {
         return text;
     }
 
+    /**
+     * 设置控件是否可见
+     *
+     * @param viewId
+     * @param visible 是否可见
+     */
+    void setVisible(int viewId, Boolean visible) {
+        View view = getView(viewId);
+        if (view != null) {
+            if (visible) {
+                view.setVisibility(View.VISIBLE);
+            } else {
+                view.setVisibility(View.GONE);
+            }
+        }
+    }
+
     void setOnClickLisenter(int viewId, View.OnClickListener listener) {
         getView(viewId).setOnClickListener(listener);
     }

@@ -72,7 +72,10 @@
         <activity
             android:name=".ui.GirlActivity"
             android:theme="@style/ToolBarTheme" />
-        <activity android:name=".ui.CommonToolbarActivity" android:theme="@style/AppThemeNoActionBar"/>
+        <activity
+            android:name=".ui.CommonToolbarActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".ui.DialogActivity"/>
     </application>
 
 </manifest>

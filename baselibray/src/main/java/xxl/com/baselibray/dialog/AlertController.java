@@ -78,8 +78,8 @@ class AlertController {
          int mHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
         //动画
          int mAnimation = 0;//默认动画设置为R.style.
-        //Dialog里控件id
-        public int mViewId;
+        //设置控件是否隐藏的集合
+        SparseArray<Boolean> mVisibleArray = new SparseArray<>();
 
         AlertParams(Context context, int themeId) {
             this.mContext = context;
@@ -117,6 +117,12 @@ class AlertController {
             int clickArraySize = mClickArray.size();
             for (int i = 0; i < clickArraySize; i++) {
                 mDialogViewHelper.setOnClickLisenter(mClickArray.keyAt(i), mClickArray.valueAt(i));
+            }
+
+            //dialog里面控件隐藏设置
+            int visibleArraySize = mVisibleArray.size();
+            for (int i = 0; i < visibleArraySize; i++) {
+                dialog.mDialogViewHelper.setVisible(mVisibleArray.keyAt(i), mVisibleArray.valueAt(i));
             }
 
             if (mOnDismissListener != null) {

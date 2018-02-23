@@ -157,6 +157,27 @@ public class AlertDialog extends Dialog {
             return this;
         }
 
+        /**
+         * 设置点击外部是否可以取消
+         * @param cancelable
+         * @return
+         */
+        public Builder setCancelable(boolean cancelable) {
+            P.mCancelable = cancelable;
+            return this;
+        }
+
+        /**
+         * 设置控件是否可见
+         * @param resId
+         * @param visible
+         * @return
+         */
+        public Builder setVisible(int resId,boolean visible){
+            P.mVisibleArray.put(resId,visible);
+            return this;
+        }
+
 
         AlertDialog create() {
             // We can't use Dialog's 3-arg constructor with the createThemeContextWrapper param,
@@ -180,6 +201,5 @@ public class AlertDialog extends Dialog {
             dialog.show();
             return dialog;
         }
-
     }
 }

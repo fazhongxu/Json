@@ -15,7 +15,7 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
     }
 
-    protected void startActivty(Class<? extends BaseActivity> clazz) {
+    protected void startActivity(Class<? extends BaseActivity> clazz) {
         Intent intent = new Intent(this,clazz);
         startActivity(intent);
     }

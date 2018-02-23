@@ -75,7 +75,8 @@
         <activity
             android:name=".ui.CommonToolbarActivity"
             android:theme="@style/AppThemeNoActionBar" />
-        <activity android:name=".ui.DialogActivity"/>
+        <activity android:name=".ui.DialogActivity" />
+        <activity android:name=".ui.BannerActivity"></activity>
     </application>
 
 </manifest>

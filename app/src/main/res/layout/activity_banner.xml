@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <xxl.com.json.bannerview.BannerView
+        android:id="@+id/banner_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/btn_test"
+        app:bottomColor="@drawable/shape_item_divider"
+        app:dotGravity="right"
+        app:dotIndicatorFocus="@color/colorPrimary"
+        app:dotIndicatorNormal="@color/colorGray"
+        app:dotSize="10dp"
+        app:heightProportion="3"
+        app:widthProportion="8" />
+
+</RelativeLayout>

@@ -1,7 +1,6 @@
 package xxl.com.json.ui;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,24 +9,15 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
-import xxl.com.baselibray.http.HttpCallBackEngine;
-import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.json.R;
-import xxl.com.json.bannerview.BannerAdapter;
 import xxl.com.json.bannerview.BannerView;
-import xxl.com.json.bean.JokeBean;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
@@ -47,78 +37,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initData();
         initView();
         viewTouch();
-    }
-
-
-    private void initData() {
-        String url = "http://is.snssdk.com/2/essay/discovery/v3/?&device_platform=android&device_type=Redmi+Note+3&iid=6152551759&manifest_version_code=570&longitude=113.000366&latitude=28.171377&update_version_code=5701&aid=7&channel=360";
-        HttpUtil.with(this)
-                .url(url)
-                .get()
-                .execute(new HttpCallBackEngine() {
-                    @Override
-                    public void onSuccess(String result) {
-                        Log.e(TAG, "onSuccess: " + result);
-                        Gson gson = new Gson();
-                        JokeBean jokeBean = gson.fromJson(result, JokeBean.class);
-                        final JokeBean.DataBean.RotateBannerBean rotate_banner = jokeBean.getData().getRotate_banner();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                //setBanner(rotate_banner);
-                            }
-                        });
-                    }
-
-                    @Override
-                    public void onFailure(Exception e) {
-                        Log.e(TAG, "onFailure: " + e.getMessage());
-                    }
-
-                    @Override
-                    public void onPreExcute(Context context, Map<String, Object> params) {
-
-                    }
-                });
-    }
-
-    private void setBanner(final JokeBean.DataBean.RotateBannerBean bannerBean) {
-        mBannerView.setAdapter(new BannerAdapter() {
-            @Override
-            public View getView(int position, View convertView) {
-                ImageView imageView;
-                if (convertView == null) {
-                    imageView = new ImageView(MainActivity.this);
-                } else {
-                    imageView = (ImageView) convertView;
-                }
-                Glide.with(MainActivity.this)
-                        .load(bannerBean.getBanners().get(position).getBanner_url().getUrl_list().get(0).getUrl())
-                        .into(imageView);
-                return imageView;
-            }
-
-            @Override
-            public int getCount() {
-                return bannerBean.getBanners().size();
-            }
-
-            @Override
-            public String getBannerDes(int position) {
-                return bannerBean.getBanners().get(position).getBanner_url().getTitle();
-            }
-        });
-        mBannerView.startScroll();
     }
 
     private void initView() {
         mBtnTest = (Button) findViewById(R.id.btn_test);
         mBtnTest.setOnClickListener(this);
-
-        mBannerView = (BannerView) findViewById(R.id.banner_view);
 
         SlideBar slideBar = (SlideBar) findViewById(R.id.slide_bar);
         slideBar.setOnTouchLisenter(new SlideBar.OnTouchLisenter() {
@@ -144,7 +69,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                int randomNum = new Random().nextInt(9);
+                int randomNum = new Random().nextInt(10);
                 switch (randomNum) {
                     case 0:
                         startActivity(MapActivity.class);
@@ -172,6 +97,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         break;
                     case 8:
                         startActivity(DialogActivity.class);
+                        break;
+                    case 9:
+                        startActivity(BannerActivity.class);
                         break;
                     default:
                         break;

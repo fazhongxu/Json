@@ -51,7 +51,7 @@
         android:layout_height="0dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/btn_test"
-        android:visibility="gone"
+        android:visibility="visible"
         app:bottomColor="@drawable/shape_item_divider"
         app:dotGravity="right"
         app:dotIndicatorFocus="@color/colorPrimary"

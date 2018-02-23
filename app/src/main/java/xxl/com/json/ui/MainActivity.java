@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import xxl.com.json.R;
 import xxl.com.json.bannerview.BannerView;
@@ -127,6 +129,27 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @PermissionFailure(requstCode = CALL_PHONE_PERMISSION_REQUEST_CODE)
     private void callPhoneFailure() {
 
+    }
+
+    private int keyPressedCount = 0;
+
+    @Override
+    public void onBackPressed() {
+        switch (keyPressedCount++) {
+            case 0:
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        keyPressedCount = 0;
+                    }
+                }, 1000);
+                break;
+            case 1:
+                finish();
+                break;
+        }
     }
 
     @Override

@@ -19,7 +19,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import xxl.com.json.R;
-import xxl.com.json.bannerview.BannerView;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
@@ -30,7 +29,6 @@ import xxl.com.json.view.TouchView;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private Button mBtnTest;
-    private BannerView mBannerView;
     private String TAG = "MainActivity";
 
     private static final int CALL_PHONE_PERMISSION_REQUEST_CODE = 100;

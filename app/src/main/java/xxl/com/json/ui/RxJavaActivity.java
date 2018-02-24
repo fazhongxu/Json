@@ -44,7 +44,7 @@ public class RxJavaActivity extends BaseActivity {
                 .map(new Function<Bitmap, Bitmap>() {
                     @Override
                     public Bitmap apply(Bitmap bitmap) throws Exception {
-                        Bitmap waterBitmap = drawWaterBitmap(bitmap, "RxJava");
+                        Bitmap waterBitmap = drawWaterBitmap(bitmap, "RxJava2.0");
                         return waterBitmap;
                     }
                 })

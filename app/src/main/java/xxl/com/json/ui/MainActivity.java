@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                int randomNum = new Random().nextInt(10);
+                int randomNum = new Random().nextInt(11);
                 switch (randomNum) {
                     case 0:
                         startActivity(MapActivity.class);
@@ -100,6 +100,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         break;
                     case 9:
                         startActivity(BannerActivity.class);
+                        break;
+                    case 10:
+                        startActivity(RxJavaActivity.class);
                         break;
                     default:
                         break;

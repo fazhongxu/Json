@@ -2,8 +2,10 @@ package xxl.com.json.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -12,7 +14,7 @@ import xxl.com.json.ui.base.BaseActivity;
 import xxl.com.json.ui.imageselect.ImageSelectActivity;
 
 public class TestImageSelectActivity extends BaseActivity implements View.OnClickListener {
-    private ArrayList mImageSelectList;
+    private ArrayList<String> mImageSelectList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,7 @@ public class TestImageSelectActivity extends BaseActivity implements View.OnClic
             Bundle extras = data.getExtras();
             if (extras != null){
                 mImageSelectList = extras.getStringArrayList(ImageSelectActivity.EXTRA_SELECT_LIST);
+                Toast.makeText(this, "选择了"+mImageSelectList.size()+"张图片", Toast.LENGTH_SHORT).show();
             }
         }
     }

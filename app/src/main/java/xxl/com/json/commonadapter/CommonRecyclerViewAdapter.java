@@ -110,6 +110,17 @@ public abstract class CommonRecyclerViewAdapter<T> extends RecyclerView.Adapter<
             return this;
         }
 
+        /**
+         * 设置控件显示或隐藏  支持invisible方式
+         * @param viewId
+         * @param visible
+         * @return
+         */
+        public ViewHolder setVisible(int viewId,int visible){
+            findView(viewId).setVisibility(visible);
+            return this;
+        }
+
 
         /**
          * 设置点击事件

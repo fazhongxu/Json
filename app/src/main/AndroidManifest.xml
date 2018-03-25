@@ -77,8 +77,9 @@
             android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".ui.DialogActivity" />
         <activity android:name=".ui.BannerActivity" />
-        <activity android:name=".ui.imageselect.ImageSelectActivity" />
-        <activity android:name=".ui.TestImageSelectActivity"></activity>
+        <activity android:name=".ui.imageselect.ImageSelectActivity"
+            android:theme="@style/AppThemeNoActionBar"/>
+        <activity android:name=".ui.TestImageSelectActivity"/>
     </application>
 
 </manifest>

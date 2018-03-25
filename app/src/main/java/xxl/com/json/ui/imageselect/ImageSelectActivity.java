@@ -9,6 +9,10 @@ import android.support.v4.content.Loader;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +23,7 @@ import xxl.com.json.ui.base.BaseActivity;
 /**
  * 图片选择
  */
-public class ImageSelectActivity extends BaseActivity {
+public class ImageSelectActivity extends BaseActivity implements View.OnClickListener {
     //需要使用图片选择的页面传递过来的参数
     //选择 多选 单选模式
     public static final String EXTRA_SELECT_MODE = "extra_select_mode";
@@ -29,10 +33,8 @@ public class ImageSelectActivity extends BaseActivity {
     public static final String EXTRA_CAMERA = "extra_camera";
     //已经选择好了的图片集合
     public static final String EXTRA_SELECT_LIST = "extra_select_list";
-
     //startActivityForResult时的requestCode
     public static final int REQUEST_CODE = 0x0012;
-
     //图片选择类型 单选
     public static final int SELECT_SINGLE = 0x0011;
     //多选
@@ -50,10 +52,17 @@ public class ImageSelectActivity extends BaseActivity {
     private RecyclerView mRecyclerView;
 
     private static final int LOADER_ID = 1122;
+    private TextView mTvPriview;
+    private TextView mTvNum;
+    private TextView mTvOk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //全屏
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_image_select);
 
         initView();
@@ -67,6 +76,14 @@ public class ImageSelectActivity extends BaseActivity {
     private void initView() {
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+
+        mTvPriview = (TextView) findViewById(R.id.tv_preview);
+        mTvNum = (TextView) findViewById(R.id.tv_num);
+        mTvOk = (TextView) findViewById(R.id.tv_ok);
+
+        mTvPriview.setOnClickListener(this);
+        mTvNum.setOnClickListener(this);
+        mTvOk.setOnClickListener(this);
     }
 
     private void initData() {
@@ -112,8 +129,13 @@ public class ImageSelectActivity extends BaseActivity {
             if (data != null && data instanceof Cursor) {
                 Cursor cursor = (Cursor) data;
                 if (cursor.getCount() > 0) {
-                    ImageBean imageBean = new ImageBean();
+                    ImageBean image = new ImageBean();
+                    if (SHOW_CAMERA){
+                        image.setPath("");
+                    }
+                    mImageList.add(image);
                     while (cursor.moveToNext()) {
+                        ImageBean imageBean = new ImageBean();
                         String path = cursor.getString(cursor.getColumnIndexOrThrow(projection[0]));
                         String name = cursor.getString(cursor.getColumnIndexOrThrow(projection[1]));
                         Long date = cursor.getLong(cursor.getColumnIndexOrThrow(projection[2]));
@@ -145,4 +167,15 @@ public class ImageSelectActivity extends BaseActivity {
         mRecyclerView.setAdapter(imageSelectAdapter);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_preview:
+                break;
+            case R.id.tv_num:
+                break;
+            case R.id.tv_ok:
+                break;
+        }
+    }
 }

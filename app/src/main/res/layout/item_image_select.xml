@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<xxl.com.json.ui.imageselect.SquareFramelayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ImageView
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <xxl.com.json.ui.imageselect.SquareImageView
         android:id="@+id/iv_image"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:scaleType="center" />
+
+    <ImageView
+        android:id="@+id/iv_image_select_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@drawable/selector_image_select_status" />
+
+    <LinearLayout
+        android:id="@+id/ll_camera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_picture_select_camera" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="相机"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</xxl.com.json.ui.imageselect.SquareFramelayout>

@@ -142,7 +142,7 @@ public class ImageSelectActivity extends BaseActivity implements View.OnClickLis
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI, projection
                     , projection[4] + ">0 AND " + projection[3] + "=? OR "
                     + projection[3] + "=? ", new String[]{"image/jpeg", "image/png"},
-                    projection[3] + " DESC");
+                    projection[2] + " DESC");
             return cursorLoader;
         }
 

@@ -86,11 +86,11 @@ class DialogViewHelper {
      *
      * @param viewId
      */
-    private <T extends View> T getView(int viewId) {
+     <T extends View> T getView(int viewId) {
         //为了减少findViewById次数，用软引用的集合来存放view,相当于做了缓存，
         // 每次findViewById之后把获取到的View保存起来，下次调用先从缓存里面取，取不到再去findView
         WeakReference<View> wrView = mSparseArray.get(viewId);
-        View view = null;
+        View view;
         if (wrView != null) {
             view = wrView.get();
             return (T) view;

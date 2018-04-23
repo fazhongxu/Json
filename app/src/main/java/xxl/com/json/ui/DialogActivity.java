@@ -1,9 +1,11 @@
 package xxl.com.json.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import xxl.com.baselibray.dialog.AlertDialog;
@@ -57,6 +59,10 @@ public class DialogActivity extends BaseActivity implements View.OnClickListener
                             }
                         })
                         .show();
+
+                TextView view = (TextView) mAlertDialog.getView(R.id.submit_button);
+                view.setTextColor(Color.WHITE);
+                view.setTextSize(18);
 
                 mAlertDialog.setOnClickLisenter(R.id.submit_button, new View.OnClickListener() {
                     @Override

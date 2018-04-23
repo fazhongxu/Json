@@ -47,10 +47,14 @@ public class BannerActivity extends BaseActivity {
                         Log.e(TAG, "onSuccess: " + result);
                         Gson gson = new Gson();
                         JokeBean jokeBean = gson.fromJson(result, JokeBean.class);
+
                         final JokeBean.DataBean.RotateBannerBean rotate_banner = jokeBean.getData().getRotate_banner();
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                if (rotate_banner == null) {
+                                    return;
+                                }
                                 setBanner(rotate_banner);
                             }
                         });

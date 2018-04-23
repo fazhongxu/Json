@@ -37,6 +37,15 @@ public class AlertDialog extends Dialog {
     }
 
     /**
+     * 获取dialog里面的控件
+     * @param viewId
+     * @return
+     */
+    public View getView(int viewId) {
+        return mAlert.getView(viewId);
+    }
+
+    /**
      * 不用Builder链式调用时候的点击事件
      */
     public void setOnClickLisenter(int viewId, View.OnClickListener lisenter) {

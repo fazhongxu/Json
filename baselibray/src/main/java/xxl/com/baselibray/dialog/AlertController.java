@@ -17,9 +17,9 @@ class AlertController {
 
     private AlertDialog mAlertDialog;
     private Window mWindow;
-    private static DialogViewHelper mDialogViewHelper = null;
+    private DialogViewHelper mDialogViewHelper = null;
 
-    public AlertController(AlertDialog alertDialog, Window window) {
+    AlertController(AlertDialog alertDialog, Window window) {
         this.mAlertDialog = alertDialog;
         this.mWindow = window;
     }
@@ -38,6 +38,17 @@ class AlertController {
     }
 
     /**
+     * 获取Dialog内 控件
+     * @param viewId
+     * @return
+     */
+    View getView(int viewId) {
+        if (mDialogViewHelper == null) {
+            throw new IllegalArgumentException("Please show dialog first");
+        }
+        return mDialogViewHelper.getView(viewId);
+    }
+    /**
      * Dialog内控件点击事件
      *
      * @param viewId
@@ -49,6 +60,8 @@ class AlertController {
         }
         mDialogViewHelper.setOnClickLisenter(viewId, listener);
     }
+
+
 
     static class AlertParams {
         final Context mContext;
@@ -89,50 +102,50 @@ class AlertController {
         /**
          * dialog构建方法
          */
-        public void apply(AlertController dialog) {
+        public void apply(AlertController alertController) {
 
             if (mView != null) {
-                mDialogViewHelper = new DialogViewHelper(mView);
+                alertController.mDialogViewHelper = new DialogViewHelper(mView);
             }
 
             if (mViewLayoutResId != 0) {
-                mDialogViewHelper = new DialogViewHelper(mContext, mViewLayoutResId);
+                alertController.mDialogViewHelper = new DialogViewHelper(mContext, mViewLayoutResId);
             }
 
-            if (mDialogViewHelper == null) {
+            if (alertController.mDialogViewHelper == null) {
                 throw new IllegalArgumentException("setContentView can't be null");
             }
 
             //设置dialog布局
-            dialog.mAlertDialog.setContentView(mDialogViewHelper.getContentView());
+            alertController.mAlertDialog.setContentView(alertController.mDialogViewHelper.getContentView());
 
             //dialog文本设置
             //取出文本,设置给Dialog的View
             int textArraySize = mTextArray.size();
             for (int i = 0; i < textArraySize; i++) {
-                mDialogViewHelper.setText(mTextArray.keyAt(i), mTextArray.valueAt(i));
+                alertController.mDialogViewHelper.setText(mTextArray.keyAt(i), mTextArray.valueAt(i));
             }
 
             //dialog点击事件设置
             int clickArraySize = mClickArray.size();
             for (int i = 0; i < clickArraySize; i++) {
-                mDialogViewHelper.setOnClickLisenter(mClickArray.keyAt(i), mClickArray.valueAt(i));
+                alertController.mDialogViewHelper.setOnClickLisenter(mClickArray.keyAt(i), mClickArray.valueAt(i));
             }
 
             //dialog里面控件隐藏设置
             int visibleArraySize = mVisibleArray.size();
             for (int i = 0; i < visibleArraySize; i++) {
-                dialog.mDialogViewHelper.setVisible(mVisibleArray.keyAt(i), mVisibleArray.valueAt(i));
+                alertController.mDialogViewHelper.setVisible(mVisibleArray.keyAt(i), mVisibleArray.valueAt(i));
             }
 
             if (mOnDismissListener != null) {
-                dialog.mAlertDialog.setOnDismissListener(mOnDismissListener);
+                alertController.mAlertDialog.setOnDismissListener(mOnDismissListener);
             }
 
             //设置dialog自定义效果，全屏，从底部弹出，设置宽高，默认动画，动画等
             //dialog动画
-            dialog.mWindow.setWindowAnimations(mAnimation);
-            Window window = dialog.mWindow;
+            alertController.mWindow.setWindowAnimations(mAnimation);
+            Window window = alertController.mWindow;
             //dialog位置
             window.setGravity(mGravity);
             //设置宽高

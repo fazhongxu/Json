@@ -24,6 +24,10 @@
         <attr name="widthProportion" format="float" />
         <!--高度比-->
         <attr name="heightProportion" format="float" />
+        <!--是否两边突出条目 实现一屏显示多个View的效果-->
+        <attr name="bulge" format="boolean"/>
+        <!--两边凸出距离-->
+        <attr name="bulgeDistance" format="integer"/>
     </declare-styleable>
 
     <declare-styleable name="CustomTextView">

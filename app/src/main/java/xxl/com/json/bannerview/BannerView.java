@@ -38,6 +38,8 @@ public class BannerView extends RelativeLayout {
     private int mDotDistance = 8;
     private Drawable mBVBottomColorDrawable;//底部容器颜色值，shape文件资源颜色方式设置底部容器颜色
     private int mWidthProportion,mHeightProportion;//BannerView（ViewPager）宽高比
+    private boolean mBulge = false;//ViewPager 是否两边凸出
+    private int mBulgeDistance = 25;//两边凸出距离
 
     public BannerView(Context context) {
         this(context, null);
@@ -60,6 +62,17 @@ public class BannerView extends RelativeLayout {
         mDes = (TextView) findViewById(R.id.tv_des);
         mLLDotIndicator = (LinearLayout) findViewById(R.id.ll_dot_container);
         mRLBottom = (RelativeLayout) findViewById(R.id.rl_bottom);
+
+        if (mBulge) {
+            RelativeLayout parent = (RelativeLayout) mBannerViewPager.getParent();
+            mBannerViewPager.setClipChildren(false);
+            parent.setClipChildren(false);
+            mBannerViewPager.setOffscreenPageLimit(2);//预加载数量
+            LayoutParams layoutParams = (LayoutParams) mBannerViewPager.getLayoutParams();
+            layoutParams.setMargins(dip2px(mBulgeDistance),0,dip2px(mBulgeDistance),0);
+            mBannerViewPager.setLayoutParams(layoutParams);
+            mBannerViewPager.setPageMargin(10);//ViewPager页面之间的距离
+        }
 
         //手先判断是否是shape等drawable文件作为底部容器的背景，有的话就优先使用，没有的话判断是否传入了颜色值
         if (mBVBottomColorDrawable != null) {
@@ -104,6 +117,8 @@ public class BannerView extends RelativeLayout {
         //获取自定义属性，宽高比
         mWidthProportion = (int) typedArray.getFloat(R.styleable.BannerView_widthProportion,mWidthProportion);
         mHeightProportion = (int) typedArray.getFloat(R.styleable.BannerView_heightProportion,mHeightProportion);
+        mBulge = typedArray.getBoolean(R.styleable.BannerView_bulge,mBulge);
+        mBulgeDistance = typedArray.getInteger(R.styleable.BannerView_bulgeDistance,mBulgeDistance);
         typedArray.recycle();
     }
 

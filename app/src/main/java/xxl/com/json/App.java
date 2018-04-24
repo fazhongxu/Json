@@ -14,8 +14,7 @@ import xxl.com.json.util.SharedPreferenceUtils;
  */
 
 public class App extends Application {
-    private static Context mContext;
-
+    private Context mContext;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -30,7 +29,19 @@ public class App extends Application {
         CrashHandler.getInstance().init(this);
     }
 
-    public static Context getContext(){
+    private App() {
+
+    }
+
+   private static class Holder {
+        private static App INSTANCE = new App();
+   }
+
+    public static App getInstance () {
+        return Holder.INSTANCE;
+    }
+
+    public Context getContext(){
         return mContext;
     }
 }

@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import xxl.com.json.R;
 
-import static xxl.com.json.R.attr.bottomColor;
 
 /**
  * Created by xxl on 2017/10/28.
@@ -37,9 +36,11 @@ public class BannerView extends RelativeLayout {
     private int mBVBottomColor = Color.TRANSPARENT;//底部容器颜色默认值 透明
     private int mDotDistance = 8;
     private Drawable mBVBottomColorDrawable;//底部容器颜色值，shape文件资源颜色方式设置底部容器颜色
-    private int mWidthProportion,mHeightProportion;//BannerView（ViewPager）宽高比
+    private int mWidthProportion, mHeightProportion;//BannerView（ViewPager）宽高比
     private boolean mBulge = false;//ViewPager 是否两边凸出
     private int mBulgeDistance = 25;//两边凸出距离
+    private int mBottomType = 0;//小点 文字描述位置 默认底部类型是小点覆盖在图片上） 0位覆盖在图片上 1是在底部图片下方
+    private boolean mScollFlag = false;//滚动标记 标记是否设置过滚动
 
     public BannerView(Context context) {
         this(context, null);
@@ -52,8 +53,15 @@ public class BannerView extends RelativeLayout {
     public BannerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.mContext = context;
-        inflate(context, R.layout.ui_banner_layout, this);
         initAttribute(attrs);
+        switch (mBottomType) {
+            case 0:
+                inflate(context, R.layout.ui_dot_text_cover_banner_layout, this);
+                break;
+            case 1:
+                inflate(context, R.layout.ui_banner_layout, this);
+                break;
+        }
         initView();
     }
 
@@ -69,7 +77,7 @@ public class BannerView extends RelativeLayout {
             parent.setClipChildren(false);
             mBannerViewPager.setOffscreenPageLimit(2);//预加载数量
             LayoutParams layoutParams = (LayoutParams) mBannerViewPager.getLayoutParams();
-            layoutParams.setMargins(dip2px(mBulgeDistance),0,dip2px(mBulgeDistance),0);
+            layoutParams.setMargins(dip2px(mBulgeDistance), 0, dip2px(mBulgeDistance), 0);
             mBannerViewPager.setLayoutParams(layoutParams);
             mBannerViewPager.setPageMargin(10);//ViewPager页面之间的距离
         }
@@ -115,10 +123,11 @@ public class BannerView extends RelativeLayout {
             mBVBottomColor = typedArray.getColor(R.styleable.BannerView_bottomColor, mBVBottomColor);
         }
         //获取自定义属性，宽高比
-        mWidthProportion = (int) typedArray.getFloat(R.styleable.BannerView_widthProportion,mWidthProportion);
-        mHeightProportion = (int) typedArray.getFloat(R.styleable.BannerView_heightProportion,mHeightProportion);
-        mBulge = typedArray.getBoolean(R.styleable.BannerView_bulge,mBulge);
-        mBulgeDistance = typedArray.getInteger(R.styleable.BannerView_bulgeDistance,mBulgeDistance);
+        mWidthProportion = (int) typedArray.getFloat(R.styleable.BannerView_widthProportion, mWidthProportion);
+        mHeightProportion = (int) typedArray.getFloat(R.styleable.BannerView_heightProportion, mHeightProportion);
+        mBulge = typedArray.getBoolean(R.styleable.BannerView_bulge, mBulge);
+        mBulgeDistance = typedArray.getInteger(R.styleable.BannerView_bulgeDistance, mBulgeDistance);
+        mBottomType = typedArray.getInt(R.styleable.BannerView_bottomType, mBottomType);
         typedArray.recycle();
     }
 
@@ -138,6 +147,20 @@ public class BannerView extends RelativeLayout {
             @Override
             public void onPageSelected(int position) {
                 pagerSelected(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                switch (state) {
+                    case ViewPager.SCROLL_STATE_DRAGGING:
+                        if (mScollFlag)
+                            mBannerViewPager.stopScroll();
+                        break;
+                    case ViewPager.SCROLL_STATE_IDLE:
+                        if (mScollFlag)
+                            mBannerViewPager.startScroll();
+                        break;
+                }
             }
         });
 
@@ -211,6 +234,7 @@ public class BannerView extends RelativeLayout {
      * 设置ViewPager自动滚动
      */
     public void startScroll() {
+        mScollFlag = true;
         mBannerViewPager.startScroll();
     }
 

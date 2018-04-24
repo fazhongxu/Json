@@ -76,6 +76,13 @@ public class BannerViewPager extends ViewPager {
         Log.e(TAG, "startScroll: ");
     }
 
+    /**
+     * 停止滚动
+     */
+    public void stopScroll() {
+        mHandler.removeMessages(SCROLL_MSG);
+    }
+
 
     /**
      * 改变ViewPager切换速率

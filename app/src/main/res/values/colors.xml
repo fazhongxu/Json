@@ -35,7 +35,8 @@
     <color name="aquamarine">#7FFFD4</color> <!--碧绿色 -->
     <color name="aqua">#00FFFF</color> <!--浅绿色 -->
     <color name="teal">#008080</color> <!--水鸭色 -->
-    <color name="darkgreen">#006400</color> <!--暗绿色 -->
+    <color name="darkgreen">#006400</color><!--暗绿色 -->
+    <color name="transparent">#00000000</color>
 
     <!--颜色组-->
     <integer-array name="load_view_color">

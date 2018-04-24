@@ -28,6 +28,13 @@
         <attr name="bulge" format="boolean"/>
         <!--两边凸出距离-->
         <attr name="bulgeDistance" format="integer"/>
+        <!--底部模式 小点 文字描述位置 覆盖在图片上 在整个图片下方-->
+        <attr name="bottomType" format="enum">
+            <!--底部覆盖图片-->
+            <enum name="coverPic" value="0"/>
+            <!--底部在图片下方-->
+            <enum name="belowPic" value="1"/>
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="CustomTextView">

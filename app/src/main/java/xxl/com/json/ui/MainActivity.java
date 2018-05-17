@@ -18,6 +18,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cn.sharesdk.onekeyshare.dialog.ShareDialog;
 import xxl.com.json.R;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
@@ -99,7 +100,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         startActivity(DialogActivity.class);
                         break;
                     case 9:
-                        startActivity(BannerActivity.class);
+                        //startActivity(BannerActivity.class);
+                        ShareDialog dialog = new  ShareDialog.Builder(this)
+                        .setTitle("我是标题")
+                        .setImageUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526540098112&di=65340416416f4c2a67b15268f870251e&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farchive%2Fd6a2565f8d002a8d6d505f095409e8b7399f3d0e.jpg")
+                        .setTitleUrl("https://github.com/")
+                        .setText("我是分享文本")
+                        .show();
                         break;
                     case 10:
                         startActivity(RxJavaActivity.class);

@@ -17,7 +17,7 @@ public class GreenDaoManager {
     }
 
     private void init() {
-        DaoMaster.DevOpenHelper daogreen = new DaoMaster.DevOpenHelper(App.getContext(), "daogreen");
+        DaoMaster.DevOpenHelper daogreen = new DaoMaster.DevOpenHelper(App.getInstance().getContext(), "daogreen");
 
         mDaoMaster = new DaoMaster(daogreen.getReadableDatabase());
 

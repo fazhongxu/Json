@@ -1,21 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
 
+    <!--小点覆盖在图片上-->
     <xxl.com.json.bannerview.BannerView
         android:id="@+id/banner_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/btn_test"
         app:bottomColor="@drawable/shape_item_divider"
         app:dotGravity="right"
         app:dotIndicatorFocus="@color/colorPrimary"
         app:dotIndicatorNormal="@color/colorGray"
-        app:dotSize="10dp"
+        app:widthProportion="8"
         app:heightProportion="3"
-        app:widthProportion="8" />
+        app:bottomType="coverPic"
+        app:dotSize="10dp" />
 
-</RelativeLayout>
+    <!--小点在图片下方-->
+    <xxl.com.json.bannerview.BannerView
+        android:layout_marginTop="20dp"
+        android:id="@+id/banner_view_below"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        app:bottomColor="@color/transparent"
+        app:dotGravity="center"
+        app:dotIndicatorFocus="@color/colorPrimary"
+        app:dotIndicatorNormal="@color/colorGray"
+        app:widthProportion="8"
+        app:heightProportion="3"
+        app:bulge="true"
+        app:bulgeDistance="30"
+        app:bottomType="belowPic"
+        app:dotSize="10dp" />
+
+
+</LinearLayout>

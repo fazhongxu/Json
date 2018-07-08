@@ -1,6 +1,7 @@
 package xxl.com.json.ui;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import xxl.com.baselibray.http.HttpCallBackEngine;
@@ -23,17 +26,61 @@ public class BannerActivity extends BaseActivity {
 
     private static final String TAG = "BannerActivity";
     private BannerView mBannerView;
+    private BannerView mBannerViewBelow;
+
+    private int[] mBanners = new int[]{R.mipmap.ic_banner_001, R.mipmap.ic_banner_002,
+            R.mipmap.ic_banner_003, R.mipmap.ic_banner_004, R.mipmap.ic_banner_005};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_banner);
         initView();
-        initData();
+        //initData();
+        mBannerView.post(new Runnable() {//设置了宽高比 所以需要post 否则拿不到宽度 显示不出图片
+            @Override
+            public void run() {
+                setBanner(mBannerView);
+            }
+        });
+
+        mBannerViewBelow.post(new Runnable() {//设置了宽高比 所以需要post 否则拿不到宽度 显示不出图片
+            @Override
+            public void run() {
+                setBanner(mBannerViewBelow);
+            }
+        });
     }
 
     private void initView() {
         mBannerView = (BannerView) findViewById(R.id.banner_view);
+        mBannerViewBelow = (BannerView) findViewById(R.id.banner_view_below);
+    }
+
+    private void setBanner(BannerView bannerView) {
+        bannerView.setAdapter(new BannerAdapter() {
+            @Override
+            public View getView(int position, View convertView) {
+                ImageView imageView;
+                if (convertView == null) {
+                    imageView = new ImageView(BannerActivity.this);
+                } else {
+                    imageView = (ImageView) convertView;
+                }
+
+                Glide.with(BannerActivity.this)
+                        .load(mBanners[position])
+                        .into(imageView);
+                return imageView;
+            }
+
+            @Override
+            public int getCount() {
+                return mBanners.length;
+            }
+        });
+
+        bannerView.startScroll();
     }
 
     private void initData() {

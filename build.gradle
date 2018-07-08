@@ -1,6 +1,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    ext.kotlin_version = '1.1.2-2'//1.kotlin版本
+
     repositories {
         jcenter()
     }
@@ -8,6 +10,9 @@ buildscript {
         classpath 'com.android.tools.build:gradle:2.3.3'
 
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+
+        //2.依赖kotlin 相关classpath
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

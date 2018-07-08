@@ -255,7 +255,6 @@ public class ShareDialog implements PlatformActionListener {
                         email.share(mShareParams);
                         break;
                     case "Copy Link"://link
-                        // TODO: 2018/5/17  Copy link 
                         Toast.makeText(mContext, "Copy link", Toast.LENGTH_SHORT).show();
                         break;
                     default:

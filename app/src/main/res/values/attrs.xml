@@ -120,4 +120,20 @@
         <!--分割线大小-->
         <attr name="splitLineSize" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="UPMarqueeView">
+        <attr name="interval" format="integer"/>
+        <attr name="inDuration" format="integer"/>
+        <attr name="outDuration" format="integer"/>
+        <attr name="upTextColor" format="reference|color"/>
+        <attr name="upTextSize" format="dimension"/>
+        <attr name="upGravity" format="enum">
+            <!--居中-->
+            <enum name="center" value="0" />
+            <!--右边-->
+            <enum name="right" value="1" />
+            <!--左边-->
+            <enum name="left" value="-1" />
+        </attr>
+    </declare-styleable>
 </resources>

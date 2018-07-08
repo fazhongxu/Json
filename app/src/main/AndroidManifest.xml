@@ -30,29 +30,29 @@
             android:name="com.amap.api.v2.apikey"
             android:value="1702a6845449e0f7fae3ea69f905aaa4" />
 
-
-        <!--ShareSdk 微信分享回调 -->
+        <!-- ShareSdk 微信分享回调 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:screenOrientation="portrait" />
-        <!--ShareSDK 相关 -->
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- ShareSDK 相关 -->
         <activity
             android:name="com.mob.tools.MobUIShell"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <data android:scheme="tencent1104646053" />
+
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -100,9 +100,11 @@
             android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".ui.DialogActivity" />
         <activity android:name=".ui.BannerActivity" />
-        <activity android:name=".ui.imageselect.ImageSelectActivity"
-            android:theme="@style/AppThemeNoActionBar"/>
-        <activity android:name=".ui.TestImageSelectActivity"/>
+        <activity
+            android:name=".ui.imageselect.ImageSelectActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".ui.TestImageSelectActivity" />
+        <activity android:name=".ui.MarqueeTestActivity"/>
     </application>
 
 </manifest>

@@ -48,4 +48,6 @@
         <item>@color/hotpink</item>
     </integer-array>
 
+    <color name="color_999">#999999</color>
+
 </resources>

@@ -1,63 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<xxl.com.json.view.SlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <xxl.com.json.view.TouchViewGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <xxl.com.json.view.TouchView
-            android:id="@+id/touchView"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:background="@color/colorAccent"
-            android:visibility="gone"/>
-    </xxl.com.json.view.TouchViewGroup>
-
-    <Button
-        android:id="@+id/btn_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试"
-        android:visibility="visible" />
-
-    <xxl.com.json.view.SlideBar
-        android:id="@+id/slide_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_alignParentRight="true"
-        android:padding="10dp" />
-
-    <xxl.com.json.wrap.WrapRecyclerView
-        android:id="@+id/recyclerView"
+    android:layout_height="match_parent"
+    app:rightMargin="56dp"
+    android:background="@color/colorPrimary">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
 
-    <xxl.com.json.view.RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
-        android:visibility="gone"
-        app:ratingFocus="@drawable/star_selected"
-        app:ratingNormal="@drawable/star_normal"
-        app:ratingNum="5" />
-
-    <xxl.com.json.bannerview.BannerView
-        android:id="@+id/banner_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/btn_test"
-        android:visibility="visible"
-        app:bottomColor="@drawable/shape_item_divider"
-        app:dotGravity="right"
-        app:dotIndicatorFocus="@color/colorPrimary"
-        app:dotIndicatorNormal="@color/colorGray"
-        app:dotSize="10dp"
-        app:heightProportion="3"
-        app:widthProportion="8" />
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="I'm menu ❤️"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
 
-</RelativeLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <xxl.com.json.view.TouchViewGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <xxl.com.json.view.TouchView
+                android:id="@+id/touchView"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:background="@color/colorAccent"
+                android:visibility="gone" />
+        </xxl.com.json.view.TouchViewGroup>
+
+        <Button
+            android:id="@+id/btn_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="测试"
+            android:visibility="visible" />
+
+        <xxl.com.json.view.SlideBar
+            android:id="@+id/slide_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:padding="10dp" />
+
+        <xxl.com.json.wrap.WrapRecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+        <xxl.com.json.view.RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:visibility="gone"
+            app:ratingFocus="@drawable/star_selected"
+            app:ratingNormal="@drawable/star_normal"
+            app:ratingNum="5" />
+
+        <xxl.com.json.bannerview.BannerView
+            android:id="@+id/banner_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/btn_test"
+            android:visibility="visible"
+            app:bottomColor="@drawable/shape_item_divider"
+            app:dotGravity="right"
+            app:dotIndicatorFocus="@color/colorPrimary"
+            app:dotIndicatorNormal="@color/colorGray"
+            app:dotSize="10dp"
+            app:heightProportion="3"
+            app:widthProportion="8" />
+    </RelativeLayout>
+    </LinearLayout>
+</xxl.com.json.view.SlidingMenu>

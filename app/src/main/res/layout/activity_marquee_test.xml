@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <xxl.com.json.view.UPMarqueeView
+        android:id="@+id/activity_marquee_test_upmv"
+        android:layout_width="match_parent"
+        app:interval="3000"
+        app:upGravity="center"
+        app:inDuration="2000"
+        android:layout_centerInParent="true"
+        android:background="@color/colorGray"
+        app:outDuration="2000"
+        app:upTextColor="@color/colorPrimary"
+        app:upTextSize="16sp"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

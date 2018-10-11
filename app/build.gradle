@@ -3,8 +3,8 @@ apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    compileSdkVersion COMPILE_SDK_VERSION as int
+    buildToolsVersion BUILD_TOOLS_VERSION as String
     //compileSdkVersion rootProject.ext.compileSdkVersion
     //buildToolsVersion rootProject.ext.buildToolsVersion
 
@@ -47,13 +47,14 @@ android {
     }
     defaultConfig {
         applicationId "xxl.com.json"
-        minSdkVersion 23
-        targetSdkVersion 25
+        minSdkVersion MIN_SDK_VERSION
+        targetSdkVersion TARGET_SDK_VERSION
         //minSdkVersion rootProject.ext.minSdkVersion
         //targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
 
         ndk {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
@@ -89,44 +90,48 @@ greendao {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    // compile rootProject.ext.support
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-    compile project(':baselibray')
-    compile project(':framelibrary')
-    compile project(':sharelib')
-    compile 'com.android.support:recyclerview-v7:25.3.1'
-    compile 'com.android.support:design:25.3.1'
+    api 'com.android.support:appcompat-v7:25.3.1'
+    // api rootProject.ext.support
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    api project(':baselibray')
+    api project(':framelibrary')
+    api project(':sharelib')
+    api 'com.android.support:recyclerview-v7:25.3.1'
+    api 'com.android.support:design:25.3.1'
+    api'com.android.support:multidex:1.0.1'
     //Gson
-    compile 'com.google.code.gson:gson:2.8.2'
+    api 'com.google.code.gson:gson:2.8.2'
     //Glide
-    compile 'com.github.bumptech.glide:glide:4.2.0'
+    api 'com.github.bumptech.glide:glide:4.2.0'
     //EventBus
-    compile 'org.greenrobot:eventbus:3.1.1'
+    api 'org.greenrobot:eventbus:3.1.1'
     //RxJava
-    compile 'io.reactivex.rxjava2:rxjava:2.1.7'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    api 'io.reactivex.rxjava2:rxjava:2.1.7'
+    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
     //Retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    api 'com.squareup.retrofit2:retrofit:2.3.0'
+    api 'com.squareup.retrofit2:converter-gson:2.3.0'
     //greenDao
-    compile 'org.greenrobot:greendao:3.2.2'
+    api 'org.greenrobot:greendao:3.2.2'
     //导航
-    compile 'com.amap.api:navi-3dmap:latest.integration'
+    api 'com.amap.api:navi-3dmap:latest.integration'
     //搜索
-    compile 'com.amap.api:search:latest.integration'
+    api 'com.amap.api:search:latest.integration'
     //定位
-    compile 'com.amap.api:location:latest.integration'
+    api 'com.amap.api:location:latest.integration'
     //josup
-    compile 'org.jsoup:jsoup:1.11.2'
+    api 'org.jsoup:jsoup:1.11.2'
     //kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    //bugly
+    api 'com.tencent.bugly:crashreport:2.1.5'
+
 
 }
 

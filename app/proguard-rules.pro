@@ -101,3 +101,7 @@ public static java.lang.String TABLENAME;
 
 ###忽略警告
 -ignorewarnings
+
+## bugly
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}

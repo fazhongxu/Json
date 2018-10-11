@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.mob.MobSDK;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.baselibray.http.OkHttpEngine;
@@ -32,6 +33,8 @@ public class App extends Application {
         CrashHandler.getInstance().init(this);
 
         MobSDK.init(this,"25a0b0e10e9e0");
+
+        CrashReport.initCrashReport(this,"60588e55ec",false);
 
     }
 

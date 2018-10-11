@@ -1,12 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "26.0.1"
+    compileSdkVersion COMPILE_SDK_VERSION as int
 
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 23
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
         versionCode 1
         versionName "1.0"
 
@@ -24,22 +23,22 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    testCompile 'junit:junit:4.12'
-    androidTestCompile('com.android.support.test.espresso:espresso-core:3.0.2', {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'com.android.support:appcompat-v7:25.3.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile files('libs/MobCommons-2018.0418.1102.jar')
-    compile files('libs/MobTools-2018.0419.1211.jar')
-    compile files('libs/ShareSDK-Core-3.1.4.jar')
-    compile files('libs/ShareSDK-Email-3.1.4.jar')
-    compile files('libs/ShareSDK-Facebook-3.1.4.jar')
-    compile files('libs/ShareSDK-GooglePlus-3.1.4.jar')
-    compile files('libs/ShareSDK-QQ-3.1.4.jar')
-    compile files('libs/ShareSDK-QZone-3.1.4.jar')
-    compile files('libs/ShareSDK-ShortMessage-3.1.4.jar')
-    compile files('libs/ShareSDK-Twitter-3.1.4.jar')
-    compile files('libs/ShareSDK-Wechat-Core-3.1.4.jar')
-    compile files('libs/ShareSDK-Wechat-Moments-3.1.4.jar')
+    api files('libs/MobCommons-2018.0418.1102.jar')
+    api files('libs/MobTools-2018.0419.1211.jar')
+    api files('libs/ShareSDK-Core-3.1.4.jar')
+    api files('libs/ShareSDK-Email-3.1.4.jar')
+    api files('libs/ShareSDK-Facebook-3.1.4.jar')
+    api files('libs/ShareSDK-GooglePlus-3.1.4.jar')
+    api files('libs/ShareSDK-QQ-3.1.4.jar')
+    api files('libs/ShareSDK-QZone-3.1.4.jar')
+    api files('libs/ShareSDK-ShortMessage-3.1.4.jar')
+    api files('libs/ShareSDK-Twitter-3.1.4.jar')
+    api files('libs/ShareSDK-Wechat-Core-3.1.4.jar')
+    api files('libs/ShareSDK-Wechat-Moments-3.1.4.jar')
 }

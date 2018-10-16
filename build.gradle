@@ -1,19 +1,22 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
-    ext.kotlin_version = '1.2.61'//1.kotlin版本
+    apply from: "config.gradle"
+    //ext.kotlin_version = '1.2.61'//1.kotlin版本
 
-    repositories {
+    /*repositories {
         jcenter()
         google()
-    }
+    }*/
+    addRepos(repositories)
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0'
-
-        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        //classpath 'com.android.tools.build:gradle:3.2.0'
+        classpath deps.buildGradle
+//        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        classpath deps.greenDaoPlugin
 
         //2.依赖kotlin 相关classpath
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath deps.kotlinPlugin
+        //classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -21,31 +24,12 @@ buildscript {
 }
 
 allprojects {
-    repositories {
+   /* repositories {
         jcenter()
         maven { url "https://maven.google.com" }
         google()
-//        maven { url "https://dl.google.com/dl/android/maven2/" }
-
-    }
-}
-
-ext {
-    def versions = [
-            compileVersion: 25,
-            buildVersion: "26.0.1",
-            minVersion    : 23,
-            targetVersion : 25,
-
-            support:"25.3.1"
-    ]
-
-    compileSdkVersion = versions.compileVersion
-    buildToolsVersion = versions.buildVersion
-    minSdkVersion = versions.minVersion
-    targetSdkVersion = versions.targetVersion
-
-    support = "com.android.support:appcompat-v7:${versions.support}"
+    }*/
+    addRepos(repositories)
 }
 
 task clean(type: Delete) {

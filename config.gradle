@@ -1,0 +1,117 @@
+
+// gradle 统一配置
+ext.deps = [:]
+def versions = [:]
+
+    //support
+    versions.support = "25.3.1"
+    versions.constraint = "1.0.2"
+    versions.multidex = "1.0.1"
+
+    //gson
+    versions.gson = "2.8.2"
+
+    //glide
+    versions.glide = "4.2.0"
+
+    //eventBus
+    versions.eventBus = "3.1.1"
+
+    //rxjava
+    versions.rxjava = "2.1.7"
+    versions.rxandroid = "2.0.1"
+
+    //retrofit
+    versions.retrofit = "2.3.0"
+    versions.converterGson = "2.3.0"
+
+    //okhttp
+    versions.okhttp = "3.9.0"
+
+    //greenDao
+    versions.greenDao = "3.2.2"
+
+    //jsoup
+    versions.jsoup = "1.11.2"
+
+    //amap 高德地图
+    versions.amap = "latest.integration"
+
+
+    //other
+    //bugly
+    versions.bugly = "2.1.5"
+    //kotlin
+    versions.kotlin = "1.2.61"
+
+    //classPath
+    versions.buildGradle = "3.2.0"
+    versions.greenDaoPlugin = "3.2.2"
+
+
+//support
+def support = [:]  //def support = [:] map
+    support.appcompat = "com.android.support:appcompat-v7:$versions.support"
+    support.constraint = "com.android.support.constraint:constraint-layout:$versions.constraint"
+    support.recyclerview = "com.android.support:recyclerview-v7:$versions.support"
+    support.design = "com.android.support:design:$versions.support"
+    support.multidex = "com.android.support:multidex:$versions.multidex"
+    deps.support = support
+
+//gson
+def gson = [:]
+    gson.gson = "com.google.code.gson:gson:$versions.gson"
+    deps.gson = gson
+//glide
+def glide = [:]
+    glide.glide = "com.github.bumptech.glide:glide:$versions.glide"
+    deps.glide = glide
+//eventBus
+def eventBus = [:]
+    eventBus.eventBus = "org.greenrobot:eventbus:$versions.eventBus"
+    deps.eventBus = eventBus
+//rxjava
+def rxjava = [:]
+    rxjava.rxjava = "io.reactivex.rxjava2:rxjava:$versions.rxjava"
+    rxjava.rxandroid = "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+    deps.rxjava = rxjava
+//retrofit
+def retrofit = [:]
+    retrofit.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    retrofit.converterGson = "com.squareup.retrofit2:converter-gson:$versions.converterGson"
+    deps.retrofit = retrofit
+
+deps.okhttp = "com.squareup.okhttp3:okhttp:$versions.okhttp"
+
+//greenDao
+def greenDao = [:]
+    greenDao.greenDao = "org.greenrobot:greendao:$versions.greenDao"
+    deps.greenDao = greenDao
+
+//jsoup
+def jsoup = [:]
+    jsoup.jsoup = "org.jsoup:jsoup:$versions.jsoup"
+    deps.jsoup = jsoup
+//amap 高德地图
+def amap = [:]
+    amap.amap = "com.amap.api:navi-3dmap:$versions.amap"
+    amap.search = "com.amap.api:search:$versions.amap"
+    amap.location = "com.amap.api:location:$versions.amap"
+    deps.amap = amap
+
+//classpath
+    deps.kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+    deps.buildGradle = "com.android.tools.build:gradle:$versions.buildGradle"
+    deps.greenDaoPlugin = "org.greenrobot:greendao-gradle-plugin:$versions.greenDaoPlugin"
+
+// other
+    deps.bugly = "com.tencent.bugly:crashreport:$versions.bugly"
+    deps.kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
+
+static def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.mavenCentral()
+    handler.maven { url "https://maven.google.com" }
+}
+ext.addRepos = this.&addRepos

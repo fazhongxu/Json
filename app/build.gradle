@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
@@ -11,38 +12,39 @@ android {
     //签名文件隐藏（实际上只是不再build.gradle配置明文密码，别名等信息，把配置信息转移到了keystore.properties文件里面而已）签名信息配置方式
     //keystore.properties不是签名文件 知识一个普通的文件，里面有keyAlias，keyPassword，storePassword和storeFile=D:\\xxx.jks签名文件路径
     //上传到git不要上传签名文件和 keystore.properties 文件 避免签名文件泄漏
-    //def keystorePropertiesFile = rootProject.file("keystore.properties")
-    //def keystoreProperties = new Properties()
-    //keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+    def keystorePropertiesFile = rootProject.file("keystore.properties")
+    def keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
-    repositories {
+   /* repositories {
         mavenCentral()
-    }
+    }*/
+    addRepos(repositories)
 
 
     signingConfigs {
         release {
             //配置这里是为了让三方的sdk不打包的情况下直接运行的时候可以使用，keystore会去三方比较注册的appid等
-            keyAlias 'json'
+            /*keyAlias 'json'
             keyPassword '123456'
             storeFile file('../keystore.jks')
-            storePassword '123456'
+            storePassword '123456*/
 
-            //keyAlias keystoreProperties["keyAlias"]
-            //keyPassword keystoreProperties["keyPassword"]
-            //storeFile file(keystoreProperties['storeFile'])
-            //storePassword keystoreProperties["storePassword"]
+            keyAlias keystoreProperties["keyAlias"]
+            keyPassword keystoreProperties["keyPassword"]
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties["storePassword"]
         }
         debug {
-            keyAlias 'json'
+            /*keyAlias 'json'
             keyPassword '123456'
             storeFile file('../keystore.jks')
-            storePassword '123456'
+            storePassword '123456'*/
 
-            //keyAlias keystoreProperties["keyAlias"]
-            //keyPassword keystoreProperties["keyPassword"]
-            //storeFile file(keystoreProperties['storeFile'])
-            //storePassword keystoreProperties["storePassword"]
+            keyAlias keystoreProperties["keyAlias"]
+            keyPassword keystoreProperties["keyPassword"]
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties["storePassword"]
         }
     }
     defaultConfig {
@@ -95,44 +97,43 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    api 'com.android.support:appcompat-v7:25.3.1'
-    // api rootProject.ext.support
-    api 'com.android.support.constraint:constraint-layout:1.0.2'
+    //api 'com.android.support:appcompat-v7:25.3.1'
+    api deps.support.appcompat
+    api deps.support.constraint
     testImplementation 'junit:junit:4.12'
     api project(':baselibray')
     api project(':framelibrary')
     api project(':sharelib')
-    api 'com.android.support:recyclerview-v7:25.3.1'
-    api 'com.android.support:design:25.3.1'
-    api'com.android.support:multidex:1.0.1'
+    api deps.support.recyclerview
+    api deps.support.design
+    api deps.support.multidex
     //Gson
-    api 'com.google.code.gson:gson:2.8.2'
+    api deps.gson.gson
     //Glide
-    api 'com.github.bumptech.glide:glide:4.2.0'
+    api deps.glide.glide
     //EventBus
-    api 'org.greenrobot:eventbus:3.1.1'
+    api deps.eventBus.eventBus
     //RxJava
-    api 'io.reactivex.rxjava2:rxjava:2.1.7'
-    api 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    api deps.rxjava.rxjava
+    api deps.rxjava.rxandroid
     //Retrofit
-    api 'com.squareup.retrofit2:retrofit:2.3.0'
-    api 'com.squareup.retrofit2:converter-gson:2.3.0'
+    api deps.retrofit.retrofit
+    api deps.retrofit.converterGson
     //greenDao
-    api 'org.greenrobot:greendao:3.2.2'
+    api deps.greenDao.greenDao
     //导航
-    api 'com.amap.api:navi-3dmap:latest.integration'
+    api deps.amap.amap
     //搜索
-    api 'com.amap.api:search:latest.integration'
+    api deps.amap.search
     //定位
-    api 'com.amap.api:location:latest.integration'
+    api deps.amap.location
     //josup
-    api 'org.jsoup:jsoup:1.11.2'
+    api deps.jsoup.jsoup
     //kotlin
-    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    api deps.kotlin
     //bugly
-    api 'com.tencent.bugly:crashreport:2.1.5'
+    api deps.bugly
 
 
 }
 
-apply plugin: 'kotlin-android-extensions'

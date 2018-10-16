@@ -1,8 +1,8 @@
 package xxl.com.json.mvp.demo3.base;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by xxl on 2017/12/11.

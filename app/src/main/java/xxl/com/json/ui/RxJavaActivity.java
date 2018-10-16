@@ -30,7 +30,7 @@ public class RxJavaActivity extends BaseActivity {
         setContentView(R.layout.activity_rx_java);
         mImageView = (ImageView) findViewById(R.id.iv_image);
         //给图片添加水印
-        Observable.just("http://img.taopic.com/uploads/allimg/130824/240413-130R40T23089.jpg")
+        Observable.just("https://avatars0.githubusercontent.com/u/24353536?s=400&u=43f37f2e73f15a1dfad58f0d63c35418715a5621&v=4")
                 .map(new Function<String, Bitmap>() {
                     @Override
                     public Bitmap apply(String s) throws Exception {

@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
 
@@ -18,31 +18,32 @@ android {
             }
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
-/*
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
-}*/
+
+
+}
 
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     api deps.support.appcompat
     testImplementation 'junit:junit:4.12'
-    api deps.okhttp
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+    implementation project(':baselibray')
+
     api deps.arouter.arouterApi
     annotationProcessor deps.arouter.arouterCompiler
-//    api deps.arouter.arouterApi
-//    kapt deps.arouter.arouterCompiler
+
 }

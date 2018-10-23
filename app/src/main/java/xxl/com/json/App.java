@@ -6,6 +6,7 @@ import android.content.Context;
 import com.mob.MobSDK;
 import com.tencent.bugly.crashreport.CrashReport;
 
+import xxl.com.baselibray.BaseApp;
 import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.baselibray.http.OkHttpEngine;
 import xxl.com.json.gen.GreenDaoManager;
@@ -16,7 +17,7 @@ import xxl.com.json.util.SharedPreferenceUtils;
  * Created by xxl on 2017/10/23.
  */
 
-public class App extends Application {
+public class App extends BaseApp {
     private static Application mContext;
 
     @Override

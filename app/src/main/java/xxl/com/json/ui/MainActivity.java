@@ -4,12 +4,14 @@ import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,6 +20,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import androidx.annotation.NonNull;
 import cn.sharesdk.onekeyshare.dialog.ShareDialog;
 import xxl.com.json.R;
 import xxl.com.json.permission.PermissionFailure;
@@ -26,7 +29,7 @@ import xxl.com.json.permission.PermissionSuccess;
 import xxl.com.json.ui.base.BaseActivity;
 import xxl.com.json.view.SlideBar;
 import xxl.com.json.view.TouchView;
-
+@Route( path = "/main/MainActivity")
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private Button mBtnTest;
@@ -70,7 +73,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                int randomNum = new Random().nextInt(14);
+                int randomNum = new Random().nextInt(15);
                 switch (randomNum) {
                     case 0:
                         startActivity(MapActivity.class);
@@ -119,6 +122,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         break;
                     case 13:
                         startActivity(BannerActivity.class);
+                        break;
+                    case 14:
+                        ARouter.getInstance().build("/web/simple/web")
+                                .withString("url","https://github.com/fazhongxu")
+                                .navigation();
                         break;
                     default:
                         startActivity(BannerActivity.class);

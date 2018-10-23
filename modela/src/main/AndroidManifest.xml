@@ -1,5 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
-    package="xxl.com.baselibray">
-
-</manifest>
+    package="com.xxl.modela" />

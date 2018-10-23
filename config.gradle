@@ -37,6 +37,9 @@ def versions = [:]
     //amap 高德地图
     versions.amap = "latest.integration"
 
+    // arouter
+    versions.arouterApi = "1.4.0"
+    versions.arouterCompiler = "1.2.1"
 
     //other
     //bugly
@@ -99,6 +102,11 @@ def amap = [:]
     amap.location = "com.amap.api:location:$versions.amap"
     deps.amap = amap
 
+def arouter = [:]
+    arouter.arouterApi = "com.alibaba:arouter-api:$versions.arouterApi"
+    arouter.arouterCompiler = "com.alibaba:arouter-compiler:$versions.arouterCompiler"
+    deps.arouter = arouter
+
 //classpath
     deps.kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
     deps.buildGradle = "com.android.tools.build:gradle:$versions.buildGradle"
@@ -106,7 +114,7 @@ def amap = [:]
 
 // other
     deps.bugly = "com.tencent.bugly:crashreport:$versions.bugly"
-    deps.kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin"
+    deps.kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
 
 static def addRepos(RepositoryHandler handler) {
     handler.google()

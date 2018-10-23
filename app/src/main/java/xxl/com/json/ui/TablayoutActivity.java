@@ -1,8 +1,11 @@
 package xxl.com.json.ui;
 
 import android.os.Bundle;
+
 import com.google.android.material.tabs.TabLayout;
+
 import androidx.viewpager.widget.ViewPager;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -28,7 +31,7 @@ public class TablayoutActivity extends BaseActivity {
         mTablayout.post(new Runnable() {
             @Override
             public void run() {
-                setTabsWidth(mTablayout,150,150);
+                setTabsWidth(mTablayout, 150, 150);
             }
         });
 
@@ -50,23 +53,23 @@ public class TablayoutActivity extends BaseActivity {
             Field field = clazz.getDeclaredField("mTabStrip");
             field.setAccessible(true);
             linearLayout = (LinearLayout) field.get(tablayout);
+            int childCount = linearLayout.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View child = linearLayout.getChildAt(i);
+                child.setPadding(0, 0, 0, 0);
+
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1);
+                layoutParams.leftMargin = left;
+                layoutParams.rightMargin = right;
+
+                child.setLayoutParams(layoutParams);
+
+                child.invalidate();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        int childCount = linearLayout.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View child = linearLayout.getChildAt(i);
-            child.setPadding(0,0,0,0);
-
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT,1);
-            layoutParams.leftMargin = left;
-            layoutParams.rightMargin = right;
-
-            child.setLayoutParams(layoutParams);
-
-            child.invalidate();
-        }
 
     }
 }

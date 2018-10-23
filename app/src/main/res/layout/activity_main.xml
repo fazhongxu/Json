@@ -44,6 +44,15 @@
             android:text="测试"
             android:visibility="visible" />
 
+        <xxl.com.json.view.MultiImageView
+            android:id="@+id/main_activity_miv"
+            android:gravity="center"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:layout_height="24dp"/>
+
+
         <xxl.com.json.view.SlideBar
             android:id="@+id/slide_bar"
             android:layout_width="wrap_content"

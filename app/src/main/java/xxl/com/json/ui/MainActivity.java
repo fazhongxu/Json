@@ -27,6 +27,7 @@ import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
 import xxl.com.json.permission.PermissionSuccess;
 import xxl.com.json.ui.base.BaseActivity;
+import xxl.com.json.view.MultiImageView;
 import xxl.com.json.view.SlideBar;
 import xxl.com.json.view.TouchView;
 @Route( path = "/main/MainActivity")
@@ -34,6 +35,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private Button mBtnTest;
     private String TAG = "MainActivity";
+
+    private String[] mImages = new String[]{"https://avatars0.githubusercontent.com/u/24353536?s=400&u=43f37f2e73f15a1dfad58f0d63c35418715a5621&v=4",
+    "https://avatars0.githubusercontent.com/u/24353536?s=400&u=43f37f2e73f15a1dfad58f0d63c35418715a5621&v=4",
+            "https://avatars0.githubusercontent.com/u/24353536?s=400&u=43f37f2e73f15a1dfad58f0d63c35418715a5621&v=4"};
 
     private static final int CALL_PHONE_PERMISSION_REQUEST_CODE = 100;
 
@@ -43,6 +48,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_main);
         initView();
         viewTouch();
+        MultiImageView multiImageView = findViewById(R.id.main_activity_miv);
+        multiImageView.setImageUrls(mImages);
     }
 
     private void initView() {

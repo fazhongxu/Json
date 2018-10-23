@@ -157,5 +157,6 @@ dependencies {
     kapt deps.arouter.arouterCompiler
     implementation project(':baselibray')
     implementation project(':modelweb')
+    implementation project(':mediatorweb')
 }
 

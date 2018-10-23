@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.xxl.mediatorweb.MediatorWeb;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -131,9 +132,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         startActivity(BannerActivity.class);
                         break;
                     case 14:
-                        ARouter.getInstance().build("/web/simple/web")
-                                .withString("url","https://github.com/fazhongxu")
-                                .navigation();
+                        MediatorWeb.startWeb("https://github.com/fazhongxu");
                         break;
                     default:
                         startActivity(BannerActivity.class);

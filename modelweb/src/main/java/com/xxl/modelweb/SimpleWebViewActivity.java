@@ -14,6 +14,10 @@ public class SimpleWebViewActivity extends AppCompatActivity {
     private RefreshWebView mRefreshWebView;
     private String mUrl;
 
+    public static String getUrl() {
+        return "http://xxxx";
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

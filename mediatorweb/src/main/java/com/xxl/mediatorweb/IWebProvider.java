@@ -9,4 +9,8 @@ import com.alibaba.android.arouter.facade.template.IProvider;
  */
 
 public interface IWebProvider extends IProvider {
+
+    String getUserName();
+
+    String getWebUrl();
 }

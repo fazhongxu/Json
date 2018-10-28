@@ -11,4 +11,6 @@ public interface IConstantWeb {
     String WEB_SIMPLE_WEB ="/web/simple/web";
 
     String URL = "url";
+
+    String WEB_PROVIDER = "/web/provider";
 }

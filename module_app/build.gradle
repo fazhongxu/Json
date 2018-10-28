@@ -121,9 +121,9 @@ dependencies {
     api deps.support.appcompat
     api deps.support.constraint
     testImplementation 'junit:junit:4.12'
-    api project(':model_base')
-    api project(':model_frame')
-    api project(':model_share')
+    api project(':module_base')
+    api project(':module_frame')
+    api project(':module_share')
     api deps.support.recyclerview
     api deps.support.design
     api deps.support.multidex
@@ -155,8 +155,8 @@ dependencies {
     api deps.bugly
     api deps.arouter.arouterApi
     kapt deps.arouter.arouterCompiler
-    implementation project(':model_base')
-    implementation project(':model_web')
+    implementation project(':module_base')
+    implementation project(':module_web')
     implementation project(':mediator_web')
 }
 

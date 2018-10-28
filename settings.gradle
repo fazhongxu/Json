@@ -1,9 +1,9 @@
-include ':model_app',
-        ':model_base',
-        ':model_frame',
-        ':model_share',
-        ':model_web',
+include ':module_app',
+        ':module_base',
+        ':module_frame',
+        ':module_share',
+        ':module_web',
         ':mediator_web',
-        ':model_feild',
-        ':model_widget',
-        ':model_util'
+        ':module_feild',
+        ':module_widget',
+        ':module_util'

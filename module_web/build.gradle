@@ -1,4 +1,8 @@
-apply plugin: 'com.android.library'
+if (isLibrary.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
 apply plugin: 'kotlin-android'
 
 android {
@@ -31,7 +35,19 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-
+    sourceSets {
+        main {
+            if (isLibrary.toBoolean()) {
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'debug/**'
+                }
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
 }
 
 

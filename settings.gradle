@@ -1,1 +1,9 @@
-include ':app', ':baselibray', ':framelibrary',':sharelib', ':modelweb', ':mediatorweb', ':modelfeild', ':modelwidget', ':modelutil'
+include ':model_app',
+        ':model_base',
+        ':model_frame',
+        ':model_share',
+        ':model_web',
+        ':mediator_web',
+        ':model_feild',
+        ':model_widget',
+        ':model_util'

@@ -27,5 +27,5 @@ dependencies {
     })
     api deps.support.appcompat
     testImplementation 'junit:junit:4.12'
-    api project(':baselibray')
+    api project(':model_base')
 }

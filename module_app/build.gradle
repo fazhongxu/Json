@@ -156,7 +156,10 @@ dependencies {
     api deps.arouter.arouterApi
     kapt deps.arouter.arouterCompiler
     implementation project(':module_base')
-    implementation project(':module_web')
-    implementation project(':mediator_web')
+
+    if (isLibrary.toBoolean()) { //module 是否作为libary 引入到主工程
+        implementation project(':module_web')
+        implementation project(':mediator_web')
+    }
 }
 

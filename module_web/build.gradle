@@ -15,6 +15,11 @@ android {
         versionCode 1
         versionName "1.0"
 
+        // library 作为独立apk 运行时，避免安装多个apk 把 application 设置和主app 一样
+        if(!isLibrary.toBoolean()) {
+            applicationId "xxl.com.json"
+        }
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
@@ -50,6 +55,8 @@ android {
             }
         }
     }
+
+
 }
 
 

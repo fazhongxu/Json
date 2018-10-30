@@ -24,6 +24,8 @@ buildscript {
 
         //classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
 
+        classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-rc1'
+
     }
 }
 

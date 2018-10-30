@@ -47,6 +47,9 @@ def versions = [:]
     //kotlin
     versions.kotlin = "1.2.61"
 
+    //ButterKnife
+    versions.butterKnife = "9.0.0-rc1"
+
     //classPath
     versions.buildGradle = "3.2.0"
     versions.greenDaoPlugin = "3.2.2"
@@ -106,7 +109,11 @@ def arouter = [:]
     arouter.arouterApi = "com.alibaba:arouter-api:$versions.arouterApi"
     arouter.arouterCompiler = "com.alibaba:arouter-compiler:$versions.arouterCompiler"
     deps.arouter = arouter
-
+//butterKnife
+def butterKnife = [:]
+    butterKnife.butterKnife = "com.jakewharton:butterknife:$versions.butterKnife"
+    butterKnife.compiler = "com.jakewharton:butterknife-compiler:$versions.butterKnife"
+    deps.butterKnife = butterKnife
 //classpath
     deps.kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
     deps.buildGradle = "com.android.tools.build:gradle:$versions.buildGradle"

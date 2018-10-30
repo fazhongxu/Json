@@ -3,6 +3,7 @@ if (isLibrary.toBoolean()) { // 模块化基本配置 作为libray 给别的模�
 } else {    //不作为库给别的模块调用（独立运行时）
     apply plugin: 'com.android.application'
 }
+apply plugin: 'com.jakewharton.butterknife'
 apply plugin: 'kotlin-android'
 
 android {
@@ -61,8 +62,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
     implementation project(':module_base')
     implementation project(':mediator_web')
-
     api deps.arouter.arouterApi
     annotationProcessor deps.arouter.arouterCompiler
+    api deps.butterKnife.butterKnife
+    annotationProcessor deps.butterKnife.compiler
+
 
 }

@@ -2,6 +2,9 @@ package xxl.com.baselibray.http.retrofit;
 
 import com.google.gson.GsonBuilder;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -10,15 +13,17 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Created by xxl on 2018/10/31.
- *
+ * <p>
  * Description :
  */
 
 public class RetrofitClient {
-    private static final String BASE_URL = "http://192.168.1.107:8080/OkHttpServer/";
-    private final Retrofit mRetrofit;
+    private Retrofit mRetrofit;
 
-    private RetrofitClient() {
+    private static HashMap<String, RetrofitClient> mUrlMap = new LinkedHashMap<>();
+
+
+    private RetrofitClient(String baseUrl) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
 //                .readTimeout(TIME_OUT,TimeUnit.MICROSECONDS)
 //                .connectTimeout(TIME_OUT,TimeUnit.MICROSECONDS)
@@ -28,25 +33,39 @@ public class RetrofitClient {
                 //.cache()
                 .build();
 
+
         mRetrofit = new Retrofit.Builder()
                 .client(okHttpClient)
-                .baseUrl(BASE_URL)
+                .baseUrl(baseUrl)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 
-
-
-    private static class Holder {
-        private static final RetrofitClient INSTANCE = new RetrofitClient();
-    }
-
     public Retrofit getRetrofit() {
         return mRetrofit;
     }
-    public static RetrofitClient getInstance() {
-       return Holder.INSTANCE;
+
+    public static RetrofitClient getInstance(String url) {
+        RetrofitClient retrofitClient = mUrlMap.get(url);
+        if (null == retrofitClient) {
+            synchronized (RetrofitClient.class) {
+                //if (null == retrofitClient) {
+                retrofitClient = new RetrofitClient(url);
+                mUrlMap.put(url, retrofitClient);
+                //}
+            }
+        }
+        return retrofitClient;
     }
+
+    public static RetrofitClient getInstance(int type) {
+        return getInstance(new HostImpl().getBaseUrl(type));
+    }
+
+    public static RetrofitClient getInstance() {
+        return getInstance(0);
+    }
+
 }

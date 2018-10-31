@@ -24,6 +24,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
 /*
 kapt {
@@ -43,6 +47,13 @@ dependencies {
     api deps.okhttp
     api deps.arouter.arouterApi
     annotationProcessor deps.arouter.arouterCompiler
-//    api deps.arouter.arouterApi
-//    kapt deps.arouter.arouterCompiler
+
+    api deps.retrofit.retrofit
+    api deps.retrofit.converterGson
+    api deps.retrofit.scalars
+    api deps.retrofit.rxJavaAdapter
+
+    api deps.rxjava.rxandroid
+    api deps.rxPermission
+
 }

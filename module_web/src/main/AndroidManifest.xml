@@ -4,21 +4,24 @@
     package="com.xxl.modelweb">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-<!--
-    Manifest 是不作为libray 给其他工程使用的 情况下 也就是 modole 可以独立运行的情况下 加载这个清单文件
 
-       配置为 build.gradle 里面的
-      if (isLibrary.toBoolean()) {
-                manifest.srcFile 'src/main/module/AndroidManifest.xml'
-                //集成开发模式下排除debug文件夹中的所有Java文件
-                java {
-                    exclude 'debug/**'
+    <!--
+        Manifest 是不作为libray 给其他工程使用的 情况下 也就是 modole 可以独立运行的情况下 加载这个清单文件
+
+           配置为 build.gradle 里面的
+          if (isLibrary.toBoolean()) {
+                    manifest.srcFile 'src/main/module/AndroidManifest.xml'
+                    //集成开发模式下排除debug文件夹中的所有Java文件
+                    java {
+                        exclude 'debug/**'
+                    }
+                } else {
+                    manifest.srcFile 'src/main/AndroidManifest.xml'
                 }
-            } else {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            }
--->
+    -->
     <application
         android:allowBackup="true"
         android:label="@string/app_name"

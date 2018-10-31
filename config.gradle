@@ -46,6 +46,7 @@ def versions = [:]
     versions.bugly = "2.1.5"
     //kotlin
     versions.kotlin = "1.2.61"
+    versions.rxPermission = "0.10.2"
 
     //ButterKnife
     versions.butterKnife = "9.0.0-rc1"
@@ -85,6 +86,8 @@ def rxjava = [:]
 def retrofit = [:]
     retrofit.retrofit = "com.squareup.retrofit2:retrofit:$versions.retrofit"
     retrofit.converterGson = "com.squareup.retrofit2:converter-gson:$versions.converterGson"
+    retrofit.scalars = "com.squareup.retrofit2:converter-scalars:$versions.retrofit"
+    retrofit.rxJavaAdapter = "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
     deps.retrofit = retrofit
 
 deps.okhttp = "com.squareup.okhttp3:okhttp:$versions.okhttp"
@@ -122,11 +125,15 @@ def butterKnife = [:]
 // other
     deps.bugly = "com.tencent.bugly:crashreport:$versions.bugly"
     deps.kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    deps.rxPermission = "com.github.tbruyelle:rxpermissions:$versions.rxPermission"
+
 
 static def addRepos(RepositoryHandler handler) {
     handler.google()
     handler.jcenter()
     handler.mavenCentral()
     handler.maven { url "https://maven.google.com" }
+    handler.maven { url 'https://jitpack.io' }
+
 }
 ext.addRepos = this.&addRepos

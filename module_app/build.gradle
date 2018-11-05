@@ -160,6 +160,7 @@ dependencies {
     if (isLibrary.toBoolean()) { //module 是否作为libary 引入到主工程
         implementation project(':module_web')
         implementation project(':mediator_web')
+        implementation project(':modole_jni')
     }
 }
 

@@ -1,4 +1,4 @@
-include ':module_app',
+include ':module_app', ':modole_jni',
         ':module_base',
         ':module_frame',
         ':module_share',

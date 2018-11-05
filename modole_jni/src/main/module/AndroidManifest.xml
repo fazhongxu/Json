@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.xxl.modole_jni">
+
+    <application>
+        <activity android:name="com.xxl.modole_jni.com.xxl.modolejni.MainActivity"/>
+
+    </application>
+
+</manifest>

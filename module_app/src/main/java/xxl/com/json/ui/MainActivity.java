@@ -19,9 +19,15 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import cn.sharesdk.onekeyshare.dialog.ShareDialog;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import xxl.com.baselibray.util.RxView;
 import xxl.com.json.R;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
@@ -81,6 +87,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btn_test:
                 int randomNum = new Random().nextInt(15);
+                startActivity(BannerActivity.class);
                 switch (randomNum) {
                     case 0:
                         startActivity(MapActivity.class);

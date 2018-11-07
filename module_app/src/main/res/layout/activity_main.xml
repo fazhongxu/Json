@@ -44,6 +44,13 @@
             android:text="测试"
             android:visibility="visible" />
 
+        <TextView
+            android:id="@+id/tv_count_down"
+            android:layout_width="wrap_content"
+            android:textColor="@color/gray"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content" />
+
         <xxl.com.json.view.MultiImageView
             android:id="@+id/main_activity_miv"
             android:gravity="center"

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -16,18 +17,14 @@ import com.xxl.mediatorweb.MediatorWeb;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import cn.sharesdk.onekeyshare.dialog.ShareDialog;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-import xxl.com.baselibray.util.RxView;
+import xxl.com.baselibray.util.CountDownUtil;
 import xxl.com.json.R;
 import xxl.com.json.permission.PermissionFailure;
 import xxl.com.json.permission.PermissionHelper;
@@ -47,6 +44,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             "https://avatars0.githubusercontent.com/u/24353536?s=400&u=43f37f2e73f15a1dfad58f0d63c35418715a5621&v=4"};
 
     private static final int CALL_PHONE_PERMISSION_REQUEST_CODE = 100;
+    private TextView mCountDownTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +58,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private void initView() {
         mBtnTest = (Button) findViewById(R.id.btn_test);
+        mCountDownTv = findViewById(R.id.tv_count_down);
         mBtnTest.setOnClickListener(this);
 
         SlideBar slideBar = (SlideBar) findViewById(R.id.slide_bar);
@@ -80,6 +79,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 iterator.remove();
             }
         }
+
+        CountDownUtil.getInstance().start(1571328000,
+                new CountDownUtil.CountDownCallBack() {
+            @Override
+            public void onCountDown(long day, long hour, long minute, long second) {
+                mCountDownTv.setText(String.format(Locale.CANADA,"倒计时 %d天:%d小时:%d分:%d秒",day,hour,minute,second));
+            }
+        });
     }
 
     @Override
@@ -87,7 +94,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btn_test:
                 int randomNum = new Random().nextInt(15);
-                startActivity(BannerActivity.class);
                 switch (randomNum) {
                     case 0:
                         startActivity(MapActivity.class);
@@ -172,6 +178,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private int keyPressedCount = 0;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        CountDownUtil.getInstance().onResume();
+    }
+
+    @Override
     public void onBackPressed() {
         switch (keyPressedCount++) {
             case 0:
@@ -188,6 +200,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 finish();
                 break;
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        CountDownUtil.getInstance().stop();
     }
 
     @Override

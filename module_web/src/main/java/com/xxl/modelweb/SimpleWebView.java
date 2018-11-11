@@ -13,11 +13,11 @@ import android.webkit.WebView;
 public class SimpleWebView extends WebView {
 
     public SimpleWebView(Context context) {
-        this(context,null);
+        super(context);
     }
 
     public SimpleWebView(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        super(context, attrs);
     }
 
     public SimpleWebView(Context context, AttributeSet attrs, int defStyleAttr) {

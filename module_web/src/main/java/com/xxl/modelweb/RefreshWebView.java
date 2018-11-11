@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -38,6 +39,7 @@ public class RefreshWebView extends SwipeRefreshLayout implements SwipeRefreshLa
         setOnRefreshListener(this);
         mSimpleWebView.setOnScrollChangeListener(this);
         mSimpleWebView.setWebViewClient(mRefreshWebViewClient);
+        mSimpleWebView.setWebChromeClient(new WebChromeClient());
     }
 
     @Override
@@ -61,6 +63,7 @@ public class RefreshWebView extends SwipeRefreshLayout implements SwipeRefreshLa
             setEnabled(false);
         }
     }
+
 
     public class RefreshWebViewClient extends WebViewClient {
         @Override

@@ -64,6 +64,10 @@ public class RefreshWebView extends SwipeRefreshLayout implements SwipeRefreshLa
         }
     }
 
+    public void setWebRefreshing(boolean refreshing) {
+        setRefreshing(refreshing);
+    }
+
 
     public class RefreshWebViewClient extends WebViewClient {
         @Override

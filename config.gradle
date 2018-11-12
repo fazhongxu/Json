@@ -19,7 +19,7 @@ def versions = [:]
 
     //rxjava
     versions.rxjava = "2.1.7"
-    versions.rxandroid = "2.0.1"
+    versions.rxandroid = "2.1.0"
 
     //retrofit
     versions.retrofit = "2.3.0"

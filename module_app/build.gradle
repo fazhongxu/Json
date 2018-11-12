@@ -161,6 +161,7 @@ dependencies {
         implementation project(':module_web')
         implementation project(':mediator_web')
         implementation project(':modole_jni')
+        implementation project(':mediator_media')
     }
 }
 

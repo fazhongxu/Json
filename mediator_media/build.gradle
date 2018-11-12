@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION as int
+
+    defaultConfig {
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
+        versionCode gitVersionCode()
+        versionName VERSION_NAME as String
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+}
+// 获取git 提交次数作为 versionCode 就不需要每次手动修改这个值了
+static def gitVersionCode() {
+    def cmd = 'git rev-list HEAD --count'
+    cmd.execute().text.trim().toInteger()
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api deps.support.appcompat
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+
+
+    api deps.arouter.arouterApi
+    annotationProcessor deps.arouter.arouterCompiler
+}

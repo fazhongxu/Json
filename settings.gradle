@@ -1,4 +1,4 @@
-include ':module_app', ':modole_jni',
+include ':module_app', ':modole_jni', ':module_media', ':mediator_media',
         ':module_base',
         ':module_frame',
         ':module_share',

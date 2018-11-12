@@ -1,0 +1,77 @@
+if (isLibrary.toBoolean()) { // 模块化基本配置 作为libray 给别的模块使用时
+    apply plugin: 'com.android.library'
+} else {    //不作为库给别的模块调用（独立运行时）
+    apply plugin: 'com.android.application'
+}
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion COMPILE_SDK_VERSION as int
+
+    defaultConfig {
+        minSdkVersion MIN_SDK_VERSION as int
+        targetSdkVersion TARGET_SDK_VERSION as int
+        versionCode 1
+        versionName "1.0"
+
+        // library 作为独立apk 运行时，避免安装多个apk 把 application 设置和主app 一样
+        if (!isLibrary.toBoolean()) {
+            applicationId "xxl.com.json"
+        }
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            if (isLibrary.toBoolean()) {   // 这个module 作为一个libary 库提供给别的模块使用时 不需要 Main程序入口
+                manifest.srcFile 'src/main/module/AndroidManifest.xml'
+                //集成开发模式下排除debug文件夹中的所有Java文件
+                java {
+                    exclude 'debug/**'
+                }
+            } else {    //否则需要程序入口
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api deps.support.appcompat
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+
+
+    api deps.arouter.arouterApi
+    annotationProcessor deps.arouter.arouterCompiler
+
+    api deps.butterKnife.butterKnife
+    annotationProcessor deps.butterKnife.compiler
+    api deps.rxPermission
+}

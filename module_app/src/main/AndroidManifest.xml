@@ -32,6 +32,9 @@
             android:name="com.amap.api.v2.apikey"
             android:value="1702a6845449e0f7fae3ea69f905aaa4" />
 
+
+        <!--<receiver android:name=".receiver.CustomReceiver"/>-->
+
         <!-- ShareSdk 微信分享回调 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
@@ -115,6 +118,7 @@
             android:theme="@style/AppThemeNoActionBar" />
         <activity android:name=".ui.TestImageSelectActivity" />
         <activity android:name=".ui.MarqueeTestActivity"/>
+
     </application>
 
 </manifest>

@@ -6,6 +6,7 @@ import android.content.Context;
 import com.mob.MobSDK;
 import com.tencent.bugly.crashreport.CrashReport;
 
+import cn.jpush.android.api.JPushInterface;
 import xxl.com.baselibray.BaseApp;
 import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.baselibray.http.OkHttpEngine;
@@ -36,6 +37,9 @@ public class App extends BaseApp {
         MobSDK.init(this,"25a0b0e10e9e0");
 
         CrashReport.initCrashReport(this,"60588e55ec",false);
+
+        JPushInterface.setDebugMode(BuildConfig.DEBUG);
+        JPushInterface.init(this);
 
     }
 

@@ -13,6 +13,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
  */
 
 public class BaseApp extends Application {
+    private static Application mApplication;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -22,6 +23,7 @@ public class BaseApp extends Application {
             ARouter.openDebug();
         }
         ARouter.init(this);
+        mApplication = this;
     }
 
     /**
@@ -40,5 +42,18 @@ public class BaseApp extends Application {
             }
         }
         return null;
+    }
+
+
+    private static class Holder {
+        private static BaseApp INSTANCE = new BaseApp();
+    }
+
+    public static BaseApp getInstance() {
+        return Holder.INSTANCE;
+    }
+
+    public Application getContext() {
+        return mApplication;
     }
 }

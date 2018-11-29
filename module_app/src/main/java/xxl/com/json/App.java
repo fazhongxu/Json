@@ -1,13 +1,10 @@
 package xxl.com.json;
 
-import android.app.Application;
-import android.content.Context;
-
 import com.mob.MobSDK;
 import com.tencent.bugly.crashreport.CrashReport;
+import com.xxl.json.im.RongCloudHelpter;
 
 import cn.jpush.android.api.JPushInterface;
-import io.rong.imkit.RongIM;
 import xxl.com.baselibray.BaseApp;
 import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.baselibray.http.OkHttpEngine;
@@ -20,7 +17,6 @@ import xxl.com.json.util.SharedPreferenceUtils;
  */
 
 public class App extends BaseApp {
-    private static Application mContext;
 
     @Override
     public void onCreate() {
@@ -28,8 +24,6 @@ public class App extends BaseApp {
         HttpUtil.init(new OkHttpEngine());
 
         SharedPreferenceUtils.init(this);
-
-        mContext = this;
 
         GreenDaoManager.getInstance();
 
@@ -42,20 +36,10 @@ public class App extends BaseApp {
         JPushInterface.setDebugMode(BuildConfig.DEBUG);
         JPushInterface.init(this);
         // 融云
-        RongIM.init(this);
+        //RongIM.init(this);
+        RongCloudHelpter.getInstance().init();
     }
 
-    private static class Holder {
-        private static App INSTANCE = new App();
-    }
-
-    public static App getInstance() {
-        return Holder.INSTANCE;
-    }
-
-    public Context getContext() {
-        return mContext;
-    }
 
 
 }

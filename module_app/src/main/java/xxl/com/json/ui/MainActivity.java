@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.xxl.json.im.MediatorIM;
+import com.xxl.json.im.RongCloudHelpter;
+import com.xxl.mediatorweb.MediatorWeb;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,6 +25,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import androidx.annotation.NonNull;
+import cn.sharesdk.onekeyshare.dialog.ShareDialog;
 import xxl.com.baselibray.util.CountDownUtil;
 import xxl.com.json.R;
 import xxl.com.json.permission.PermissionFailure;
@@ -88,13 +91,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         });
     }
 
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                int randomNum = new Random().nextInt(15);
-                MediatorIM.startIM();
-                /*switch (randomNum) {
+                int randomNum = new Random().nextInt(16);
+                switch (randomNum) {
                     case 0:
                         startActivity(MapActivity.class);
                         break;
@@ -146,11 +150,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     case 14:
                         MediatorWeb.startWeb("https://github.com/fazhongxu");
                         break;
+                    case 15:
+                        RongCloudHelpter.getInstance().connect();
+                        break;
                     default:
                         startActivity(BannerActivity.class);
                         break;
                 }
-                break;*/
+                break;
             default:
                 break;
         }

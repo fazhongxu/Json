@@ -1,4 +1,10 @@
-apply plugin: 'com.android.library'
+if (isLibrary.toBoolean()) { // 模块化基本配置 作为libray 给别的模块使用时
+    apply plugin: 'com.android.library'
+} else {    //不作为库给别的模块调用（独立运行时）
+    apply plugin: 'com.android.application'
+}
+apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion COMPILE_SDK_VERSION as int
@@ -6,8 +12,8 @@ android {
     defaultConfig {
         minSdkVersion MIN_SDK_VERSION as int
         targetSdkVersion TARGET_SDK_VERSION as int
-        versionCode gitVersionCode()
-        versionName VERSION_NAME as String
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -16,6 +22,7 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+
     }
 
     buildTypes {
@@ -25,7 +32,6 @@ android {
         }
     }
 
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -33,17 +39,17 @@ android {
 
 }
 
-// 获取git 提交次数作为 versionCode 就不需要每次手动修改这个值了
-static def gitVersionCode() {
-    def cmd = 'git rev-list HEAD --count'
-    cmd.execute().text.trim().toInteger()
-}
-
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     api deps.support.appcompat
-
+    api deps.support.constraint
+    testImplementation 'junit:junit:4.12'
+    implementation project(':module_base')
     api deps.arouter.arouterApi
     annotationProcessor deps.arouter.arouterCompiler
-
+    api deps.butterKnife.butterKnife
+    annotationProcessor deps.butterKnife.compiler
+    api project(':module_imkit')
+    api project(':module_imlib')
+    implementation project(':mediator_im')
 }

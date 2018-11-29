@@ -6,8 +6,8 @@ android {
     defaultConfig {
         minSdkVersion MIN_SDK_VERSION as int
         targetSdkVersion TARGET_SDK_VERSION as int
-        versionCode gitVersionCode()
-        versionName VERSION_NAME as String
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -25,20 +25,7 @@ android {
         }
     }
 
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
 }
-
-// 获取git 提交次数作为 versionCode 就不需要每次手动修改这个值了
-static def gitVersionCode() {
-    def cmd = 'git rev-list HEAD --count'
-    cmd.execute().text.trim().toInteger()
-}
-
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api deps.support.appcompat

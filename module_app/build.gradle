@@ -75,6 +75,7 @@ android {
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
 
+
         manifestPlaceholders = [
                 JPUSH_PKGNAME : applicationId,
                 JPUSH_APPKEY : "e4e3806ac76d84d81f3bc3a5", //JPush 上注册的包名对应的 Appkey.
@@ -173,10 +174,10 @@ dependencies {
         implementation project(':mediator_web')
         implementation project(':modole_jni')
         implementation project(':mediator_media')
+        implementation project(':module_im')
+        implementation project(':mediator_im')
     }
     api 'cn.jiguang.sdk:jpush:3.1.6'
     api 'cn.jiguang.sdk:jcore:1.2.5'
-    api project(':IMKit')
-    api project(':IMLib')
 }
 

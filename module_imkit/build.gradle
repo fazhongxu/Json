@@ -33,7 +33,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api deps.support.appcompat
-    api project(':IMLib')
+    api project(':module_imlib')
     api files('src/main/libs/Rong_IMKit.jar')
     api files('src/main/libs/isoparser-1.0.6.jar')
     api files('src/main/libs/aspectjrt-1.7.3.jar')

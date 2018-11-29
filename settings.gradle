@@ -1,4 +1,4 @@
-include ':module_app', ':modole_jni', ':module_media', ':mediator_media',
+include ':module_app', ':modole_jni', ':module_media', ':mediator_media', ':module_im', ':mediator_im',
         ':module_base',
         ':module_frame',
         ':module_share',
@@ -6,4 +6,4 @@ include ':module_app', ':modole_jni', ':module_media', ':mediator_media',
         ':mediator_web',
         ':module_feild',
         ':module_widget',
-        ':module_util', ':IMLib', ':IMKit'
+        ':module_util', ':module_imlib', ':module_imkit'

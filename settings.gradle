@@ -6,4 +6,4 @@ include ':module_app', ':modole_jni', ':module_media', ':mediator_media',
         ':mediator_web',
         ':module_feild',
         ':module_widget',
-        ':module_util'
+        ':module_util', ':IMLib', ':IMKit'

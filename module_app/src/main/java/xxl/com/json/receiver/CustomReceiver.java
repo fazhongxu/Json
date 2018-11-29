@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,6 +44,7 @@ public class CustomReceiver extends BroadcastReceiver {
 
             } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent.getAction())) {
                 int notifactionId = bundle.getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
+
             } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent.getAction())) {
                 //打开自定义的Activity
                 /*Intent i = new Intent(context, TestActivity.class);
@@ -98,23 +100,25 @@ public class CustomReceiver extends BroadcastReceiver {
 
     //send msg to MainActivity
     private void processCustomMessage(Context context, Bundle bundle) {
-       /* if (MainActivity.isForeground) {
+//        if (MainActivity.isForeground) {
             String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
+            Log.e(TAG, "processCustomMessage: "+message);
             String extras = bundle.getString(JPushInterface.EXTRA_EXTRA);
-            Intent msgIntent = new Intent(MainActivity.MESSAGE_RECEIVED_ACTION);
-            msgIntent.putExtra(MainActivity.KEY_MESSAGE, message);
-            if (!ExampleUtil.isEmpty(extras)) {
+//            Intent msgIntent = new Intent(MainActivity.MESSAGE_RECEIVED_ACTION);
+//            msgIntent.putExtra(MainActivity.KEY_MESSAGE, message);
+            if (!TextUtils.isEmpty(extras)) {
                 try {
                     JSONObject extraJson = new JSONObject(extras);
                     if (extraJson.length() > 0) {
-                        msgIntent.putExtra(MainActivity.KEY_EXTRAS, extras);
+                        //msgIntent.putExtra(MainActivity.KEY_EXTRAS, extras);
+                        Log.e(TAG, "processCustomMessage: "+extraJson.toString());
                     }
                 } catch (JSONException e) {
 
                 }
-
-            }
-            LocalBroadcastManager.getInstance(context).sendBroadcast(msgIntent);
-        }*/
+//
+//            }
+//            LocalBroadcastManager.getInstance(context).sendBroadcast(msgIntent);
+        }
     }
 }

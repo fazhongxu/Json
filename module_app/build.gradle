@@ -168,15 +168,15 @@ dependencies {
     api deps.arouter.arouterApi
     kapt deps.arouter.arouterCompiler
     implementation project(':module_base')
-
     if (isLibrary.toBoolean()) { //module 是否作为libary 引入到主工程
         implementation project(':module_web')
         implementation project(':mediator_web')
         implementation project(':modole_jni')
         implementation project(':mediator_media')
     }
-
     api 'cn.jiguang.sdk:jpush:3.1.6'
     api 'cn.jiguang.sdk:jcore:1.2.5'
+    api project(':IMKit')
+    api project(':IMLib')
 }
 

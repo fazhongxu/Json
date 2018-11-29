@@ -1,5 +1,6 @@
 package xxl.com.json;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 
@@ -7,6 +8,8 @@ import com.mob.MobSDK;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import cn.jpush.android.api.JPushInterface;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 import xxl.com.baselibray.BaseApp;
 import xxl.com.baselibray.http.HttpUtil;
 import xxl.com.baselibray.http.OkHttpEngine;
@@ -21,6 +24,8 @@ import xxl.com.json.util.SharedPreferenceUtils;
 public class App extends BaseApp {
     private static Application mContext;
 
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -33,13 +38,15 @@ public class App extends BaseApp {
         GreenDaoManager.getInstance();
 
         CrashHandler.getInstance().init(this);
-
+        //三方分享
         MobSDK.init(this,"25a0b0e10e9e0");
-
+        //Bugly
         CrashReport.initCrashReport(this,"60588e55ec",false);
-
+        //JPush
         JPushInterface.setDebugMode(BuildConfig.DEBUG);
         JPushInterface.init(this);
+        // 融云
+        RongIM.init(this);
 
     }
 
@@ -53,5 +60,23 @@ public class App extends BaseApp {
 
     public Context getContext() {
         return mContext;
+    }
+
+    /**
+     * 获取当前进程名
+     * @param context
+     * @return
+     */
+    public static String getCurProcessName(Context context) {
+        int pid = android.os.Process.myPid();
+        ActivityManager mActivityManager = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningAppProcessInfo appProcess : mActivityManager
+                .getRunningAppProcesses()) {
+            if (appProcess.pid == pid) {
+                return appProcess.processName;
+            }
+        }
+        return null;
     }
 }

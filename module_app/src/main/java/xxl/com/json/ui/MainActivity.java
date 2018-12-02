@@ -26,6 +26,7 @@ import java.util.TimerTask;
 
 import androidx.annotation.NonNull;
 import cn.sharesdk.onekeyshare.dialog.ShareDialog;
+import io.rong.imkit.RongIM;
 import xxl.com.baselibray.util.CountDownUtil;
 import xxl.com.json.R;
 import xxl.com.json.permission.PermissionFailure;
@@ -89,15 +90,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mCountDownTv.setText(String.format(Locale.CANADA,"倒计时 %d天:%d小时:%d分:%d秒",day,hour,minute,second));
             }
         });
+
+        RongCloudHelpter.getInstance().connect(token1);
+
     }
 
-
+        String token1 = "zwXC8abDqm8yjdk/ZcWlD1h4ynYS1zpYWC51dq9WT6I1G2CwlPe/zu4nIitG31j3iyoLrwflWzD3l7CTMHKU7g==";//json
+    String token2 = "Sux96aYwGKaUzp8PuHgcksIMPL4IogNJLQA3Z89wDTsrqA+0uWAM0XnxmwijZcauY9RAmGkL2mwtPWNt7nKKRw==";//123
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
                 int randomNum = new Random().nextInt(16);
+                RongIM.getInstance().startPrivateChat(this, "123", "贝吉塔");  // token1 和 123 （token2) 可以聊天     token 2 和 json(token1) 才可以聊天
                 switch (randomNum) {
                     case 0:
                         startActivity(MapActivity.class);
@@ -151,7 +157,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         MediatorWeb.startWeb("https://github.com/fazhongxu");
                         break;
                     case 15:
-                        RongCloudHelpter.getInstance().connect();
+                       // RongCloudHelpter.getInstance().connect();
                         break;
                     default:
                         startActivity(BannerActivity.class);

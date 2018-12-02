@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.util.Log;
 
+import io.rong.imkit.MainActivity;
 import io.rong.imkit.RongIM;
 import io.rong.imlib.RongIMClient;
 import xxl.com.baselibray.BaseApp;
@@ -41,10 +42,12 @@ public class RongCloudHelpter {
      * @param 。
      * @return RongIM  客户端核心类的实例。
      */
-    public void connect() {
+    public void connect(String token) {
         // 获取token api
         Application context = BaseApp.getInstance().getContext();
-        String token = "5WREKTcxH28fn42LCjotcsIMPL4IogNJLQA3Z89wDTsrqA+0uWAM0RZsSXwOOzelJfsjGrL9cdF0pfSGmkw2DA==";
+//        String token = "zwXC8abDqm8yjdk/ZcWlD1h4ynYS1zpYWC51dq9WT6I1G2CwlPe/zu4nIitG31j3iyoLrwflWzD3l7CTMHKU7g==";//json
+        //String token = "Sux96aYwGKaUzp8PuHgcksIMPL4IogNJLQA3Z89wDTsrqA+0uWAM0XnxmwijZcauY9RAmGkL2mwtPWNt7nKKRw==";//123
+
 
         if (context.getApplicationInfo().packageName.equals(BaseApp.getCurProcessName(context.getApplicationContext()))) {
 
@@ -67,7 +70,9 @@ public class RongCloudHelpter {
                 @Override
                 public void onSuccess(String userid) {
                     Log.e(TAG, "--onSuccess" + userid);
-                    context.startActivity(new Intent(context,ConversationActivity.class));
+                    //Intent intent = new Intent(context, ConversationListActivity.class);
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                   // context.startActivity(intent);
                 }
 
                 /**

@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.xxl.module.media.record.MediaCapture;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
@@ -16,7 +17,7 @@ import io.reactivex.schedulers.Schedulers;
 @Route(path = IConstantMedia.MEDIA_MEDIA_ACTIVITY)
 public class MediaActivity extends AppCompatActivity {
 
-    private AudioCapture mAudioCapture;
+    private MediaCapture mAudioCapture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class MediaActivity extends AppCompatActivity {
                     .observeOn(Schedulers.io())
                     .subscribe(aBoolean -> {
                         if (aBoolean) {
-                            mAudioCapture = new AudioCapture();
+                            mAudioCapture = new MediaCapture();
                             mAudioCapture.startCapture();
                         } else {
                             Toast.makeText(this, "请开启录制权限！", Toast.LENGTH_SHORT).show();

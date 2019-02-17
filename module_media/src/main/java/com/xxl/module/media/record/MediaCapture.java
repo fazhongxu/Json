@@ -1,4 +1,4 @@
-package com.xxl.module.media;
+package com.xxl.module.media.record;
 
 import android.media.MediaRecorder;
 import android.os.Environment;
@@ -13,14 +13,14 @@ import java.io.IOException;
  * Description :
  */
 
-public class AudioCapture {
+public class MediaCapture {
     private static final int DEFAULT_SOURCE = MediaRecorder.AudioSource.MIC;
     private static final int DEFAULT_SAMPLE_RATE = 44100;
     private static final int DEFAULT_AUDIO_FORMAT = MediaRecorder.OutputFormat.DEFAULT;
     private static final int DEFAULT_AUDIO_ENCODER = MediaRecorder.AudioEncoder.DEFAULT;
     private MediaRecorder mMediaRecorder;
 
-    public AudioCapture() {
+    public MediaCapture() {
         if (mMediaRecorder == null) {
             recordeConfig();
         }

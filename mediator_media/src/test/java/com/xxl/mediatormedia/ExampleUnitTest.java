@@ -1,4 +1,4 @@
-package com.xxl.mediator.media;
+package com.xxl.mediatormedia;
 
 import org.junit.Test;
 

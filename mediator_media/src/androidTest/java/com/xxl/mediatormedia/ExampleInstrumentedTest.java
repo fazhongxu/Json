@@ -1,4 +1,4 @@
-package com.xxl.mediator.media;
+package com.xxl.mediatormedia;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.xxl.mediator.media.test", appContext.getPackageName());
+        assertEquals("com.xxl.mediatormedia.test", appContext.getPackageName());
     }
 }

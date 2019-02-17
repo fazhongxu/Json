@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +13,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-
+@Route(path = IConstantMedia.MEDIA_MEDIA_ACTIVITY)
 public class MediaActivity extends AppCompatActivity {
 
     private AudioCapture mAudioCapture;
@@ -29,7 +30,7 @@ public class MediaActivity extends AppCompatActivity {
         int id = view.getId();
         if (id == R.id.activity_media_start_btn) {
             RxPermissions rxPermissions = new RxPermissions(this);
-            Disposable subscribe = rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Disposable disposable = rxPermissions.request(Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.READ_EXTERNAL_STORAGE,
                     Manifest.permission.RECORD_AUDIO)
                     .observeOn(Schedulers.io())
@@ -43,7 +44,9 @@ public class MediaActivity extends AppCompatActivity {
 
                     });
         }else if (id == R.id.activity_media_stop_btn) {
-            mAudioCapture.stopCapture();
+            if (mAudioCapture != null) {
+                mAudioCapture.stopCapture();
+            }
         }
     }
 }

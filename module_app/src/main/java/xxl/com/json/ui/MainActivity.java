@@ -12,21 +12,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.xxl.json.im.MediatorIM;
 import com.xxl.json.im.RongCloudHelpter;
-import com.xxl.mediatorweb.MediatorWeb;
+import com.xxl.module.media.MediatorMedia;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import androidx.annotation.NonNull;
-import cn.sharesdk.onekeyshare.dialog.ShareDialog;
-import io.rong.imkit.RongIM;
 import xxl.com.baselibray.util.CountDownUtil;
 import xxl.com.json.R;
 import xxl.com.json.permission.PermissionFailure;
@@ -102,7 +98,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_test:
-                int randomNum = new Random().nextInt(16);
+               /* int randomNum = new Random().nextInt(17);
                 RongIM.getInstance().startPrivateChat(this, "123", "贝吉塔");  // token1 和 123 （token2) 可以聊天     token 2 和 json(token1) 才可以聊天
                 switch (randomNum) {
                     case 0:
@@ -159,13 +155,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     case 15:
                        // RongCloudHelpter.getInstance().connect();
                         break;
+                    case 16:
+                        MediatorMedia.startMediaActivity();
+                        break;
                     default:
                         startActivity(BannerActivity.class);
                         break;
                 }
                 break;
             default:
-                break;
+                break;*/
+                MediatorMedia.startMediaActivity();
         }
     }
 
@@ -208,6 +208,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         keyPressedCount = 0;
                     }
                 }, 1000);
+
                 break;
             case 1:
                 finish();

@@ -1,3 +1,5 @@
+package com.xxl.module.media;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 
 /**

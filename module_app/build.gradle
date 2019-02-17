@@ -174,11 +174,11 @@ dependencies {
         implementation project(':mediator_web')
         implementation project(':modole_jni')
         implementation project(':mediator_media')
+        implementation project(':module_media')
         implementation project(':module_im')
         implementation project(':mediator_im')
     }
     api 'cn.jiguang.sdk:jpush:3.1.6'
     api 'cn.jiguang.sdk:jcore:1.2.5'
-
 }
 

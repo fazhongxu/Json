@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginTop="32dp"
-        android:text="start"
+        android:text="start_record"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,11 +20,11 @@
         android:id="@+id/activity_media_stop_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="32dp"
-        android:text="stop"
-        app:layout_constraintStart_toEndOf="@+id/activity_media_start_btn"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="stop_record"
+        android:layout_marginTop="2dp"
+        app:layout_constraintStart_toStartOf="@+id/activity_media_start_btn"
+        app:layout_constraintTop_toBottomOf="@+id/activity_media_start_btn"
+   />
 
 
 

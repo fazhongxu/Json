@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.xxl.module.media.record.AudioCapture;
 import com.xxl.module.media.record.MediaCapture;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,17 +38,19 @@ public class MediaActivity extends AppCompatActivity {
                     .observeOn(Schedulers.io())
                     .subscribe(aBoolean -> {
                         if (aBoolean) {
-                            mAudioCapture = new MediaCapture();
-                            mAudioCapture.startCapture();
+//                            mAudioCapture = new MediaCapture();
+//                            mAudioCapture.startCapture();
+                            AudioCapture.getInstance().startRecord();
                         } else {
                             Toast.makeText(this, "请开启录制权限！", Toast.LENGTH_SHORT).show();
                         }
 
                     });
         }else if (id == R.id.activity_media_stop_btn) {
-            if (mAudioCapture != null) {
-                mAudioCapture.stopCapture();
-            }
+//            if (mAudioCapture != null) {
+//                mAudioCapture.stopCapture();
+//            }
+            AudioCapture.getInstance().stopRecord();
         }
     }
 }
